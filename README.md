@@ -2,7 +2,7 @@
 
 KBO 프로야구 포스트시즌 진출 매직넘버를 매일 자동으로 계산합니다.
 
-Kim et al. (2024) "Improving South Korea's Crystal Ball for Baseball Postseason Clinching and Elimination" 논문의 MILP 모델을 기반으로 합니다.
+Kim et al. (2024) "[Improving South Korea's Crystal Ball for Baseball Postseason Clinching and Elimination](https://pubsonline.informs.org/doi/abs/10.1287/inte.2023.0035)" 논문의 MILP 모델을 기반으로 합니다.
 
 ## 대시보드
 
