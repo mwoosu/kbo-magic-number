@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.venv/
+
+# direnv
+.direnv/
+.envrc
+
+# Gurobi
+*.lp
+*.ilp
+*.sol
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PDF (논문은 올릴 필요 없음)
+*.pdf
