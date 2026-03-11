@@ -1,130 +1,178 @@
 /* ============================================================
-   KBO Magic Number Dashboard — Dark Premium Theme
+   KBO Magic Number Dashboard — style.css
+   Premium Dark Theme, COIS Lab navy ↔ teal palette
    ============================================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap');
+
+/* --- Design Tokens --- */
 :root {
-    --bg-primary: #0a0e1a;
-    --bg-secondary: #111827;
-    --bg-card: #1a2035;
-    --bg-card-hover: #1f2847;
-    --glass: rgba(255, 255, 255, 0.04);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --text-primary: #f0f4ff;
-    --text-secondary: #8892b0;
-    --text-dim: #4a5568;
-    --accent: #60a5fa;
-    --accent-glow: rgba(96, 165, 250, 0.3);
+    /* COIS palette */
+    --navy: #0d2240;
+    --navy-light: #142d52;
+    --teal: #1a9e8f;
+    --teal-light: #23c4b2;
+    --accent: #4dd4c4;
+
+    /* Background tones */
+    --bg-dark: #060e1a;
+    --bg-card: rgba(15, 35, 65, 0.65);
+    --bg-card-hover: rgba(20, 45, 82, 0.8);
+
+    /* Glass */
+    --glass-border: rgba(77, 212, 196, 0.12);
+    --glass-glow: rgba(26, 158, 143, 0.08);
+
+    /* Text */
+    --text-primary: #f0f4f8;
+    --text-secondary: #8da5c0;
+    --text-dim: #5a7a9a;
+
+    /* Status */
     --green: #34d399;
-    --green-glow: rgba(52, 211, 153, 0.25);
-    --red: #f87171;
-    --red-glow: rgba(248, 113, 113, 0.25);
+    --green-glow: rgba(52, 211, 153, 0.3);
     --yellow: #fbbf24;
     --orange: #fb923c;
-    --radius: 16px;
-    --radius-sm: 10px;
+    --red: #f87171;
+    --red-glow: rgba(248, 113, 113, 0.3);
+
+    /* Rank colors */
+    --rank-top: var(--teal);
+    --rank-out: #ef4444;
 }
 
-* {
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Inter', 'Noto Sans KR', -apple-system, sans-serif;
-    background: var(--bg-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-dark);
     color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-.bg-glow {
+/* Animated background gradient */
+body::before {
+    content: '';
     position: fixed;
-    top: -200px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 800px;
-    height: 600px;
-    background: radial-gradient(ellipse, rgba(96, 165, 250, 0.08) 0%, transparent 70%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(ellipse at 20% 20%, rgba(26, 158, 143, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(13, 34, 64, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(77, 212, 196, 0.03) 0%, transparent 70%);
     pointer-events: none;
     z-index: 0;
+    animation: bgPulse 8s ease-in-out infinite alternate;
 }
 
+@keyframes bgPulse {
+    0% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* --- Layout --- */
 .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 20px 32px;
     position: relative;
     z-index: 1;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px 60px;
 }
 
 /* --- Header --- */
-header {
-    text-align: center;
-    margin-bottom: 48px;
-}
-
-.header-badge {
-    display: inline-block;
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--navy-light), var(--navy));
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
     padding: 6px 16px;
-    background: rgba(96, 165, 250, 0.12);
-    border: 1px solid rgba(96, 165, 250, 0.25);
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 700;
     letter-spacing: 1.5px;
     color: var(--accent);
-    margin-bottom: 16px;
     text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.badge::before {
+    content: '⚾';
+    font-size: 12px;
 }
 
 h1 {
-    font-size: 48px;
+    font-size: 42px;
     font-weight: 900;
-    letter-spacing: -1.5px;
-    background: linear-gradient(135deg, #f0f4ff 0%, #60a5fa 100%);
+    background: linear-gradient(135deg, var(--text-primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    letter-spacing: -1px;
+    line-height: 1.1;
     margin-bottom: 8px;
 }
 
-.subtitle {
-    font-size: 15px;
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#update-info {
+    font-size: 14px;
     color: var(--text-secondary);
     font-weight: 400;
 }
 
-/* --- Playoff Cutline --- */
-.playoff-line {
-    display: none;
-    margin-bottom: 8px;
-}
-
-.playoff-line.visible {
-    display: block;
-}
-
-.playoff-label {
+/* --- Info Legend --- */
+.info-legend {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 8px;
-    padding: 10px 20px;
-    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(251, 191, 36, 0.03));
-    border: 1px solid rgba(251, 191, 36, 0.2);
-    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    background: rgba(15, 35, 65, 0.4);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    margin-bottom: 24px;
     font-size: 13px;
-    font-weight: 600;
-    color: var(--yellow);
-    letter-spacing: 0.3px;
 }
 
-.playoff-icon {
-    font-size: 16px;
+.legend-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.legend-label {
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 64px;
+    flex-shrink: 0;
+}
+
+.legend-desc {
+    color: var(--text-secondary);
+    font-weight: 400;
+    line-height: 1.4;
 }
 
 /* --- Team Grid --- */
-.team-grid {
+#team-grid {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -132,39 +180,22 @@ h1 {
 
 /* --- Team Card --- */
 .team-card {
-    display: grid;
-    grid-template-columns: 44px 1fr auto;
+    display: flex;
     align-items: center;
     gap: 16px;
     padding: 18px 24px;
     background: var(--bg-card);
     border: 1px solid var(--glass-border);
-    border-radius: var(--radius);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
     transition: all 0.25s ease;
-    cursor: default;
-    animation: fadeSlideIn 0.4s ease forwards;
-    opacity: 0;
+    animation: cardSlide 0.5s ease-out both;
 }
 
-.team-card:hover {
-    background: var(--bg-card-hover);
-    border-color: rgba(255, 255, 255, 0.12);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.team-card.eliminated {
-    opacity: 0.5;
-}
-
-.team-card.eliminated:hover {
-    opacity: 0.7;
-}
-
-@keyframes fadeSlideIn {
+@keyframes cardSlide {
     from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(16px);
     }
 
     to {
@@ -173,59 +204,86 @@ h1 {
     }
 }
 
+.team-card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(77, 212, 196, 0.25);
+    transform: translateX(4px);
+    box-shadow: 0 4px 24px var(--glass-glow);
+}
+
+.team-card.eliminated {
+    opacity: 0.45;
+}
+
 /* Rank badge */
 .rank-badge {
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
-    font-size: 18px;
     font-weight: 800;
+    font-size: 15px;
     flex-shrink: 0;
+    border: 2px solid transparent;
 }
 
 .rank-badge.top {
-    background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(52, 211, 153, 0.05));
-    color: var(--green);
-    border: 1px solid rgba(52, 211, 153, 0.3);
+    background: rgba(26, 158, 143, 0.12);
+    color: var(--accent);
+    border-color: rgba(77, 212, 196, 0.3);
 }
 
-.rank-badge.mid {
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--text-secondary);
-    border: 1px solid var(--glass-border);
+.rank-badge.rank-1 {
+    background: linear-gradient(135deg, #ffd700, #b8860b);
+    color: #1a1a1a;
+    border: none;
+    box-shadow: 0 2px 12px rgba(255, 215, 0, 0.3);
+}
+
+.rank-badge.rank-2 {
+    background: linear-gradient(135deg, #c0c0c0, #808080);
+    color: #1a1a1a;
+    border: none;
+    box-shadow: 0 2px 12px rgba(192, 192, 192, 0.2);
+}
+
+.rank-badge.rank-3 {
+    background: linear-gradient(135deg, #cd7f32, #8b5a2b);
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 12px rgba(205, 127, 50, 0.2);
 }
 
 .rank-badge.out {
-    background: rgba(248, 113, 113, 0.1);
-    color: var(--red);
-    border: 1px solid rgba(248, 113, 113, 0.2);
+    background: transparent;
+    color: var(--text-dim);
+    border-color: rgba(90, 122, 154, 0.25);
 }
 
 /* Team info */
 .team-info {
+    flex: 1;
     min-width: 0;
 }
 
 .team-name {
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 3px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 2px;
 }
 
 .team-name .eng {
     font-size: 12px;
     font-weight: 500;
     color: var(--text-dim);
+    margin-left: 6px;
 }
 
 .team-record {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-secondary);
     font-weight: 400;
 }
@@ -250,8 +308,9 @@ h1 {
 }
 
 .magic-number {
+    font-family: 'JetBrains Mono', 'Inter', monospace;
     font-size: 28px;
-    font-weight: 900;
+    font-weight: 800;
     line-height: 1;
     margin-bottom: 2px;
 }
@@ -286,29 +345,51 @@ h1 {
 .magic-label {
     font-size: 10px;
     color: var(--text-dim);
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.3px;
     margin-top: 2px;
 }
 
+/* --- Playoff Cutline --- */
+.playoff-line {
+    display: none;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0;
+    color: var(--teal-light);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.playoff-line.visible {
+    display: flex;
+}
+
+.playoff-line::before,
+.playoff-line::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent);
+}
+
 /* --- Loading --- */
 .loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
+    text-align: center;
     padding: 80px 20px;
     color: var(--text-secondary);
 }
 
 .spinner {
-    width: 36px;
-    height: 36px;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
     border: 3px solid var(--glass-border);
-    border-top-color: var(--accent);
+    border-top-color: var(--teal);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
+    margin-bottom: 16px;
 }
 
 @keyframes spin {
@@ -317,64 +398,94 @@ h1 {
     }
 }
 
-/* --- Footer --- */
-footer {
-    text-align: center;
-    margin-top: 56px;
-    color: var(--text-dim);
-    font-size: 12px;
-    line-height: 1.8;
-}
-
-.footer-sub {
-    color: var(--text-dim);
-    opacity: 0.6;
-}
-
-/* --- Error --- */
 .error-msg {
     text-align: center;
     padding: 60px 20px;
     color: var(--red);
 }
 
-.error-msg h2 {
-    font-size: 20px;
-    margin-bottom: 8px;
+/* --- Footer --- */
+footer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 32px 0 16px;
+    margin-top: 24px;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-dim);
+    font-size: 12px;
+    line-height: 1.8;
 }
 
-.error-msg p {
-    color: var(--text-secondary);
-    font-size: 14px;
+footer strong {
+    color: var(--accent);
+}
+
+.footer-logo {
+    width: 100px;
+    flex-shrink: 0;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+.footer-logo:hover {
+    opacity: 1;
+}
+
+.footer-text {
+    text-align: left;
+    line-height: 1.7;
+}
+
+.footer-text a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.footer-sub {
+    font-size: 11px;
+    color: var(--text-dim);
 }
 
 /* --- Responsive --- */
-@media (max-width: 600px) {
+@media (max-width: 640px) {
     .container {
-        padding: 24px 12px 40px;
+        padding: 32px 12px 24px;
     }
 
     h1 {
-        font-size: 32px;
+        font-size: 30px;
     }
 
     .team-card {
-        grid-template-columns: 38px 1fr auto;
         padding: 14px 16px;
         gap: 12px;
-    }
-
-    .rank-badge {
-        width: 38px;
-        height: 38px;
-        font-size: 16px;
     }
 
     .team-name {
         font-size: 15px;
     }
 
+    .team-record {
+        font-size: 11px;
+    }
+
     .magic-number {
-        font-size: 28px;
+        font-size: 22px;
+    }
+
+    .numbers-section {
+        gap: 10px;
+    }
+
+    .number-col {
+        min-width: 44px;
+    }
+
+    .rank-badge {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+        border-radius: 10px;
     }
 }

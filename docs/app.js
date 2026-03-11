@@ -24,6 +24,7 @@ function getElimClass(team) {
 }
 
 function getRankClass(rank, nPlayoff) {
+    if (rank <= 3) return `top rank-${rank}`;
     if (rank <= nPlayoff) return 'top';
     return 'out';
 }
@@ -74,10 +75,7 @@ function createTeamCard(team, nPlayoff, index) {
     card.innerHTML = `
         <div class="rank-badge ${rankClass}">${team.rank}</div>
         <div class="team-info">
-            <div class="team-name">
-                ${team.team_label}
-                <span class="eng">${team.team}</span>
-            </div>
+            <div class="team-name">${team.team_label}</div>
             <div class="team-record">
                 ${team.current_wins}승 ${team.current_losses}패 ${team.current_draws}무
                 · 승률 .${winPct.replace('.', '')}
@@ -92,7 +90,7 @@ function createTeamCard(team, nPlayoff, index) {
             <div class="number-divider"></div>
             <div class="number-col">
                 <div class="magic-number ${clinchClass}">${clinchDisplay}</div>
-                <div class="magic-label">PS확정</div>
+                <div class="magic-label">진출확정</div>
             </div>
         </div>
     `;

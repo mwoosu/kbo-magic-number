@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,12 @@
     <meta name="description" content="KBO 프로야구 포스트시즌 진출 매직넘버를 매일 자동으로 계산합니다.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="bg-glow"></div>
     <div class="container">
@@ -18,6 +22,17 @@
             <h1>KBO 매직넘버</h1>
             <p class="subtitle" id="update-info">데이터 로딩 중...</p>
         </header>
+
+        <div class="info-legend">
+            <div class="legend-item">
+                <span class="legend-label">탈락방지</span>
+                <span class="legend-desc">앞으로 최소 몇 승을 더 해야 포스트시즌 탈락을 피할 수 있는가</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-label">진출확정</span>
+                <span class="legend-desc">앞으로 몇 승을 더 하면 어떤 결과가 나와도 포스트시즌 진출이 확정되는가</span>
+            </div>
+        </div>
 
         <section class="playoff-line" id="playoff-line">
             <div class="playoff-label">
@@ -34,10 +49,18 @@
         </main>
 
         <footer>
-            <p>Kim et al. (2024) MILP 모델 기반 · 매일 경기 종료 후 자동 업데이트</p>
-            <p class="footer-sub">Powered by Gurobi Optimizer</p>
+            <a href="https://cois.dankook.ac.kr/" target="_blank">
+                <img src="cois_logo.png" alt="COIS Lab" class="footer-logo">
+            </a>
+            <div class="footer-text">
+                <p><strong>COIS Lab</strong> · Computational Optimization for Intelligent Systems</p>
+                <p class="footer-sub">Woo Minsu · An Hyojun · Heo Changan · 단국대학교 경영공학과</p>
+                <p class="footer-sub">Based on <a href="https://doi.org/10.1287/inte.2023.0068" target="_blank"
+                        style="color:var(--accent);text-decoration:none">Kim et al. (2024)</a></p>
+            </div>
         </footer>
     </div>
     <script src="app.js"></script>
 </body>
+
 </html>
