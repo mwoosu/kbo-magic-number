@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KBO 매직넘버 대시보드</title>
+    <meta name="description" content="KBO 프로야구 포스트시즌 진출 매직넘버를 매일 자동으로 계산합니다.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div class="container">
+        <header>
+            <div class="header-badge">⚾ LIVE TRACKER</div>
+            <h1>KBO 매직넘버</h1>
+            <p class="subtitle" id="update-info">데이터 로딩 중...</p>
+        </header>
+
+        <section class="playoff-line" id="playoff-line">
+            <div class="playoff-label">
+                <span class="playoff-icon">🏆</span>
+                <span>포스트시즌 컷라인</span>
+            </div>
+        </section>
+
+        <main id="team-grid" class="team-grid">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>계산 결과를 불러오는 중...</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Kim et al. (2024) MILP 모델 기반 · 매일 경기 종료 후 자동 업데이트</p>
+            <p class="footer-sub">Powered by Gurobi Optimizer</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
