@@ -1,42 +1,38 @@
 /* ============================================================
    KBO Magic Number Dashboard — style.css
-   Premium Dark Theme, COIS Lab navy ↔ teal palette
+   Clean Light Theme, COIS Lab navy ↔ teal palette
    ============================================================ */
 
 /* --- Design Tokens --- */
 :root {
     /* COIS palette */
     --navy: #0d2240;
-    --navy-light: #142d52;
     --teal: #1a9e8f;
     --teal-light: #23c4b2;
-    --accent: #4dd4c4;
+    --accent: #0f7a6e;
 
     /* Background tones */
-    --bg-dark: #060e1a;
-    --bg-card: rgba(15, 35, 65, 0.65);
-    --bg-card-hover: rgba(20, 45, 82, 0.8);
+    --bg: #f8f9fb;
+    --bg-card: #ffffff;
+    --bg-card-hover: #fafbfd;
 
-    /* Glass */
-    --glass-border: rgba(77, 212, 196, 0.12);
-    --glass-glow: rgba(26, 158, 143, 0.08);
+    /* Borders & shadows */
+    --border: #e2e6ed;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
 
     /* Text */
-    --text-primary: #f0f4f8;
-    --text-secondary: #8da5c0;
-    --text-dim: #5a7a9a;
+    --text-primary: #1a1f2e;
+    --text-secondary: #5a6478;
+    --text-dim: #8893a7;
 
     /* Status */
-    --green: #34d399;
-    --green-glow: rgba(52, 211, 153, 0.3);
-    --yellow: #fbbf24;
-    --orange: #fb923c;
-    --red: #f87171;
-    --red-glow: rgba(248, 113, 113, 0.3);
-
-    /* Rank colors */
-    --rank-top: var(--teal);
-    --rank-out: #ef4444;
+    --green: #059669;
+    --green-bg: rgba(5, 150, 105, 0.08);
+    --yellow: #d97706;
+    --orange: #ea580c;
+    --red: #dc2626;
+    --red-bg: rgba(220, 38, 38, 0.06);
 }
 
 /* --- Reset & Base --- */
@@ -50,37 +46,9 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--bg-dark);
+    background: var(--bg);
     color: var(--text-primary);
     min-height: 100vh;
-    overflow-x: hidden;
-}
-
-/* Animated background gradient */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-        radial-gradient(ellipse at 20% 20%, rgba(26, 158, 143, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(13, 34, 64, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(77, 212, 196, 0.03) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-    animation: bgPulse 8s ease-in-out infinite alternate;
-}
-
-@keyframes bgPulse {
-    0% {
-        opacity: 0.7;
-    }
-
-    100% {
-        opacity: 1;
-    }
 }
 
 /* --- Layout --- */
@@ -88,8 +56,6 @@ body::before {
     max-width: 880px;
     margin: 0 auto;
     padding: 48px 20px 32px;
-    position: relative;
-    z-index: 1;
 }
 
 /* --- Header --- */
@@ -97,8 +63,8 @@ body::before {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: linear-gradient(135deg, var(--navy-light), var(--navy));
-    border: 1px solid var(--glass-border);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
     border-radius: 24px;
     padding: 6px 16px;
     font-size: 11px;
@@ -117,10 +83,7 @@ body::before {
 h1 {
     font-size: 42px;
     font-weight: 900;
-    background: linear-gradient(135deg, var(--text-primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--navy);
     letter-spacing: -1px;
     line-height: 1.1;
     margin-bottom: 8px;
@@ -128,7 +91,7 @@ h1 {
 
 header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
 }
 
 #update-info {
@@ -141,13 +104,14 @@ header {
 .info-legend {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 16px 20px;
-    background: rgba(15, 35, 65, 0.4);
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-    margin-bottom: 24px;
+    gap: 6px;
+    padding: 14px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 20px;
     font-size: 13px;
+    box-shadow: var(--shadow-sm);
 }
 
 .legend-item {
@@ -173,7 +137,7 @@ header {
 #team-grid {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 /* --- Team Card --- */
@@ -181,19 +145,19 @@ header {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 18px 24px;
+    padding: 16px 24px;
     background: var(--bg-card);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    backdrop-filter: blur(12px);
-    transition: all 0.25s ease;
-    animation: cardSlide 0.5s ease-out both;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+    animation: cardSlide 0.4s ease-out both;
 }
 
 @keyframes cardSlide {
     from {
         opacity: 0;
-        transform: translateY(16px);
+        transform: translateY(10px);
     }
 
     to {
@@ -203,14 +167,13 @@ header {
 }
 
 .team-card:hover {
-    background: var(--bg-card-hover);
-    border-color: rgba(77, 212, 196, 0.25);
-    transform: translateX(4px);
-    box-shadow: 0 4px 24px var(--glass-glow);
+    box-shadow: var(--shadow-md);
+    border-color: #d0d5df;
+    transform: translateY(-1px);
 }
 
 .team-card.eliminated {
-    opacity: 0.45;
+    opacity: 0.5;
 }
 
 /* Rank badge */
@@ -224,40 +187,34 @@ header {
     font-weight: 800;
     font-size: 15px;
     flex-shrink: 0;
-    border: 2px solid transparent;
 }
 
 .rank-badge.top {
-    background: rgba(26, 158, 143, 0.12);
+    background: rgba(26, 158, 143, 0.1);
     color: var(--accent);
-    border-color: rgba(77, 212, 196, 0.3);
 }
 
 .rank-badge.rank-1 {
-    background: linear-gradient(135deg, #ffd700, #b8860b);
-    color: #1a1a1a;
-    border: none;
-    box-shadow: 0 2px 12px rgba(255, 215, 0, 0.3);
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+    color: white;
+    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
 }
 
 .rank-badge.rank-2 {
-    background: linear-gradient(135deg, #c0c0c0, #808080);
-    color: #1a1a1a;
-    border: none;
-    box-shadow: 0 2px 12px rgba(192, 192, 192, 0.2);
+    background: linear-gradient(135deg, #9ca3af, #6b7280);
+    color: white;
+    box-shadow: 0 2px 8px rgba(156, 163, 175, 0.3);
 }
 
 .rank-badge.rank-3 {
-    background: linear-gradient(135deg, #cd7f32, #8b5a2b);
-    color: #fff;
-    border: none;
-    box-shadow: 0 2px 12px rgba(205, 127, 50, 0.2);
+    background: linear-gradient(135deg, #d97706, #92400e);
+    color: white;
+    box-shadow: 0 2px 8px rgba(217, 119, 6, 0.2);
 }
 
 .rank-badge.out {
-    background: transparent;
+    background: var(--bg);
     color: var(--text-dim);
-    border-color: rgba(90, 122, 154, 0.25);
 }
 
 /* Team info */
@@ -271,13 +228,6 @@ header {
     font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 2px;
-}
-
-.team-name .eng {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text-dim);
-    margin-left: 6px;
 }
 
 .team-record {
@@ -302,7 +252,7 @@ header {
 .number-divider {
     width: 1px;
     height: 36px;
-    background: var(--glass-border);
+    background: var(--border);
 }
 
 .magic-number {
@@ -315,7 +265,6 @@ header {
 
 .magic-number.safe {
     color: var(--green);
-    text-shadow: 0 0 20px var(--green-glow);
 }
 
 .magic-number.warning {
@@ -330,14 +279,12 @@ header {
     color: var(--red);
     font-size: 14px;
     font-weight: 700;
-    text-shadow: 0 0 16px var(--red-glow);
 }
 
 .magic-number.clinched {
     color: var(--green);
     font-size: 16px;
     font-weight: 800;
-    text-shadow: 0 0 16px var(--green-glow);
 }
 
 .magic-label {
@@ -354,7 +301,7 @@ header {
     align-items: center;
     gap: 12px;
     padding: 6px 0;
-    color: var(--teal-light);
+    color: var(--accent);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -383,7 +330,7 @@ header {
     display: inline-block;
     width: 32px;
     height: 32px;
-    border: 3px solid var(--glass-border);
+    border: 3px solid var(--border);
     border-top-color: var(--teal);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
@@ -409,7 +356,7 @@ footer {
     gap: 20px;
     padding: 32px 0 16px;
     margin-top: 24px;
-    border-top: 1px solid var(--glass-border);
+    border-top: 1px solid var(--border);
     color: var(--text-dim);
     font-size: 12px;
     line-height: 1.8;
@@ -422,7 +369,7 @@ footer strong {
 .footer-logo {
     width: 100px;
     flex-shrink: 0;
-    opacity: 0.9;
+    opacity: 0.85;
     transition: opacity 0.3s;
 }
 
@@ -484,6 +431,14 @@ footer strong {
         width: 32px;
         height: 32px;
         font-size: 14px;
-        border-radius: 10px;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-text {
+        text-align: center;
     }
 }
