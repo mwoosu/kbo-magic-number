@@ -755,15 +755,6 @@ header {
         max-height: min(78vh, 720px);
         transform: translateY(18px);
     }
-
-    .detail-row {
-        grid-template-columns: 1fr;
-    }
-
-    .detail-row-value {
-        justify-self: flex-start;
-        margin-top: 2px;
-    }
 }
 
 @media (max-height: 820px) and (min-width: 961px) {
@@ -882,6 +873,15 @@ footer strong {
     .detail-subtitle,
     .detail-row-subtitle {
         gap: 2px 8px;
+    }
+
+    .detail-row {
+        align-items: start;
+    }
+
+    .detail-row-value {
+        justify-self: end;
+        padding-top: 2px;
     }
 
     .magic-number {
