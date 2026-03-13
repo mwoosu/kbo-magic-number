@@ -251,7 +251,7 @@ header {
 }
 
 .team-card.eliminated {
-    opacity: 0.84;
+    opacity: 1;
 }
 
 /* Rank badge */
