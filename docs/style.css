@@ -5,6 +5,9 @@
 
 /* --- Design Tokens --- */
 :root {
+    --container-max: 920px;
+    --drawer-width: 380px;
+
     /* COIS palette */
     --navy: #0d2240;
     --teal: #1a9e8f;
@@ -53,7 +56,7 @@ body {
 
 /* --- Layout --- */
 .container {
-    max-width: 920px;
+    max-width: var(--container-max);
     margin: 0 auto;
     padding: 48px 20px 32px;
 }
@@ -183,10 +186,12 @@ header {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    width: 100%;
 }
 
 .content-layout {
     display: block;
+    position: relative;
 }
 
 .board-column {
@@ -194,6 +199,7 @@ header {
     flex-direction: column;
     gap: 10px;
     width: 100%;
+    min-width: 0;
 }
 
 /* --- Team Card --- */
@@ -201,6 +207,8 @@ header {
     display: flex;
     align-items: center;
     gap: 16px;
+    width: 100%;
+    min-height: 88px;
     padding: 16px 24px;
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -305,7 +313,9 @@ header {
 .numbers-section {
     display: flex;
     align-items: center;
-    gap: 16px;
+    justify-content: flex-end;
+    gap: 12px;
+    flex: 0 0 188px;
     flex-shrink: 0;
 }
 
@@ -315,7 +325,8 @@ header {
     align-items: center;
     justify-content: center;
     text-align: center;
-    min-width: 56px;
+    flex: 1 1 0;
+    min-width: 0;
 }
 
 .number-divider {
@@ -333,6 +344,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     margin-bottom: 2px;
 }
 
@@ -428,10 +440,10 @@ header {
 
 .team-detail-panel {
     position: fixed;
-    right: 24px;
-    top: 24px;
-    bottom: 24px;
-    width: min(420px, calc(100vw - 48px));
+    left: min(calc(50vw - 40px), calc(100vw - var(--drawer-width) - 24px));
+    top: 28px;
+    bottom: 28px;
+    width: min(var(--drawer-width), calc(100vw - 48px));
     padding: 22px 22px 20px;
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -441,7 +453,7 @@ header {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateX(28px);
+    transform: translate3d(18px, 0, 0);
     transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
     box-shadow: 0 18px 42px rgba(13, 34, 64, 0.14);
     z-index: 20;
@@ -746,11 +758,12 @@ footer strong {
     }
 
     .numbers-section {
-        gap: 10px;
+        flex-basis: 132px;
+        gap: 8px;
     }
 
     .number-col {
-        min-width: 44px;
+        min-width: 0;
     }
 
     .rank-badge {
