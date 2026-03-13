@@ -439,6 +439,7 @@ function renderRivals(data, team, analysis) {
         <section class="detail-section">
             <h3>${escapeHtml(title)}</h3>
             <p class="detail-section-note">선택한 팀 기준으로 상대 팀이 몇 경기 앞서거나 뒤져 있는지 보여줍니다.</p>
+            <p class="detail-section-note">경기차는 (승수 차 + 패수 차) ÷ 2로 계산합니다.</p>
             <div class="detail-table">${rows}</div>
         </section>
     `;
@@ -456,7 +457,7 @@ function renderSchedule(analysis, phase) {
                     <div class="detail-row-title">${escapeHtml(item.team_label)}</div>
                     <div class="detail-row-subtitle">${escapeHtml(subtitle)}</div>
                 </div>
-                <div class="detail-row-value">${escapeHtml(item.games_left)}G</div>
+                <div class="detail-row-value">${escapeHtml(item.games_left)}경기</div>
             </div>
         `;
     }).join('');

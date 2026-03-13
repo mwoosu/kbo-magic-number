@@ -457,6 +457,7 @@ def build_regular_snapshot(series: SeriesSnapshot, historical_csv: str):
         "wins": [standings_map[team]["wins"] for team in TEAM_NAMES],
         "losses": [standings_map[team]["losses"] for team in TEAM_NAMES],
         "draws": [standings_map[team]["draws"] for team in TEAM_NAMES],
+        "current_rank": [standings_map[team]["rank"] for team in TEAM_NAMES],
         "remaining_matrix": remaining_matrix,
         "head_to_head_wins": h2h_wins,
         "head_to_head_runs": runs_matrix,

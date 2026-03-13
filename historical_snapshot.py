@@ -142,6 +142,7 @@ def build_snapshot(date_value, standings_path, versus_path, scores_path, final_d
         'wins': [int(standings[team]['승']) for team in TEAMS],
         'losses': [int(standings[team]['패']) for team in TEAMS],
         'draws': [int(standings[team]['무']) for team in TEAMS],
+        'current_rank': [int(standings[team]['순위']) for team in TEAMS],
         'remaining_matrix': remaining_matrix,
         'head_to_head_wins': head_to_head_wins,
         'head_to_head_runs': head_to_head_runs,

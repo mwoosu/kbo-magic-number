@@ -144,12 +144,23 @@ def normalize_data(data):
             r_hat[t, tp] = h2r[i_idx][j_idx] if h2r else 0
 
     p = dict(zip(teams, data.get('prior_year_rank', list(range(1, n + 1)))))
+    current_rank_values = data.get('current_rank')
+    if current_rank_values:
+        rank_hat = dict(zip(teams, current_rank_values))
+    else:
+        standings = []
+        for team in teams:
+            decisions = w_hat[team] + l_hat[team]
+            pct = w_hat[team] / decisions if decisions else 0.0
+            standings.append((team, pct, w_hat[team], -l_hat[team]))
+        standings.sort(key=lambda item: (-item[1], -item[2], -item[3], item[0]))
+        rank_hat = {team: rank for rank, (team, *_rest) in enumerate(standings, 1)}
 
     return {
         'date': data.get('date', datetime.now().strftime('%Y-%m-%d')),
         'teams': teams,
         'w_hat': w_hat, 'l_hat': l_hat, 'i_hat': i_hat,
-        'g': g, 'w_data': w_data, 'r_hat': r_hat, 'p': p,
+        'g': g, 'w_data': w_data, 'r_hat': r_hat, 'p': p, 'rank_hat': rank_hat,
     }
 
 
@@ -364,10 +375,12 @@ def solve_magic_number(env, data, target_team, verbose=False):
     result = {
         'team': k,
         'team_label': TEAM_LABELS.get(k, k),
+        'rank': data.get('rank_hat', {}).get(k),
         'current_wins': w_hat[k],
         'current_losses': l_hat[k],
         'current_draws': i_hat[k],
         'remaining_games': sum(g[k, j] for j in teams if j != k),
+        'win_pct': current_win_pct(w_hat[k], l_hat[k]),
     }
 
     if model.status == GRB.INFEASIBLE:
@@ -378,7 +391,6 @@ def solve_magic_number(env, data, target_team, verbose=False):
         result['eliminated'] = False
         result['min_wins'] = int(round(W[k].X))
         result['magic_number'] = int(round(W[k].X)) - w_hat[k]
-        result['win_pct'] = round(N[k].X, 4)
     else:
         result['eliminated'] = None
         result['min_wins'] = None
@@ -662,6 +674,11 @@ def with_topic(label):
     return f"{label}{topic_particle(label)}"
 
 
+def current_win_pct(wins, losses):
+    decisions = wins + losses
+    return round(wins / decisions, 4) if decisions else 0.0
+
+
 def select_rivals(results, team, n_playoff):
     if len(results) <= 1 or 'rank' not in team or team['rank'] is None:
         return []
@@ -888,18 +905,7 @@ def calculate_all(data, env, verbose=False, show_progress=True):
         elim.update(clinch)
         results.append(elim)
 
-    # 순위 정렬 (매직넘버 오름차순, 탈락팀은 맨 뒤)
-    def sort_key(r):
-        if r['eliminated']:
-            return (1, 0)
-        if r['magic_number'] is None:
-            return (2, 0)
-        return (0, r['magic_number'])
-
-    results.sort(key=sort_key)
-
-    for rank, r in enumerate(results, 1):
-        r['rank'] = rank
+    results.sort(key=lambda row: (row.get('rank') is None, row.get('rank', 999), row['team']))
 
     output = {
         'updated_at': datetime.now().strftime('%Y-%m-%d %H:%M'),
