@@ -605,6 +605,245 @@ def solve_clinch_number(env, data, target_team, verbose=False):
 
 
 # ============================================================
+# 결과 해설 생성
+# ============================================================
+
+def games_behind(team_row, reference_row):
+    """team_row가 reference_row에 뒤지는 승차. 음수면 team_row가 앞섬."""
+    value = (
+        (reference_row['current_wins'] - team_row['current_wins'])
+        + (team_row['current_losses'] - reference_row['current_losses'])
+    ) / 2
+    return round(value, 1)
+
+
+def pretty_gap(value):
+    return int(value) if float(value).is_integer() else value
+
+
+def team_status_code(team):
+    if team.get('eliminated'):
+        return 'eliminated'
+    if team.get('clinched'):
+        return 'clinched'
+    if team.get('clinch_number') is not None:
+        return 'near_clinch'
+    if team.get('magic_number') == 0:
+        return 'alive'
+    if team.get('magic_number') is not None:
+        return 'under_pressure'
+    return 'unknown'
+
+
+def team_status_label(team):
+    status = team_status_code(team)
+    labels = {
+        'eliminated': '탈락',
+        'clinched': '확정',
+        'near_clinch': '확정 경쟁',
+        'alive': '생존',
+        'under_pressure': '생존 경쟁',
+        'unknown': '판정 보류',
+    }
+    return labels[status]
+
+
+def topic_particle(label):
+    if not label:
+        return '는'
+    last = label[-1]
+    code = ord(last)
+    if 0xAC00 <= code <= 0xD7A3:
+        return '은' if (code - 0xAC00) % 28 else '는'
+    return '는'
+
+
+def with_topic(label):
+    return f"{label}{topic_particle(label)}"
+
+
+def select_rivals(results, team, n_playoff):
+    if len(results) <= 1 or 'rank' not in team or team['rank'] is None:
+        return []
+
+    by_rank = {row.get('rank'): row for row in results if row.get('rank') is not None}
+    candidate_ranks = {
+        team['rank'] - 1,
+        team['rank'] + 1,
+        n_playoff - 1,
+        n_playoff,
+        n_playoff + 1,
+        n_playoff + 2,
+    }
+    rivals = []
+    for rank in sorted(candidate_ranks):
+        row = by_rank.get(rank)
+        if not row or row['team'] == team['team']:
+            continue
+        rivals.append(
+            {
+                'team': row['team'],
+                'team_label': row.get('team_label', TEAM_LABELS.get(row['team'], row['team'])),
+                'rank': row.get('rank'),
+                'wins': row['current_wins'],
+                'losses': row['current_losses'],
+                'draws': row['current_draws'],
+                'remaining_games': row['remaining_games'],
+                'status_label': team_status_label(row),
+                'gap_from_selected': pretty_gap(games_behind(row, team)),
+            }
+        )
+    return rivals
+
+
+def build_schedule_breakdown(data, team_name):
+    opponents = []
+    for opponent in data['teams']:
+        if opponent == team_name:
+            continue
+        games_left = data['g'][team_name, opponent]
+        if games_left <= 0:
+            continue
+        wins = data['w_data'][team_name, opponent]
+        losses = data['w_data'][opponent, team_name]
+        runs_for = data['r_hat'][team_name, opponent]
+        runs_against = data['r_hat'][opponent, team_name]
+        opponents.append(
+            {
+                'team': opponent,
+                'team_label': TEAM_LABELS.get(opponent, opponent),
+                'games_left': games_left,
+                'head_to_head_wins': wins,
+                'head_to_head_losses': losses,
+                'runs_for': runs_for,
+                'runs_against': runs_against,
+            }
+        )
+    opponents.sort(key=lambda row: (-row['games_left'], row['team']))
+    return opponents
+
+
+def build_cutline_note(team, results, n_playoff):
+    if len(results) < n_playoff or team.get('rank') is None:
+        return None
+
+    cutoff = next((row for row in results if row.get('rank') == n_playoff), None)
+    bubble = next((row for row in results if row.get('rank') == n_playoff + 1), None)
+
+    if team.get('rank') <= n_playoff and bubble:
+        margin = pretty_gap(games_behind(bubble, team))
+        if margin == 0:
+            return f"현재 컷라인 바로 아래 {bubble['team_label']}와 승차 없이 맞물려 있습니다."
+        return f"현재 컷라인 아래 {bubble['team_label']}보다 {margin}경기 앞서 있습니다."
+
+    if team.get('rank') > n_playoff and cutoff:
+        gap = pretty_gap(games_behind(team, cutoff))
+        if gap == 0:
+            return f"현재 컷라인 {cutoff['team_label']}와 승차 없이 붙어 있습니다."
+        return f"현재 컷라인 {cutoff['team_label']}에 {gap}경기 뒤져 있습니다."
+
+    return None
+
+
+def build_schedule_note(team, remaining_schedule):
+    if team['remaining_games'] == 0:
+        return "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다."
+    if not remaining_schedule:
+        return f"잔여 {team['remaining_games']}경기의 상세 일정 정보가 아직 없습니다."
+    top = remaining_schedule[0]
+    if top['games_left'] == 1:
+        return f"가장 큰 변수는 {top['team_label']}전 1경기입니다."
+    return f"가장 많이 남은 상대는 {top['team_label']}로 {top['games_left']}경기가 남아 있습니다."
+
+
+def build_headline(team):
+    if team.get('eliminated'):
+        return "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다."
+    if team.get('clinched'):
+        return "이미 포스트시즌 진출이 확정됐습니다."
+    if team.get('clinch_number') == 1:
+        return "앞으로 1승만 더하면 포스트시즌 진출이 확정됩니다."
+    if team.get('clinch_number') is not None:
+        return f"앞으로 {team['clinch_number']}승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다."
+    if team.get('magic_number') == 0:
+        return "아직 탈락하지 않았지만 다른 팀 결과에 따라 순위가 계속 바뀔 수 있습니다."
+    if team.get('magic_number') is not None:
+        return f"포스트시즌 가능성을 유지하려면 최소 {team['magic_number']}승이 더 필요합니다."
+    return "현재 데이터만으로는 상태를 안정적으로 분류하기 어렵습니다."
+
+
+def build_reason(team):
+    if team.get('eliminated'):
+        return "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다."
+    if team.get('clinched'):
+        return "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다."
+    if team.get('clinch_number') is not None:
+        return (
+            f"현재는 아직 확정 전이지만, {team['clinch_number']}승을 더한 이후에는 "
+            "다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다."
+        )
+    if team.get('magic_number') == 0:
+        return "모델상 이미 즉시 탈락은 피한 상태지만, 경쟁팀 결과에 따라 5위권 안팎이 갈릴 수 있습니다."
+    if team.get('magic_number') is not None:
+        return (
+            f"모델이 찾은 생존 시나리오에서는 최소 {team['magic_number']}승의 추가 승리가 필요합니다. "
+            "그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다."
+        )
+    return "모델 결과가 충분히 안정적이지 않아 추가 해석을 생략했습니다."
+
+
+def attach_team_explanations(output, data):
+    teams = output['teams']
+    n_playoff = output.get('n_playoff', N_PLAYOFF)
+
+    cutoff = next((row for row in teams if row.get('rank') == n_playoff), None)
+    bubble = next((row for row in teams if row.get('rank') == n_playoff + 1), None)
+    if cutoff:
+        output['cutline'] = {
+            'rank': n_playoff,
+            'team': cutoff['team'],
+            'team_label': cutoff.get('team_label', TEAM_LABELS.get(cutoff['team'], cutoff['team'])),
+        }
+    if bubble:
+        output['bubble'] = {
+            'rank': n_playoff + 1,
+            'team': bubble['team'],
+            'team_label': bubble.get('team_label', TEAM_LABELS.get(bubble['team'], bubble['team'])),
+        }
+
+    for team in teams:
+        schedule = build_schedule_breakdown(data, team['team'])
+        cutline_note = build_cutline_note(team, teams, n_playoff)
+        rivals = select_rivals(teams, team, n_playoff)
+        notes = [
+            (
+                f"{with_topic(team['team_label'])} 현재 {team.get('rank', '-')}위, "
+                f"{team['current_wins']}승 {team['current_losses']}패 {team['current_draws']}무로 "
+                f"잔여 {team['remaining_games']}경기를 남겨두고 있습니다."
+            ),
+            build_reason(team),
+            build_schedule_note(team, schedule),
+        ]
+        if cutline_note:
+            notes.insert(2, cutline_note)
+
+        team['analysis'] = {
+            'status': team_status_code(team),
+            'status_label': team_status_label(team),
+            'headline': build_headline(team),
+            'summary': notes[0],
+            'reason': notes[1],
+            'cutline_note': cutline_note,
+            'schedule_note': notes[-1],
+            'notes': notes,
+            'rivals': rivals,
+            'remaining_schedule': schedule,
+        }
+
+    return output
+
+
+# ============================================================
 # 전체 팀 계산 + JSON 출력
 # ============================================================
 
@@ -661,7 +900,7 @@ def calculate_all(data, env, verbose=False, show_progress=True):
         'n_playoff': N_PLAYOFF,
         'teams': results,
     }
-    return output
+    return attach_team_explanations(output, data)
 
 
 def run_model(input_path=None, data=None, team=None, verbose=False, env=None, show_progress=False):
@@ -702,6 +941,8 @@ def run_model(input_path=None, data=None, team=None, verbose=False, env=None, sh
             }
         else:
             output = calculate_all(model_data, env, verbose=verbose, show_progress=show_progress)
+        if team:
+            return attach_team_explanations(output, model_data)
         return output
     finally:
         if owns_env:
@@ -753,6 +994,7 @@ def main():
             'n_playoff': N_PLAYOFF,
             'teams': [elim],
         }
+        output = attach_team_explanations(output, data)
     else:
         output = calculate_all(data, env, verbose=args.verbose, show_progress=True)
 

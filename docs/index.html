@@ -38,19 +38,30 @@
             </div>
         </div>
 
-        <section class="playoff-line" id="playoff-line">
-            <div class="playoff-label">
-                <span class="playoff-icon">🏆</span>
-                <span>포스트시즌 컷라인</span>
-            </div>
-        </section>
+        <div class="content-layout">
+            <section class="board-column">
+                <section class="playoff-line" id="playoff-line">
+                    <div class="playoff-label">
+                        <span class="playoff-icon">🏆</span>
+                        <span>포스트시즌 컷라인</span>
+                    </div>
+                </section>
 
-        <main id="team-grid" class="team-grid">
-            <div class="loading">
-                <div class="spinner"></div>
-                <p>최신 KBO 데이터를 불러오는 중...</p>
-            </div>
-        </main>
+                <main id="team-grid" class="team-grid">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>최신 KBO 데이터를 불러오는 중...</p>
+                    </div>
+                </main>
+            </section>
+
+            <aside class="team-detail-panel" id="team-detail">
+                <div class="detail-empty">
+                    <h2>팀 상세</h2>
+                    <p>카드를 누르면 모델 해설과 경쟁 구도가 여기에 표시됩니다.</p>
+                </div>
+            </aside>
+        </div>
 
         <footer>
             <a href="https://cois.dankook.ac.kr/" target="_blank">

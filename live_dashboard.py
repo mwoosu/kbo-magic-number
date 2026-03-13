@@ -141,6 +141,20 @@ def dashed_date(value: date) -> str:
     return value.strftime("%Y-%m-%d")
 
 
+def topic_particle(label: str) -> str:
+    if not label:
+        return "는"
+    last = label[-1]
+    code = ord(last)
+    if 0xAC00 <= code <= 0xD7A3:
+        return "은" if (code - 0xAC00) % 28 else "는"
+    return "는"
+
+
+def with_topic(label: str) -> str:
+    return f"{label}{topic_particle(label)}"
+
+
 def ensure_parent(path: str | None):
     if not path:
         return
@@ -451,8 +465,33 @@ def build_regular_snapshot(series: SeriesSnapshot, historical_csv: str):
 
 
 def build_exhibition_output(series: SeriesSnapshot):
+    leader = series.standings[0] if series.standings else None
     teams = []
     for row in series.standings:
+        if leader:
+            gap_from_leader = round(
+                ((leader["wins"] - row["wins"]) + (row["losses"] - leader["losses"])) / 2, 1
+            )
+            if gap_from_leader.is_integer():
+                gap_from_leader = int(gap_from_leader)
+        else:
+            gap_from_leader = None
+
+        if row["rank"] == 1:
+            headline = "현재 시범경기 선두권입니다."
+        elif gap_from_leader == 0:
+            headline = "선두와 승차 없이 붙어 있습니다."
+        else:
+            headline = f"선두와 {gap_from_leader}경기 차로 시범경기를 치르고 있습니다."
+
+        notes = [
+            (
+                f"{with_topic(TEAM_LABELS[row['team']])} 현재 {row['rank']}위이며 "
+                f"{row['wins']}승 {row['losses']}패 {row['draws']}무를 기록 중입니다."
+            ),
+            f"최근 흐름은 {row['recent']}입니다.",
+            f"시범경기 승률은 {row['win_pct']:.3f}이고, 현재까지 {row['games']}경기를 소화했습니다.",
+        ]
         teams.append(
             {
                 "rank": row["rank"],
@@ -464,6 +503,15 @@ def build_exhibition_output(series: SeriesSnapshot):
                 "games": row["games"],
                 "win_pct": round(row["win_pct"], 4),
                 "recent": row["recent"],
+                "analysis": {
+                    "status": "exhibition",
+                    "status_label": "시범경기",
+                    "headline": headline,
+                    "summary": notes[0],
+                    "reason": notes[1],
+                    "notes": notes,
+                    "gap_from_leader": gap_from_leader,
+                },
             }
         )
 
