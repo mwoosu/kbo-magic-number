@@ -189,17 +189,11 @@ header {
     display: block;
 }
 
-.content-layout.has-detail {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 20px;
-    align-items: start;
-}
-
 .board-column {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    max-width: 880px;
 }
 
 /* --- Team Card --- */
@@ -433,31 +427,31 @@ header {
 }
 
 .team-detail-panel {
-    display: none;
-    position: sticky;
+    position: fixed;
+    right: 24px;
     top: 24px;
+    bottom: 24px;
+    width: min(420px, calc(100vw - 48px));
     padding: 22px 22px 20px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 16px;
-    box-shadow: var(--shadow-sm);
+    display: block;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(28px);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+    box-shadow: 0 18px 42px rgba(13, 34, 64, 0.14);
+    z-index: 20;
 }
 
 .team-detail-panel.is-open {
-    display: block;
-    animation: detailPanelIn 0.22s ease-out both;
-}
-
-@keyframes detailPanelIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
 }
 
 .detail-empty {
@@ -662,12 +656,14 @@ header {
 }
 
 @media (max-width: 960px) {
-    .content-layout.has-detail {
-        grid-template-columns: 1fr;
-    }
-
     .team-detail-panel {
-        position: static;
+        right: 12px;
+        left: 12px;
+        top: auto;
+        bottom: 12px;
+        width: auto;
+        max-height: min(78vh, 720px);
+        transform: translateY(18px);
     }
 }
 
@@ -726,10 +722,6 @@ footer strong {
 
     .page-nav {
         margin-top: -8px;
-    }
-
-    .team-detail-panel {
-        order: 2;
     }
 
     .detail-metrics {

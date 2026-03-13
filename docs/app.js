@@ -334,9 +334,7 @@ function renderError(grid, message) {
 }
 
 function renderDetailEmpty(message) {
-    const layout = document.getElementById('content-layout');
     const detail = document.getElementById('team-detail');
-    layout.classList.remove('has-detail');
     detail.classList.remove('is-open');
     detail.innerHTML = `
         <div class="detail-empty">
@@ -471,7 +469,6 @@ function renderSchedule(analysis, phase) {
 }
 
 function renderTeamDetail(data, team) {
-    const layout = document.getElementById('content-layout');
     const detail = document.getElementById('team-detail');
     const phase = data.phase || 'regular';
 
@@ -480,7 +477,6 @@ function renderTeamDetail(data, team) {
         return;
     }
 
-    layout.classList.add('has-detail');
     detail.classList.add('is-open');
 
     const analysis = getAnalysis(data, team);
@@ -564,4 +560,10 @@ function render(data) {
 document.addEventListener('DOMContentLoaded', async () => {
     const data = await loadData();
     render(data);
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && appState.selectedTeamId) {
+        clearSelectedTeam();
+    }
 });
