@@ -81,6 +81,14 @@ function renderTeamLogo(team) {
     return `<img class="team-logo" src="${escapeHtml(logoPath)}" alt="${escapeHtml(team.team_label)} 엠블럼" loading="lazy">`;
 }
 
+function renderRecordLine(parts) {
+    const items = parts
+        .filter(Boolean)
+        .map((part) => `<span class="record-group">${escapeHtml(part)}</span>`)
+        .join('');
+    return `<div class="team-record">${items}</div>`;
+}
+
 function getRankClass(rank, nPlayoff) {
     if (rank <= 3) return `top rank-${rank}`;
     if (nPlayoff && rank <= nPlayoff) return 'top';
@@ -276,6 +284,12 @@ function createRegularCard(team, nPlayoff, index) {
         ? formatPct(team.win_pct)
         : formatPct(team.current_wins / Math.max(team.current_wins + team.current_losses, 1));
 
+    const recordLine = renderRecordLine([
+        `${team.current_wins}승 ${team.current_losses}패 ${team.current_draws}무`,
+        `승률 ${winPct}`,
+        `잔여 ${team.remaining_games}경기`,
+    ]);
+
     card.innerHTML = `
         <div class="rank-badge ${rankClass}">${escapeHtml(team.rank)}</div>
         <div class="team-logo-wrap">
@@ -283,11 +297,7 @@ function createRegularCard(team, nPlayoff, index) {
         </div>
         <div class="team-info">
             <div class="team-name">${escapeHtml(team.team_label)}</div>
-            <div class="team-record">
-                ${escapeHtml(team.current_wins)}승 ${escapeHtml(team.current_losses)}패 ${escapeHtml(team.current_draws)}무
-                · 승률 ${escapeHtml(winPct)}
-                · 잔여 ${escapeHtml(team.remaining_games)}경기
-            </div>
+            ${recordLine}
         </div>
         <div class="numbers-section">
             <div class="number-col">
@@ -320,6 +330,11 @@ function createExhibitionCard(team, index) {
 
     const rankClass = getRankClass(team.rank, 5);
 
+    const recordLine = renderRecordLine([
+        `${team.current_wins}승 ${team.current_losses}패 ${team.current_draws}무`,
+        `최근 ${team.recent || '-'}`,
+    ]);
+
     card.innerHTML = `
         <div class="rank-badge ${rankClass}">${escapeHtml(team.rank)}</div>
         <div class="team-logo-wrap">
@@ -327,10 +342,7 @@ function createExhibitionCard(team, index) {
         </div>
         <div class="team-info">
             <div class="team-name">${escapeHtml(team.team_label)}</div>
-            <div class="team-record">
-                ${escapeHtml(team.current_wins)}승 ${escapeHtml(team.current_losses)}패 ${escapeHtml(team.current_draws)}무
-                · 최근 ${escapeHtml(team.recent || '-')}
-            </div>
+            ${recordLine}
         </div>
         <div class="numbers-section">
             <div class="number-col">
