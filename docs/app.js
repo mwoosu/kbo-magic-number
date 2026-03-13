@@ -58,6 +58,29 @@ function formatRelativeGap(value) {
     return numeric > 0 ? `${gap}경기 뒤` : `${gap}경기 앞`;
 }
 
+const TEAM_LOGO_MAP = {
+    Doosan: 'logo/Doosan_emblem.webp',
+    Hanwha: 'logo/Hanwha_emblem.png',
+    KIA: 'logo/KIA_emblem.png',
+    KT: 'logo/KT_Emblem.jpg',
+    Kiwoom: 'logo/Kiwoom_Emblem.jpg',
+    LG: 'logo/LG_emblem.png',
+    Lotte: 'logo/Lotte_emblem.jpg',
+    NC: 'logo/NC_emblem.png',
+    Samsung: 'logo/Samsung_emblem.png',
+    SSG: 'logo/ssg_emblem.png',
+};
+
+function getTeamLogoPath(teamId) {
+    return TEAM_LOGO_MAP[teamId] || '';
+}
+
+function renderTeamLogo(team) {
+    const logoPath = getTeamLogoPath(team.team);
+    if (!logoPath) return '';
+    return `<img class="team-logo" src="${escapeHtml(logoPath)}" alt="${escapeHtml(team.team_label)} 엠블럼" loading="lazy">`;
+}
+
 function getRankClass(rank, nPlayoff) {
     if (rank <= 3) return `top rank-${rank}`;
     if (nPlayoff && rank <= nPlayoff) return 'top';
@@ -251,6 +274,9 @@ function createRegularCard(team, nPlayoff, index) {
 
     card.innerHTML = `
         <div class="rank-badge ${rankClass}">${escapeHtml(team.rank)}</div>
+        <div class="team-logo-wrap">
+            ${renderTeamLogo(team)}
+        </div>
         <div class="team-info">
             <div class="team-name">${escapeHtml(team.team_label)}</div>
             <div class="team-record">
@@ -291,6 +317,9 @@ function createExhibitionCard(team, index) {
 
     card.innerHTML = `
         <div class="rank-badge ${rankClass}">${escapeHtml(team.rank)}</div>
+        <div class="team-logo-wrap">
+            ${renderTeamLogo(team)}
+        </div>
         <div class="team-info">
             <div class="team-name">${escapeHtml(team.team_label)}</div>
             <div class="team-record">
