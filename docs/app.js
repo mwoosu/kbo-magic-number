@@ -53,7 +53,7 @@ function formatRelativeGap(value) {
     if (!Number.isFinite(numeric)) return '-';
     if (numeric === 0) return '동률';
     const gap = formatGap(Math.abs(numeric));
-    return numeric > 0 ? `${gap}G 뒤` : `${gap}G 앞`;
+    return numeric > 0 ? `${gap}경기 뒤` : `${gap}경기 앞`;
 }
 
 function getRankClass(rank, nPlayoff) {
@@ -138,6 +138,10 @@ function setHeader(data) {
             <span class="legend-label">진출확정</span>
             <span class="legend-desc">다른 경기 결과와 무관하게 포스트시즌 진출을 확정하기 위한 추가 승수</span>
         </div>
+        <div class="legend-item">
+            <span class="legend-label">기호</span>
+            <span class="legend-desc">`*`는 남은 경기만으로는 진출 확정을 보장할 수 없다는 뜻이고, `-`는 이미 탈락해 해당 없음입니다.</span>
+        </div>
         ${demoLegend}
     `;
 }
@@ -221,7 +225,10 @@ function createRegularCard(team, nPlayoff, index) {
 
     let clinchDisplay;
     let clinchClass;
-    if (team.clinched) {
+    if (team.eliminated) {
+        clinchDisplay = '-';
+        clinchClass = 'muted';
+    } else if (team.clinched) {
         clinchDisplay = 'In';
         clinchClass = 'clinched';
     } else if (team.clinch_number !== null && team.clinch_number !== undefined) {
@@ -312,6 +319,11 @@ function bindCardInteraction(card, teamId) {
     });
 }
 
+function clearSelectedTeam() {
+    appState.selectedTeamId = null;
+    render(appState.data);
+}
+
 function renderError(grid, message) {
     grid.innerHTML = `
         <div class="error-msg">
@@ -322,7 +334,10 @@ function renderError(grid, message) {
 }
 
 function renderDetailEmpty(message) {
+    const layout = document.getElementById('content-layout');
     const detail = document.getElementById('team-detail');
+    layout.classList.remove('has-detail');
+    detail.classList.remove('is-open');
     detail.innerHTML = `
         <div class="detail-empty">
             <h2>팀 상세</h2>
@@ -339,17 +354,7 @@ function ensureSelectedTeam(data) {
     }
 
     const current = teams.find((team) => team.team === appState.selectedTeamId);
-    if (current) return current;
-
-    const phase = data.phase || 'regular';
-    let fallback = null;
-    if (phase === 'regular') {
-        fallback = teams.find((team) => team.rank === (data.n_playoff || 5)) || teams[0];
-    } else {
-        fallback = teams[0];
-    }
-    appState.selectedTeamId = fallback.team;
-    return fallback;
+    return current || null;
 }
 
 function renderMetrics(team, phase) {
@@ -377,7 +382,9 @@ function renderMetrics(team, phase) {
         : team.magic_number === null || team.magic_number === undefined
             ? '-'
             : String(team.magic_number);
-    const clinchValue = team.clinched
+    const clinchValue = team.eliminated
+        ? '-'
+        : team.clinched
         ? 'In'
         : team.clinch_number === null || team.clinch_number === undefined
             ? '*'
@@ -451,6 +458,7 @@ function renderSchedule(analysis, phase) {
 }
 
 function renderTeamDetail(data, team) {
+    const layout = document.getElementById('content-layout');
     const detail = document.getElementById('team-detail');
     const phase = data.phase || 'regular';
 
@@ -458,6 +466,9 @@ function renderTeamDetail(data, team) {
         renderDetailEmpty('카드를 누르면 상세 해설이 표시됩니다.');
         return;
     }
+
+    layout.classList.add('has-detail');
+    detail.classList.add('is-open');
 
     const analysis = getAnalysis(data, team);
     const statusClass = getDetailStatusClass(team, phase);
@@ -476,7 +487,10 @@ function renderTeamDetail(data, team) {
                         : `· 잔여 ${escapeHtml(team.remaining_games)}경기`}
                 </div>
             </div>
-            <div class="detail-status ${statusClass}">${escapeHtml(analysis.status_label || '상세')}</div>
+            <div>
+                <button type="button" class="detail-close" aria-label="상세 닫기" id="detail-close">×</button>
+                <div class="detail-status ${statusClass}">${escapeHtml(analysis.status_label || '상세')}</div>
+            </div>
         </div>
         <div class="detail-headline">${escapeHtml(analysis.headline || '')}</div>
         ${renderMetrics(team, phase)}
@@ -487,6 +501,7 @@ function renderTeamDetail(data, team) {
         ${renderRivals(analysis)}
         ${renderSchedule(analysis, phase)}
     `;
+    document.getElementById('detail-close').addEventListener('click', clearSelectedTeam);
 }
 
 function render(data) {

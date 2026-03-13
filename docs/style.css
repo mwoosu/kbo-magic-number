@@ -176,8 +176,12 @@ header {
 }
 
 .content-layout {
+    display: block;
+}
+
+.content-layout.has-detail {
     display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.9fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 20px;
     align-items: start;
 }
@@ -332,6 +336,10 @@ header {
     color: var(--orange);
 }
 
+.magic-number.muted {
+    color: var(--text-dim);
+}
+
 .magic-number.eliminated {
     color: var(--red);
     font-size: 14px;
@@ -407,6 +415,7 @@ header {
 }
 
 .team-detail-panel {
+    display: none;
     position: sticky;
     top: 24px;
     padding: 22px 22px 20px;
@@ -414,6 +423,10 @@ header {
     border: 1px solid var(--border);
     border-radius: 16px;
     box-shadow: var(--shadow-sm);
+}
+
+.team-detail-panel.is-open {
+    display: block;
 }
 
 .detail-empty {
@@ -432,6 +445,29 @@ header {
     justify-content: space-between;
     gap: 16px;
     margin-bottom: 18px;
+}
+
+.detail-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--bg);
+    color: var(--text-secondary);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: auto;
+    margin-bottom: 10px;
+}
+
+.detail-close:hover {
+    border-color: #cfd6e0;
+    color: var(--navy);
 }
 
 .detail-team {
@@ -588,7 +624,7 @@ header {
 }
 
 @media (max-width: 960px) {
-    .content-layout {
+    .content-layout.has-detail {
         grid-template-columns: 1fr;
     }
 
