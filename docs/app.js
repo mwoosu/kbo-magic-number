@@ -408,8 +408,19 @@ function renderMetrics(team, phase) {
     `;
 }
 
-function renderRivals(analysis) {
+function getRivalSectionTitle(data, team) {
+    const phase = data.phase || 'regular';
+    if (phase !== 'regular') return '주변 팀';
+    const nPlayoff = data.n_playoff || 5;
+    if (team.rank >= nPlayoff - 1 && team.rank <= nPlayoff + 2) {
+        return '컷라인 경쟁';
+    }
+    return '주변 팀과 승차';
+}
+
+function renderRivals(data, team, analysis) {
     if (!analysis.rivals || !analysis.rivals.length) return '';
+    const title = getRivalSectionTitle(data, team);
     const rows = analysis.rivals.map((rival) => `
         <div class="detail-row">
             <div>
@@ -426,7 +437,8 @@ function renderRivals(analysis) {
 
     return `
         <section class="detail-section">
-            <h3>컷라인 경쟁</h3>
+            <h3>${escapeHtml(title)}</h3>
+            <p class="detail-section-note">선택한 팀 기준으로 상대 팀이 몇 경기 앞서거나 뒤져 있는지 보여줍니다.</p>
             <div class="detail-table">${rows}</div>
         </section>
     `;
@@ -498,7 +510,7 @@ function renderTeamDetail(data, team) {
             <h3>모델 해설</h3>
             <ul class="detail-list">${notes}</ul>
         </section>
-        ${renderRivals(analysis)}
+        ${renderRivals(data, team, analysis)}
         ${renderSchedule(analysis, phase)}
     `;
     document.getElementById('detail-close').addEventListener('click', clearSelectedTeam);

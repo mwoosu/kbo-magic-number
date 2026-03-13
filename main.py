@@ -729,14 +729,21 @@ def build_cutline_note(team, results, n_playoff):
 
     cutoff = next((row for row in results if row.get('rank') == n_playoff), None)
     bubble = next((row for row in results if row.get('rank') == n_playoff + 1), None)
+    rank = team.get('rank')
 
-    if team.get('rank') <= n_playoff and bubble:
+    if rank < n_playoff and cutoff:
+        margin = pretty_gap(games_behind(cutoff, team))
+        if margin == 0:
+            return f"현재 5위 컷라인 {cutoff['team_label']}와 승차 없이 맞물려 있습니다."
+        return f"현재 5위 컷라인 {cutoff['team_label']}보다 {margin}경기 앞서 있습니다."
+
+    if rank == n_playoff and bubble:
         margin = pretty_gap(games_behind(bubble, team))
         if margin == 0:
             return f"현재 컷라인 바로 아래 {bubble['team_label']}와 승차 없이 맞물려 있습니다."
         return f"현재 컷라인 아래 {bubble['team_label']}보다 {margin}경기 앞서 있습니다."
 
-    if team.get('rank') > n_playoff and cutoff:
+    if rank > n_playoff and cutoff:
         gap = pretty_gap(games_behind(team, cutoff))
         if gap == 0:
             return f"현재 컷라인 {cutoff['team_label']}와 승차 없이 붙어 있습니다."

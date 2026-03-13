@@ -306,6 +306,10 @@ header {
 }
 
 .number-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     min-width: 56px;
 }
@@ -321,6 +325,10 @@ header {
     font-size: 28px;
     font-weight: 800;
     line-height: 1;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 2px;
 }
 
@@ -348,7 +356,7 @@ header {
 
 .magic-number.clinched {
     color: var(--green);
-    font-size: 16px;
+    font-size: 28px;
     font-weight: 800;
 }
 
