@@ -140,7 +140,7 @@ function setHeader(data) {
         </div>
         <div class="legend-item">
             <span class="legend-label">기호</span>
-            <span class="legend-desc">`*`는 남은 경기만으로는 진출 확정을 보장할 수 없다는 뜻이고, `-`는 이미 탈락해 해당 없음입니다.</span>
+            <span class="legend-desc"><code>*</code>는 전승해도 자력 확정을 보장할 수 없다는 뜻이고, <code>-</code>는 이미 탈락해 해당 없음입니다. <code>In</code>은 이미 진출 확정입니다.</span>
         </div>
         ${demoLegend}
     `;

@@ -734,8 +734,8 @@ def build_cutline_note(team, results, n_playoff):
     if rank < n_playoff and cutoff:
         margin = pretty_gap(games_behind(cutoff, team))
         if margin == 0:
-            return f"현재 5위 컷라인 {cutoff['team_label']}와 승차 없이 맞물려 있습니다."
-        return f"현재 5위 컷라인 {cutoff['team_label']}보다 {margin}경기 앞서 있습니다."
+            return f"현재 포스트시즌 컷라인인 5위 {cutoff['team_label']}와 승차 없이 맞물려 있습니다."
+        return f"현재 포스트시즌 컷라인인 5위 {cutoff['team_label']}보다 {margin}경기 앞서 있습니다."
 
     if rank == n_playoff and bubble:
         margin = pretty_gap(games_behind(bubble, team))
