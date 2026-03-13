@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KBO Magic Number Demo</title>
-    <meta name="description" content="지난 시즌 스냅샷으로 KBO 포스트시즌 진출 계산을 테스트하는 데모 페이지입니다.">
+    <meta name="description" content="KBO 매직넘버 모델의 시연용 데모 페이지입니다.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=optional"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=20260313-16">
+    <link rel="stylesheet" href="style.css?v=20260313-17">
 </head>
 
 <body data-page-mode="demo" data-data-url="data/demo/result.json">
     <div class="container">
         <header>
-            <div class="badge" id="header-badge">HISTORICAL DEMO</div>
+            <div class="badge" id="header-badge">MODEL DEMO</div>
             <h1 id="page-title">KBO 매직넘버 DEMO</h1>
-            <p class="subtitle" id="update-info">2025 테스트 데이터를 불러오는 중...</p>
+            <p class="subtitle" id="update-info">모델 시연 데이터를 불러오는 중...</p>
         </header>
 
         <nav class="page-nav" aria-label="페이지 전환">
@@ -30,7 +30,7 @@
         <div class="info-legend" id="info-legend">
             <div class="legend-item">
                 <span class="legend-label">데모</span>
-                <span class="legend-desc">지난 시즌 정규시즌 스냅샷으로 계산한 테스트 결과를 표시합니다.</span>
+                <span class="legend-desc">2025 기준 데이터로 구성한 모델 시연 화면입니다.</span>
             </div>
         </div>
 
@@ -46,7 +46,7 @@
                 <main id="team-grid" class="team-grid">
                     <div class="loading">
                         <div class="spinner"></div>
-                        <p>2025 정규시즌 테스트 데이터를 불러오는 중...</p>
+                        <p>모델 시연 데이터를 불러오는 중...</p>
                     </div>
                 </main>
             </section>
@@ -54,7 +54,7 @@
             <aside class="team-detail-panel" id="team-detail">
                 <div class="detail-empty">
                     <h2>팀 상세</h2>
-                    <p>카드를 누르면 모델이 계산한 해설과 경쟁팀 비교가 여기에 표시됩니다.</p>
+                    <p>카드를 누르면 모델 해설과 경쟁 구도가 여기에 표시됩니다.</p>
                 </div>
             </aside>
         </div>
@@ -71,7 +71,7 @@
             </div>
         </footer>
     </div>
-    <script src="app.js?v=20260313-16"></script>
+    <script src="app.js?v=20260313-17"></script>
 </body>
 
 </html>

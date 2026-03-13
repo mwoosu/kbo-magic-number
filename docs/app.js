@@ -108,7 +108,7 @@ function setHeader(data) {
         ? `
             <div class="legend-item">
                 <span class="legend-label">데모</span>
-                <span class="legend-desc">지난 시즌 정규시즌 스냅샷으로 계산한 테스트 페이지입니다.</span>
+                <span class="legend-desc">2025 기준 데이터로 구성한 모델 시연 페이지입니다.</span>
             </div>
         `
         : '';
@@ -150,9 +150,12 @@ function setHeader(data) {
     }
 
     badge.textContent = demoMode ? 'HISTORICAL DEMO' : 'LIVE TRACKER';
+    if (demoMode) {
+        badge.textContent = 'MODEL DEMO';
+    }
     title.textContent = demoMode ? 'KBO 매직넘버 DEMO' : 'KBO 매직넘버';
     info.textContent = demoMode
-        ? `${data.data_date} 기준 · 2025 정규시즌 테스트 결과`
+        ? `${data.data_date} 기준 · 모델 시연 데이터`
         : `${data.data_date} 기준 · 업데이트 ${data.updated_at}`;
     legend.innerHTML = `
         <div class="legend-item">
@@ -236,6 +239,7 @@ function createRegularCard(team, nPlayoff, index) {
     }
     card.setAttribute('role', 'button');
     card.tabIndex = 0;
+    card.dataset.teamId = team.team;
 
     const rankClass = getRankClass(team.rank, nPlayoff);
 
@@ -312,6 +316,7 @@ function createExhibitionCard(team, index) {
     }
     card.setAttribute('role', 'button');
     card.tabIndex = 0;
+    card.dataset.teamId = team.team;
 
     const rankClass = getRankClass(team.rank, 5);
 
@@ -347,7 +352,8 @@ function createExhibitionCard(team, index) {
 function bindCardInteraction(card, teamId) {
     const select = () => {
         appState.selectedTeamId = teamId;
-        render(appState.data);
+        syncCardSelection();
+        renderTeamDetail(appState.data, ensureSelectedTeam(appState.data));
     };
     card.addEventListener('click', select);
     card.addEventListener('keydown', (event) => {
@@ -360,7 +366,8 @@ function bindCardInteraction(card, teamId) {
 
 function clearSelectedTeam() {
     appState.selectedTeamId = null;
-    render(appState.data);
+    syncCardSelection();
+    renderTeamDetail(appState.data, null);
 }
 
 function renderError(grid, message) {
@@ -392,6 +399,13 @@ function ensureSelectedTeam(data) {
 
     const current = teams.find((team) => team.team === appState.selectedTeamId);
     return current || null;
+}
+
+function syncCardSelection() {
+    document.querySelectorAll('.team-card[data-team-id]').forEach((card) => {
+        const isSelected = card.dataset.teamId === appState.selectedTeamId;
+        card.classList.toggle('is-selected', isSelected);
+    });
 }
 
 function renderMetrics(team, phase) {

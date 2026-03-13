@@ -465,6 +465,7 @@ header {
     top: 28px;
     bottom: 28px;
     width: min(var(--drawer-width), calc(100vw - 48px));
+    max-height: calc(100vh - 56px);
     padding: 22px 22px 20px;
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -495,6 +496,17 @@ header {
         bottom: 0;
         left: calc(100% + var(--drawer-gap));
         width: var(--drawer-width);
+        max-height: none;
+    }
+}
+
+@media (max-width: 1280px) and (min-width: 961px) {
+    .team-detail-panel {
+        right: 16px;
+        top: 18px;
+        bottom: 18px;
+        width: min(360px, calc(100vw - 32px));
+        max-height: calc(100vh - 36px);
     }
 }
 
@@ -709,6 +721,14 @@ header {
         width: auto;
         max-height: min(78vh, 720px);
         transform: translateY(18px);
+    }
+}
+
+@media (max-height: 820px) and (min-width: 961px) {
+    .team-detail-panel {
+        top: 14px;
+        bottom: 14px;
+        max-height: calc(100vh - 28px);
     }
 }
 
