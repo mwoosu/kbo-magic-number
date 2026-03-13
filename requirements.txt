@@ -1,0 +1,4 @@
+gurobipy
+requests
+beautifulsoup4
+selenium
