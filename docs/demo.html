@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KBO Magic Number Dashboard</title>
-    <meta name="description" content="KBO 프로야구 포스트시즌 진출 매직넘버를 매일 자동으로 계산합니다.">
+    <title>KBO Magic Number Demo</title>
+    <meta name="description" content="지난 시즌 스냅샷으로 KBO 포스트시즌 진출 계산을 테스트하는 데모 페이지입니다.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -14,27 +14,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body data-page-mode="live" data-data-url="data/result.json">
+<body data-page-mode="demo" data-data-url="data/demo/result.json">
     <div class="container">
         <header>
-            <div class="badge" id="header-badge">LIVE TRACKER</div>
-            <h1 id="page-title">KBO 매직넘버</h1>
-            <p class="subtitle" id="update-info">데이터 로딩 중...</p>
+            <div class="badge" id="header-badge">HISTORICAL DEMO</div>
+            <h1 id="page-title">KBO 매직넘버 DEMO</h1>
+            <p class="subtitle" id="update-info">2025 테스트 데이터를 불러오는 중...</p>
         </header>
 
         <nav class="page-nav" aria-label="페이지 전환">
-            <a class="page-link is-current" href="index.html">라이브</a>
-            <a class="page-link" href="demo.html">2025 데모</a>
+            <a class="page-link" href="index.html">라이브</a>
+            <a class="page-link is-current" href="demo.html">2025 데모</a>
         </nav>
 
         <div class="info-legend" id="info-legend">
             <div class="legend-item">
-                <span class="legend-label">탈락방지</span>
-                <span class="legend-desc">포스트시즌 탈락을 피하기 위해 필요한 최소 추가 승수</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-label">진출확정</span>
-                <span class="legend-desc">나머지 경기 결과와 무관하게 포스트시즌 진출을 보장받기 위한 추가 승수</span>
+                <span class="legend-label">데모</span>
+                <span class="legend-desc">지난 시즌 정규시즌 스냅샷으로 계산한 테스트 결과를 표시합니다.</span>
             </div>
         </div>
 
@@ -48,7 +44,7 @@
         <main id="team-grid" class="team-grid">
             <div class="loading">
                 <div class="spinner"></div>
-                <p>최신 KBO 데이터를 불러오는 중...</p>
+                <p>2025 정규시즌 테스트 데이터를 불러오는 중...</p>
             </div>
         </main>
 

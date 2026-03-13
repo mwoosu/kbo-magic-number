@@ -100,6 +100,41 @@ header {
     font-weight: 400;
 }
 
+.page-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: -12px 0 20px;
+}
+
+.page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 88px;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.page-link:hover {
+    border-color: #cfd6e0;
+    color: var(--navy);
+    transform: translateY(-1px);
+}
+
+.page-link.is-current {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #fff;
+}
+
 /* --- Info Legend --- */
 .info-legend {
     display: flex;
@@ -400,6 +435,10 @@ footer strong {
 
     h1 {
         font-size: 30px;
+    }
+
+    .page-nav {
+        margin-top: -8px;
     }
 
     .team-card {
