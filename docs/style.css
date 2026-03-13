@@ -6,7 +6,7 @@
 /* --- Design Tokens --- */
 :root {
     --container-max: 920px;
-    --drawer-width: 360px;
+    --drawer-width: 376px;
     --drawer-gap: 14px;
 
     /* COIS palette */
@@ -251,7 +251,7 @@ header {
 }
 
 .team-card.eliminated {
-    opacity: 0.5;
+    opacity: 0.84;
 }
 
 /* Rank badge */
