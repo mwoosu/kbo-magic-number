@@ -6,7 +6,8 @@
 /* --- Design Tokens --- */
 :root {
     --container-max: 920px;
-    --drawer-width: 380px;
+    --drawer-width: 340px;
+    --drawer-gap: 14px;
 
     /* COIS palette */
     --navy: #0d2240;
@@ -216,6 +217,10 @@ header {
     box-shadow: var(--shadow-sm);
     transition: all 0.2s ease;
     animation: cardSlide 0.4s ease-out both;
+}
+
+.team-card.no-entry-animation {
+    animation: none;
 }
 
 .team-card[role="button"] {
@@ -440,7 +445,7 @@ header {
 
 .team-detail-panel {
     position: fixed;
-    left: min(calc(50vw - 40px), calc(100vw - var(--drawer-width) - 24px));
+    right: max(20px, calc((100vw - var(--container-max)) / 2 + 20px));
     top: 28px;
     bottom: 28px;
     width: min(var(--drawer-width), calc(100vw - 48px));
@@ -464,6 +469,17 @@ header {
     visibility: visible;
     pointer-events: auto;
     transform: translateX(0);
+}
+
+@media (min-width: 1480px) {
+    .team-detail-panel {
+        position: absolute;
+        top: 0;
+        right: auto;
+        bottom: 0;
+        left: calc(100% + var(--drawer-gap));
+        width: var(--drawer-width);
+    }
 }
 
 .detail-empty {

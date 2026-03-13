@@ -10,6 +10,7 @@ const pageConfig = {
 const appState = {
     data: null,
     selectedTeamId: null,
+    hasAnimatedCards: false,
 };
 
 function isDemoPage() {
@@ -205,7 +206,11 @@ function getAnalysis(data, team) {
 function createRegularCard(team, nPlayoff, index) {
     const card = document.createElement('div');
     card.className = `team-card${team.eliminated ? ' eliminated' : ''}${appState.selectedTeamId === team.team ? ' is-selected' : ''}`;
-    card.style.animationDelay = `${index * 0.06}s`;
+    if (appState.hasAnimatedCards) {
+        card.classList.add('no-entry-animation');
+    } else {
+        card.style.animationDelay = `${index * 0.06}s`;
+    }
     card.setAttribute('role', 'button');
     card.tabIndex = 0;
 
@@ -274,7 +279,11 @@ function createRegularCard(team, nPlayoff, index) {
 function createExhibitionCard(team, index) {
     const card = document.createElement('div');
     card.className = `team-card${appState.selectedTeamId === team.team ? ' is-selected' : ''}`;
-    card.style.animationDelay = `${index * 0.06}s`;
+    if (appState.hasAnimatedCards) {
+        card.classList.add('no-entry-animation');
+    } else {
+        card.style.animationDelay = `${index * 0.06}s`;
+    }
     card.setAttribute('role', 'button');
     card.tabIndex = 0;
 
@@ -534,6 +543,7 @@ function render(data) {
     if (phase === 'offseason') {
         renderError(grid, data.headline || '현재 활성화된 경기 데이터가 없습니다.');
         renderDetailEmpty(data.headline || '현재 활성화된 경기 데이터가 없습니다.');
+        appState.hasAnimatedCards = true;
         return;
     }
 
@@ -544,6 +554,7 @@ function render(data) {
             grid.appendChild(createExhibitionCard(team, index));
         });
         renderTeamDetail(data, selectedTeam);
+        appState.hasAnimatedCards = true;
         return;
     }
 
@@ -556,6 +567,7 @@ function render(data) {
         grid.appendChild(createRegularCard(team, nPlayoff, index));
     });
     renderTeamDetail(data, selectedTeam);
+    appState.hasAnimatedCards = true;
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
