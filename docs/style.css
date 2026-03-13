@@ -6,7 +6,7 @@
 /* --- Design Tokens --- */
 :root {
     --container-max: 920px;
-    --drawer-width: 400px;
+    --drawer-width: 416px;
     --drawer-gap: 14px;
 
     /* COIS palette */
