@@ -40,7 +40,7 @@ function formatPct(value) {
     const numeric = Number(value);
     if (!Number.isFinite(numeric)) return '-';
     if (numeric >= 1) return '1.000';
-    return `.${numeric.toFixed(3).split('.')[1]}`;
+    return numeric.toFixed(3);
 }
 
 function formatGap(value) {
