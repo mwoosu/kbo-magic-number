@@ -1,12 +1,13 @@
 # ============================================================
-# KBO 매직넘버 자동 계산 워크플로우
+# KBO 대시보드 자동 업데이트 워크플로우
 # ============================================================
 #
 # 이 파일이 하는 일:
 #   1. 매일 KST 23:00 (UTC 14:00)에 자동 실행
-#   2. Python + Gurobi 설치
-#   3. main.py 실행 → result.json 생성
-#   4. 결과를 git commit & push → GitHub Pages에 자동 반영
+#   2. Chrome + Python + Gurobi 설치
+#   3. 라이브 데이터 크롤링 → phase(시범경기/정규시즌) 판별
+#   4. 정규시즌이면 solver 실행, 시범경기면 standings JSON 생성
+#   5. 결과를 git commit & push → GitHub Pages에 자동 반영
 #
 # 수동 실행도 가능: Actions 탭 → "Run workflow" 버튼
 #
@@ -16,7 +17,7 @@
 #   - GRB_LICENSEID   : Gurobi License ID
 # ============================================================
 
-name: Daily Magic Number
+name: Daily KBO Dashboard
 
 on:
   schedule:
@@ -35,6 +36,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -43,21 +47,24 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install gurobipy
+          pip install gurobipy requests beautifulsoup4 selenium
 
-      - name: Run magic number calculation
+      - name: Build dashboard JSON
         env:
           GRB_WLSACCESSID: ${{ secrets.GRB_WLSACCESSID }}
           GRB_WLSSECRET: ${{ secrets.GRB_WLSSECRET }}
           GRB_LICENSEID: ${{ secrets.GRB_LICENSEID }}
+          TZ: Asia/Seoul
         run: |
-          python main.py --output docs/data/result.json
+          python live_dashboard.py \
+            --output docs/data/result.json \
+            --source-output data/live_source.json
 
       - name: Commit and push results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data/result.json
+          git add docs/data/result.json data/live_source.json
           # 변경사항이 있을 때만 커밋 (없으면 조기 종료)
-          git diff --staged --quiet || git commit -m "Update magic numbers $(date +%Y-%m-%d)"
+          git diff --staged --quiet || git commit -m "Update KBO dashboard $(date +%Y-%m-%d)"
           git push

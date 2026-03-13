@@ -26,6 +26,7 @@ pip install gurobipy
 python main.py                                    # 콘솔 출력
 python main.py --output docs/data/result.json     # JSON 저장
 python main.py --team Samsung                     # 특정 팀만
+python live_dashboard.py --output docs/data/result.json  # 라이브 크롤링 + 대시보드 갱신
 ```
 
 ## License

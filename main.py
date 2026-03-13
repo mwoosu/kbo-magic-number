@@ -15,6 +15,7 @@ import json
 import os
 import sys
 from datetime import datetime
+from pathlib import Path
 
 import gurobipy as gp
 from gurobipy import GRB
@@ -24,11 +25,45 @@ from gurobipy import GRB
 # Gurobi 환경 설정 (WLS 자동 감지)
 # ============================================================
 
+def load_wls_credentials_from_file():
+    """현재 작업 디렉터리 또는 GRB_LICENSE_FILE의 gurobi.lic에서 WLS 자격증명을 읽는다."""
+    candidates = []
+
+    env_path = os.environ.get('GRB_LICENSE_FILE')
+    if env_path:
+        candidates.append(Path(env_path))
+    candidates.append(Path.cwd() / 'gurobi.lic')
+
+    for path in candidates:
+        if not path.exists():
+            continue
+
+        values = {}
+        for line in path.read_text().splitlines():
+            line = line.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            key, value = line.split('=', 1)
+            values[key.strip()] = value.strip()
+
+        if {'WLSACCESSID', 'WLSSECRET', 'LICENSEID'} <= values.keys():
+            return values
+
+    return None
+
+
 def create_gurobi_env():
     """WLS 환경변수가 있으면 WLS 라이선스, 아니면 로컬 라이선스 사용."""
     wls_access_id = os.environ.get('GRB_WLSACCESSID')
     wls_secret = os.environ.get('GRB_WLSSECRET')
     license_id = os.environ.get('GRB_LICENSEID')
+
+    if not (wls_access_id and wls_secret and license_id):
+        file_values = load_wls_credentials_from_file()
+        if file_values:
+            wls_access_id = file_values['WLSACCESSID']
+            wls_secret = file_values['WLSSECRET']
+            license_id = file_values['LICENSEID']
 
     env = gp.Env(empty=True)
 
@@ -82,16 +117,8 @@ DEFAULT_DATA = {
 # fmt: on
 
 
-def load_data(input_path=None):
-    """입력 데이터 로드. JSON 파일이 있으면 읽고, 없으면 DEFAULT_DATA 사용."""
-    if input_path and os.path.exists(input_path):
-        print(f"[INFO] 입력 데이터: {input_path}")
-        with open(input_path) as f:
-            data = json.load(f)
-    else:
-        print("[INFO] 기본 더미 데이터 사용")
-        data = DEFAULT_DATA.copy()
-
+def normalize_data(data):
+    """JSON 호환 입력(dict)을 solver 내부 포맷으로 변환."""
     teams = data['teams']
     n = len(teams)
 
@@ -126,6 +153,19 @@ def load_data(input_path=None):
     }
 
 
+def load_data(input_path=None):
+    """입력 데이터 로드. JSON 파일이 있으면 읽고, 없으면 DEFAULT_DATA 사용."""
+    if input_path and os.path.exists(input_path):
+        print(f"[INFO] 입력 데이터: {input_path}")
+        with open(input_path) as f:
+            data = json.load(f)
+    else:
+        print("[INFO] 기본 더미 데이터 사용")
+        data = DEFAULT_DATA.copy()
+
+    return normalize_data(data)
+
+
 # ============================================================
 # 매직넘버 계산 (단일 팀)
 # ============================================================
@@ -141,6 +181,12 @@ def solve_magic_number(env, data, target_team, verbose=False):
     k = target_team
     T_k = [t for t in teams if t != k]
     pairs = [(teams[i], teams[j]) for i in range(len(teams)) for j in range(i + 1, len(teams))]
+    team_index = {team: idx for idx, team in enumerate(teams)}
+
+    def ordered_pair(team_a, team_b):
+        if team_index[team_a] < team_index[team_b]:
+            return (team_a, team_b)
+        return (team_b, team_a)
 
     w_hat = data['w_hat']
     l_hat = data['l_hat']
@@ -158,6 +204,7 @@ def solve_magic_number(env, data, target_team, verbose=False):
     # --- 모델 생성 ---
     model = gp.Model(env=env)
     model.Params.NonConvex = 2
+    model.Params.DualReductions = 0
     model.Params.OutputFlag = 1 if verbose else 0
 
     # --- 변수 ---
@@ -216,30 +263,46 @@ def solve_magic_number(env, data, target_team, verbose=False):
     model.addConstrs((m - (N[k] - N[t]) <= Z[t] + (1 + m) * (1 - beta[k, t]) for t in T_k), name="A.6f")
     model.addConstrs((m - (N[t] - N[k]) <= Z[t] + (1 + m) * (1 - beta[t, k]) for t in T_k), name="A.6g")
     model.addConstrs((Z[t] + beta[k, t] + beta[t, k] == 1 for t in T_k), name="A.6h")
+    model.addConstrs((Z_hat[i, i] == 0 for i in teams), name="A.6i_diag")
+    model.addConstrs((Z_hat[i, j] == Z_hat[j, i] for (i, j) in pairs), name="A.6i_sym")
     model.addConstrs((Z[i] + Z[j] <= Z_hat[i, j] + 1 for (i, j) in pairs), name="A.6i")
     model.addConstrs((2 * Z_hat[i, j] + beta[k, i] + beta[i, k] + beta[k, j] + beta[j, k] <= 2 for (i, j) in pairs), name="A.6j")
 
     # === A.7 + A.14a~d 타이브레이크 기준1 (상대 다승) ===
     M_G = {t: sum(w_data[t, tp] + g[t, tp] for tp in teams if tp != t) for t in teams}
+    M_G_pair = {(t, tp): M_G[t] + M_G[tp] + 1 for t in teams for tp in teams if t != tp}
 
     model.addConstr(G[k] == gp.quicksum((w_data[k, t] + X[k, t]) * Z[t] for t in T_k), name="A.14a")
-    model.addConstrs((G[t] == (w_data[t, k] + X[t, k]) * Z[t] + gp.quicksum((w_data[t, tp] + X[t, tp]) * Z_hat[t, tp] for tp in T_k if tp != t) for t in T_k), name="A.14b")
+    model.addConstrs((G[t] == (w_data[t, k] + X[t, k]) * Z[t] + gp.quicksum((w_data[t, tp] + X[t, tp]) * Z_hat[ordered_pair(t, tp)] for tp in T_k if tp != t) for t in T_k), name="A.14b")
     model.addConstr(G[k] <= gp.quicksum(w_data[k, t] + g[k, t] for t in T_k), name="A.14c")
     model.addConstrs((G[t] <= M_G[t] * Z[t] for t in T_k), name="A.14d")
 
-    model.addConstrs((G[t] - G[tp] >= 1 - (1 + M_G[t]) * (1 - T_crit[t, tp, 1]) for t in teams for tp in teams if tp != t), name="A.7b_lb")
-    model.addConstrs((G[t] - G[tp] <= M_G[t] * T_crit[t, tp, 1] for t in teams for tp in teams if tp != t), name="A.7b_ub")
+    model.addConstrs((
+        G[t] - G[tp] >= 1 - M_G_pair[t, tp] * (1 - T_crit[t, tp, 1]) - M_G_pair[t, tp] * (1 - Z_hat[ordered_pair(t, tp)])
+        for t in teams for tp in teams if tp != t
+    ), name="A.7b_lb")
+    model.addConstrs((
+        G[t] - G[tp] <= M_G_pair[t, tp] * T_crit[t, tp, 1] + M_G_pair[t, tp] * (1 - Z_hat[ordered_pair(t, tp)])
+        for t in teams for tp in teams if tp != t
+    ), name="A.7b_ub")
 
     # === A.8 + A.14 변형 타이브레이크 기준2 (상대 다득점) ===
     M_R = {t: sum(r_hat[t, tp] for tp in teams if tp != t) + 1000 for t in teams}
+    M_R_pair = {(t, tp): M_R[t] + M_R[tp] + 1 for t in teams for tp in teams if t != tp}
 
     model.addConstr(R_var[k] == gp.quicksum((r_hat[k, t] + A[k, t]) * Z[t] for t in T_k), name="A.14a_R")
-    model.addConstrs((R_var[t] == (r_hat[t, k] + A[t, k]) * Z[t] + gp.quicksum((r_hat[t, tp] + A[t, tp]) * Z_hat[t, tp] for tp in T_k if tp != t) for t in T_k), name="A.14b_R")
+    model.addConstrs((R_var[t] == (r_hat[t, k] + A[t, k]) * Z[t] + gp.quicksum((r_hat[t, tp] + A[t, tp]) * Z_hat[ordered_pair(t, tp)] for tp in T_k if tp != t) for t in T_k), name="A.14b_R")
     model.addConstr(R_var[k] <= gp.quicksum(r_hat[k, t] + 1000 for t in T_k), name="A.14c_R")
     model.addConstrs((R_var[t] <= M_R[t] * Z[t] for t in T_k), name="A.14d_R")
 
-    model.addConstrs((R_var[t] - R_var[tp] >= 1 - (1 + M_R[t]) * (1 - T_crit[t, tp, 2]) for t in teams for tp in teams if tp != t), name="A.8b_lb")
-    model.addConstrs((R_var[t] - R_var[tp] <= M_R[t] * T_crit[t, tp, 2] for t in teams for tp in teams if tp != t), name="A.8b_ub")
+    model.addConstrs((
+        R_var[t] - R_var[tp] >= 1 - M_R_pair[t, tp] * (1 - T_crit[t, tp, 2]) - M_R_pair[t, tp] * (1 - Z_hat[ordered_pair(t, tp)])
+        for t in teams for tp in teams if tp != t
+    ), name="A.8b_lb")
+    model.addConstrs((
+        R_var[t] - R_var[tp] <= M_R_pair[t, tp] * T_crit[t, tp, 2] + M_R_pair[t, tp] * (1 - Z_hat[ordered_pair(t, tp)])
+        for t in teams for tp in teams if tp != t
+    ), name="A.8b_ub")
 
     # === A.9 완결 시리즈 고정 ===
     F = [(t, tp) for (t, tp) in pairs if g[t, tp] == 0]
@@ -291,6 +354,7 @@ def solve_magic_number(env, data, target_team, verbose=False):
     # === A.12 Postseason Elimination ===
     model.addConstr(gp.quicksum(beta[t, k] for t in T_k) <= n_playoff - 1, name="A.12a")
     model.addConstrs((N[k] + omega[t, k] >= N[t] + alpha[t, k] for t in T_k), name="A.12b")
+    model.addConstrs((N[t] + omega[k, t] >= N[k] + alpha[k, t] for t in T_k), name="A.12b_rev")
     model.addConstr(gp.quicksum(omega[t, k] for t in T_k) <= n_playoff - 1 + I_hat_1, name="A.12c")
 
     # === 최적화 ===
@@ -340,6 +404,12 @@ def solve_clinch_number(env, data, target_team, verbose=False):
     k = target_team
     T_k = [t for t in teams if t != k]
     pairs = [(teams[i], teams[j]) for i in range(len(teams)) for j in range(i + 1, len(teams))]
+    team_index = {team: idx for idx, team in enumerate(teams)}
+
+    def ordered_pair(team_a, team_b):
+        if team_index[team_a] < team_index[team_b]:
+            return (team_a, team_b)
+        return (team_b, team_a)
 
     w_hat = data['w_hat']
     l_hat = data['l_hat']
@@ -356,6 +426,7 @@ def solve_clinch_number(env, data, target_team, verbose=False):
 
     model = gp.Model(env=env)
     model.Params.NonConvex = 2
+    model.Params.DualReductions = 0
     model.Params.OutputFlag = 1 if verbose else 0
 
     # --- 변수 (탈락 모델과 동일) ---
@@ -409,25 +480,41 @@ def solve_clinch_number(env, data, target_team, verbose=False):
     model.addConstrs((m - (N[k] - N[t]) <= Z[t] + (1 + m) * (1 - beta[k, t]) for t in T_k), name="A.6f")
     model.addConstrs((m - (N[t] - N[k]) <= Z[t] + (1 + m) * (1 - beta[t, k]) for t in T_k), name="A.6g")
     model.addConstrs((Z[t] + beta[k, t] + beta[t, k] == 1 for t in T_k), name="A.6h")
+    model.addConstrs((Z_hat[i, i] == 0 for i in teams), name="A.6i_diag")
+    model.addConstrs((Z_hat[i, j] == Z_hat[j, i] for (i, j) in pairs), name="A.6i_sym")
     model.addConstrs((Z[i] + Z[j] <= Z_hat[i, j] + 1 for (i, j) in pairs), name="A.6i")
     model.addConstrs((2 * Z_hat[i, j] + beta[k, i] + beta[i, k] + beta[k, j] + beta[j, k] <= 2 for (i, j) in pairs), name="A.6j")
 
     # === A.7~A.10 (타이브레이크 — 동일) ===
     M_G = {t: sum(w_data[t, tp] + g[t, tp] for tp in teams if tp != t) for t in teams}
+    M_G_pair = {(t, tp): M_G[t] + M_G[tp] + 1 for t in teams for tp in teams if t != tp}
     model.addConstr(G[k] == gp.quicksum((w_data[k, t] + X[k, t]) * Z[t] for t in T_k), name="A.14a")
-    model.addConstrs((G[t] == (w_data[t, k] + X[t, k]) * Z[t] + gp.quicksum((w_data[t, tp] + X[t, tp]) * Z_hat[t, tp] for tp in T_k if tp != t) for t in T_k), name="A.14b")
+    model.addConstrs((G[t] == (w_data[t, k] + X[t, k]) * Z[t] + gp.quicksum((w_data[t, tp] + X[t, tp]) * Z_hat[ordered_pair(t, tp)] for tp in T_k if tp != t) for t in T_k), name="A.14b")
     model.addConstr(G[k] <= gp.quicksum(w_data[k, t] + g[k, t] for t in T_k), name="A.14c")
     model.addConstrs((G[t] <= M_G[t] * Z[t] for t in T_k), name="A.14d")
-    model.addConstrs((G[t] - G[tp] >= 1 - (1 + M_G[t]) * (1 - T_crit[t, tp, 1]) for t in teams for tp in teams if tp != t), name="A.7b_lb")
-    model.addConstrs((G[t] - G[tp] <= M_G[t] * T_crit[t, tp, 1] for t in teams for tp in teams if tp != t), name="A.7b_ub")
+    model.addConstrs((
+        G[t] - G[tp] >= 1 - M_G_pair[t, tp] * (1 - T_crit[t, tp, 1]) - M_G_pair[t, tp] * (1 - Z_hat[ordered_pair(t, tp)])
+        for t in teams for tp in teams if tp != t
+    ), name="A.7b_lb")
+    model.addConstrs((
+        G[t] - G[tp] <= M_G_pair[t, tp] * T_crit[t, tp, 1] + M_G_pair[t, tp] * (1 - Z_hat[ordered_pair(t, tp)])
+        for t in teams for tp in teams if tp != t
+    ), name="A.7b_ub")
 
     M_R = {t: sum(r_hat[t, tp] for tp in teams if tp != t) + 1000 for t in teams}
+    M_R_pair = {(t, tp): M_R[t] + M_R[tp] + 1 for t in teams for tp in teams if t != tp}
     model.addConstr(R_var[k] == gp.quicksum((r_hat[k, t] + A[k, t]) * Z[t] for t in T_k), name="A.14a_R")
-    model.addConstrs((R_var[t] == (r_hat[t, k] + A[t, k]) * Z[t] + gp.quicksum((r_hat[t, tp] + A[t, tp]) * Z_hat[t, tp] for tp in T_k if tp != t) for t in T_k), name="A.14b_R")
+    model.addConstrs((R_var[t] == (r_hat[t, k] + A[t, k]) * Z[t] + gp.quicksum((r_hat[t, tp] + A[t, tp]) * Z_hat[ordered_pair(t, tp)] for tp in T_k if tp != t) for t in T_k), name="A.14b_R")
     model.addConstr(R_var[k] <= gp.quicksum(r_hat[k, t] + 1000 for t in T_k), name="A.14c_R")
     model.addConstrs((R_var[t] <= M_R[t] * Z[t] for t in T_k), name="A.14d_R")
-    model.addConstrs((R_var[t] - R_var[tp] >= 1 - (1 + M_R[t]) * (1 - T_crit[t, tp, 2]) for t in teams for tp in teams if tp != t), name="A.8b_lb")
-    model.addConstrs((R_var[t] - R_var[tp] <= M_R[t] * T_crit[t, tp, 2] for t in teams for tp in teams if tp != t), name="A.8b_ub")
+    model.addConstrs((
+        R_var[t] - R_var[tp] >= 1 - M_R_pair[t, tp] * (1 - T_crit[t, tp, 2]) - M_R_pair[t, tp] * (1 - Z_hat[ordered_pair(t, tp)])
+        for t in teams for tp in teams if tp != t
+    ), name="A.8b_lb")
+    model.addConstrs((
+        R_var[t] - R_var[tp] <= M_R_pair[t, tp] * T_crit[t, tp, 2] + M_R_pair[t, tp] * (1 - Z_hat[ordered_pair(t, tp)])
+        for t in teams for tp in teams if tp != t
+    ), name="A.8b_ub")
 
     F = [(t, tp) for (t, tp) in pairs if g[t, tp] == 0]
     for (t, tp) in F:
@@ -471,6 +558,10 @@ def solve_clinch_number(env, data, target_team, verbose=False):
     # === A.11 Team Ordering (동일) ===
     model.addConstrs((omega[i, j] + omega[j, i] == 1 for (i, j) in pairs), name="A.11")
 
+    # === 실제 순위와 ordering 변수를 연결 ===
+    model.addConstrs((N[k] + omega[t, k] >= N[t] + alpha[t, k] for t in T_k), name="A.12b")
+    model.addConstrs((N[t] + omega[k, t] >= N[k] + alpha[k, t] for t in T_k), name="A.12b_rev")
+
     # === 핵심 차이: k가 포스트시즌에 들지 못하는 제약 ===
     # 탈락 모델(A.12)에서는 "k가 5위 안에 든다"를 강제했지만,
     # 확정 모델에서는 "k가 5위 밖으로 밀려난다"를 강제합니다.
@@ -507,6 +598,7 @@ def solve_clinch_number(env, data, target_team, verbose=False):
         result['clinched'] = None
         result['clinch_number'] = None
         result['clinch_wins'] = None
+        result['solver_status'] = model.status
 
     model.dispose()
     return result
@@ -516,22 +608,26 @@ def solve_clinch_number(env, data, target_team, verbose=False):
 # 전체 팀 계산 + JSON 출력
 # ============================================================
 
-def calculate_all(data, env, verbose=False):
+def calculate_all(data, env, verbose=False, show_progress=True):
     """모든 팀의 매직넘버 + 확정넘버를 계산하고 결과를 반환."""
     teams = data['teams']
     results = []
 
     for i, team in enumerate(teams):
-        print(f"\n[{i + 1}/{len(teams)}] {team}")
+        if show_progress:
+            print(f"\n[{i + 1}/{len(teams)}] {team}")
 
         # 1) 탈락 모델 (현재 가능한 최소 승수)
-        print(f"  탈락 모델...", end=' ')
+        if show_progress:
+            print(f"  탈락 모델...", end=' ')
         elim = solve_magic_number(env, data, team, verbose=verbose)
         status_e = "탈락" if elim['eliminated'] else f"매직넘버 {elim['magic_number']}"
-        print(status_e)
+        if show_progress:
+            print(status_e)
 
         # 2) 확정 모델 (확정에 필요한 승수)
-        print(f"  확정 모델...", end=' ')
+        if show_progress:
+            print(f"  확정 모델...", end=' ')
         clinch = solve_clinch_number(env, data, team, verbose=verbose)
         if clinch['clinched']:
             status_c = "이미 확정!"
@@ -539,7 +635,8 @@ def calculate_all(data, env, verbose=False):
             status_c = f"확정넘버 {clinch['clinch_number']}"
         else:
             status_c = "전승해도 확정 불가"
-        print(status_c)
+        if show_progress:
+            print(status_c)
 
         # 결과 합치기
         elim.update(clinch)
@@ -567,6 +664,70 @@ def calculate_all(data, env, verbose=False):
     return output
 
 
+def run_model(input_path=None, data=None, team=None, verbose=False, env=None, show_progress=False):
+    """CLI 없이 파이썬/Jupyter에서 직접 실행하기 위한 진입점.
+
+    Args:
+        input_path: main.py JSON 입력 경로
+        data: JSON 호환 dict 또는 normalize_data() 결과
+        team: 특정 팀만 계산
+        verbose: Gurobi 로그 출력 여부
+        env: 기존 Gurobi env 재사용용
+        show_progress: 팀별 진행 로그 출력 여부
+    """
+    if data is not None:
+        model_data = data if 'w_hat' in data else normalize_data(data)
+    else:
+        model_data = load_data(input_path)
+
+    owns_env = env is None
+    if owns_env:
+        env = create_gurobi_env()
+
+    try:
+        if team:
+            if team not in model_data['teams']:
+                print(f"[ERROR] 팀 '{team}'을(를) 찾을 수 없습니다.")
+                print(f"  가능한 팀: {', '.join(model_data['teams'])}")
+                sys.exit(1)
+
+            elim = solve_magic_number(env, model_data, team, verbose=verbose)
+            clinch = solve_clinch_number(env, model_data, team, verbose=verbose)
+            elim.update(clinch)
+            output = {
+                'updated_at': datetime.now().strftime('%Y-%m-%d %H:%M'),
+                'data_date': model_data['date'],
+                'n_playoff': N_PLAYOFF,
+                'teams': [elim],
+            }
+        else:
+            output = calculate_all(model_data, env, verbose=verbose, show_progress=show_progress)
+        return output
+    finally:
+        if owns_env:
+            env.dispose()
+
+
+def results_table(output):
+    """출력 dict를 notebook에서 보기 쉬운 list-of-dicts 형태로 변환."""
+    rows = []
+    for team in output['teams']:
+        rows.append({
+            'rank': team.get('rank'),
+            'team': team['team'],
+            'team_label': team.get('team_label', team['team']),
+            'wins': team['current_wins'],
+            'losses': team['current_losses'],
+            'draws': team['current_draws'],
+            'remaining_games': team['remaining_games'],
+            'magic_number': team.get('magic_number'),
+            'eliminated': team.get('eliminated'),
+            'clinch_number': team.get('clinch_number'),
+            'clinched': team.get('clinched'),
+        })
+    return rows
+
+
 def main():
     parser = argparse.ArgumentParser(description='KBO 매직넘버 계산기')
     parser.add_argument('--input', type=str, help='입력 데이터 JSON 경로')
@@ -583,15 +744,17 @@ def main():
             print(f"[ERROR] 팀 '{args.team}'을(를) 찾을 수 없습니다.")
             print(f"  가능한 팀: {', '.join(data['teams'])}")
             sys.exit(1)
-        result = solve_magic_number(env, data, args.team, verbose=args.verbose)
+        elim = solve_magic_number(env, data, args.team, verbose=args.verbose)
+        clinch = solve_clinch_number(env, data, args.team, verbose=args.verbose)
+        elim.update(clinch)
         output = {
             'updated_at': datetime.now().strftime('%Y-%m-%d %H:%M'),
             'data_date': data['date'],
             'n_playoff': N_PLAYOFF,
-            'teams': [result],
+            'teams': [elim],
         }
     else:
-        output = calculate_all(data, env, verbose=args.verbose)
+        output = calculate_all(data, env, verbose=args.verbose, show_progress=True)
 
     # 콘솔 출력
     print("\n" + "=" * 72)
