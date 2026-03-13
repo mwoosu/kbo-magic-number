@@ -540,7 +540,7 @@ function renderTeamDetail(data, team) {
 
     detail.innerHTML = `
         <div class="detail-header">
-            <div>
+            <div class="detail-heading">
                 <div class="detail-team">${escapeHtml(team.team_label)}</div>
                 <div class="detail-subtitle">
                     ${escapeHtml(team.current_wins)}승 ${escapeHtml(team.current_losses)}패 ${escapeHtml(team.current_draws)}무
@@ -548,11 +548,9 @@ function renderTeamDetail(data, team) {
                         ? `· 최근 ${escapeHtml(team.recent || '-')}`
                         : `· 잔여 ${escapeHtml(team.remaining_games)}경기`}
                 </div>
-            </div>
-            <div>
-                <button type="button" class="detail-close" aria-label="상세 닫기" id="detail-close">×</button>
                 <div class="detail-status ${statusClass}">${escapeHtml(analysis.status_label || '상세')}</div>
             </div>
+            <button type="button" class="detail-close" aria-label="상세 닫기" id="detail-close">×</button>
         </div>
         <div class="detail-headline">${escapeHtml(analysis.headline || '')}</div>
         ${renderMetrics(team, phase)}

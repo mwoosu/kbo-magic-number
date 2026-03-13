@@ -25,6 +25,7 @@ try:
     import requests
     from bs4 import BeautifulSoup
     from selenium import webdriver
+    from selenium.webdriver.chrome.service import Service
     from selenium.webdriver.common.by import By
     from selenium.common.exceptions import StaleElementReferenceException
     from selenium.webdriver.support.ui import Select, WebDriverWait
@@ -32,6 +33,7 @@ except ImportError:  # pragma: no cover - dependency availability varies by envi
     requests = None
     BeautifulSoup = None
     webdriver = None
+    Service = None
     By = None
     StaleElementReferenceException = None
     Select = None
@@ -110,7 +112,13 @@ def require_live_dependencies():
         missing.append("requests")
     if BeautifulSoup is None:
         missing.append("beautifulsoup4")
-    if webdriver is None or By is None or Select is None or WebDriverWait is None:
+    if (
+        webdriver is None
+        or Service is None
+        or By is None
+        or Select is None
+        or WebDriverWait is None
+    ):
         missing.append("selenium")
     if missing:
         raise RuntimeError(
@@ -163,13 +171,21 @@ def ensure_parent(path: str | None):
 
 def create_browser():
     options = webdriver.ChromeOptions()
+    chrome_bin = os.environ.get("CHROME_BIN")
+    chromedriver_path = os.environ.get("CHROMEDRIVER_PATH")
+
     options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-gpu")
     options.add_argument("--window-size=1600,1400")
+    options.add_argument("--disable-search-engine-choice-screen")
     options.add_argument(f"--user-agent={USER_AGENT}")
-    return webdriver.Chrome(options=options)
+    if chrome_bin:
+        options.binary_location = chrome_bin
+
+    service = Service(executable_path=chromedriver_path) if chromedriver_path else Service()
+    return webdriver.Chrome(service=service, options=options)
 
 
 def wait_for_table(browser):

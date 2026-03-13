@@ -39,15 +39,25 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Set up Chrome
+        id: setup-chrome
         uses: browser-actions/setup-chrome@v2
         with:
-          install-chromedriver: true
+          install-chromedriver: false
 
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.11'
           cache: 'pip'
+
+      - name: Detect Chrome binary
+        run: |
+          CHROME_BIN="${{ steps.setup-chrome.outputs.chrome-path }}"
+          if [ -z "$CHROME_BIN" ]; then
+            CHROME_BIN="$(command -v chrome || command -v google-chrome || true)"
+          fi
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
 
       - name: Install dependencies
         run: |
