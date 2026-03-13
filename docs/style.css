@@ -334,13 +334,15 @@ header {
     gap: 2px 10px;
 }
 
-.record-group {
+.meta-group {
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
 }
 
-.record-group + .record-group::before {
+.team-record .meta-group + .meta-group::before,
+.detail-subtitle .meta-group + .meta-group::before,
+.detail-row-subtitle .meta-group + .meta-group::before {
     content: '·';
     color: var(--text-dim);
     margin-right: 10px;
@@ -586,6 +588,10 @@ header {
     color: var(--text-secondary);
     font-size: 13px;
     line-height: 1.5;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px 10px;
 }
 
 .detail-status {
@@ -725,6 +731,10 @@ header {
     color: var(--text-secondary);
     font-size: 12px;
     line-height: 1.45;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px 10px;
 }
 
 .detail-row-value {
@@ -744,6 +754,15 @@ header {
         width: auto;
         max-height: min(78vh, 720px);
         transform: translateY(18px);
+    }
+
+    .detail-row {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-row-value {
+        justify-self: flex-start;
+        margin-top: 2px;
     }
 }
 
@@ -810,6 +829,21 @@ footer strong {
 
     .page-nav {
         margin-top: -8px;
+        flex-wrap: wrap;
+    }
+
+    .info-legend {
+        padding: 12px 14px;
+    }
+
+    .legend-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    .legend-label {
+        min-width: 0;
     }
 
     .detail-metrics {
@@ -830,13 +864,24 @@ footer strong {
         gap: 2px 8px;
     }
 
-    .record-group:first-child {
+    .meta-group:first-child {
         flex-basis: 100%;
     }
 
-    .record-group + .record-group::before {
+    .team-record .meta-group + .meta-group::before,
+    .detail-subtitle .meta-group + .meta-group::before,
+    .detail-row-subtitle .meta-group + .meta-group::before {
         content: '';
         margin-right: 0;
+    }
+
+    .detail-team {
+        font-size: 26px;
+    }
+
+    .detail-subtitle,
+    .detail-row-subtitle {
+        gap: 2px 8px;
     }
 
     .magic-number {

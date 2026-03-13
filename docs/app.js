@@ -81,12 +81,16 @@ function renderTeamLogo(team) {
     return `<img class="team-logo" src="${escapeHtml(logoPath)}" alt="${escapeHtml(team.team_label)} 엠블럼" loading="lazy">`;
 }
 
-function renderRecordLine(parts) {
+function renderMetaLine(className, parts) {
     const items = parts
         .filter(Boolean)
-        .map((part) => `<span class="record-group">${escapeHtml(part)}</span>`)
+        .map((part) => `<span class="meta-group">${escapeHtml(part)}</span>`)
         .join('');
-    return `<div class="team-record">${items}</div>`;
+    return `<div class="${className}">${items}</div>`;
+}
+
+function renderRecordLine(parts) {
+    return renderMetaLine('team-record', parts);
 }
 
 function getRankClass(rank, nPlayoff) {
@@ -484,19 +488,22 @@ function getRivalSectionTitle(data, team) {
 function renderRivals(data, team, analysis) {
     if (!analysis.rivals || !analysis.rivals.length) return '';
     const title = getRivalSectionTitle(data, team);
-    const rows = analysis.rivals.map((rival) => `
-        <div class="detail-row">
-            <div>
-                <div class="detail-row-title">${escapeHtml(rival.rank)}위 ${escapeHtml(rival.team_label)}</div>
-                <div class="detail-row-subtitle">
-                    ${escapeHtml(rival.wins)}승 ${escapeHtml(rival.losses)}패 ${escapeHtml(rival.draws)}무
-                    · 잔여 ${escapeHtml(rival.remaining_games)}경기
-                    · ${escapeHtml(rival.status_label)}
+    const rows = analysis.rivals.map((rival) => {
+        const subtitle = renderMetaLine('detail-row-subtitle', [
+            `${rival.wins}승 ${rival.losses}패 ${rival.draws}무`,
+            `잔여 ${rival.remaining_games}경기`,
+            rival.status_label,
+        ]);
+        return `
+            <div class="detail-row">
+                <div>
+                    <div class="detail-row-title">${escapeHtml(rival.rank)}위 ${escapeHtml(rival.team_label)}</div>
+                    ${subtitle}
                 </div>
+                <div class="detail-row-value">${escapeHtml(formatRelativeGap(rival.gap_from_selected))}</div>
             </div>
-            <div class="detail-row-value">${escapeHtml(formatRelativeGap(rival.gap_from_selected))}</div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 
     return `
         <section class="detail-section">
@@ -512,13 +519,16 @@ function renderSchedule(analysis, phase) {
     if (!analysis.remaining_schedule || !analysis.remaining_schedule.length) return '';
     const rows = analysis.remaining_schedule.slice(0, 5).map((item) => {
         const subtitle = phase === 'regular'
-            ? `맞대결 ${item.head_to_head_wins}승 ${item.head_to_head_losses}패 · 남은 ${item.games_left}경기`
-            : `남은 ${item.games_left}경기`;
+            ? renderMetaLine('detail-row-subtitle', [
+                `맞대결 ${item.head_to_head_wins}승 ${item.head_to_head_losses}패`,
+                `남은 ${item.games_left}경기`,
+            ])
+            : renderMetaLine('detail-row-subtitle', [`남은 ${item.games_left}경기`]);
         return `
             <div class="detail-row">
                 <div>
                     <div class="detail-row-title">${escapeHtml(item.team_label)}</div>
-                    <div class="detail-row-subtitle">${escapeHtml(subtitle)}</div>
+                    ${subtitle}
                 </div>
                 <div class="detail-row-value">${escapeHtml(item.games_left)}경기</div>
             </div>
@@ -549,17 +559,16 @@ function renderTeamDetail(data, team) {
     const notes = (analysis.notes || [])
         .map((note) => `<li>${escapeHtml(note)}</li>`)
         .join('');
+    const detailSubtitle = renderMetaLine('detail-subtitle', [
+        `${team.current_wins}승 ${team.current_losses}패 ${team.current_draws}무`,
+        phase === 'exhibition' ? `최근 ${team.recent || '-'}` : `잔여 ${team.remaining_games}경기`,
+    ]);
 
     detail.innerHTML = `
         <div class="detail-header">
             <div class="detail-heading">
                 <div class="detail-team">${escapeHtml(team.team_label)}</div>
-                <div class="detail-subtitle">
-                    ${escapeHtml(team.current_wins)}승 ${escapeHtml(team.current_losses)}패 ${escapeHtml(team.current_draws)}무
-                    ${phase === 'exhibition'
-                        ? `· 최근 ${escapeHtml(team.recent || '-')}`
-                        : `· 잔여 ${escapeHtml(team.remaining_games)}경기`}
-                </div>
+                ${detailSubtitle}
                 <div class="detail-status ${statusClass}">${escapeHtml(analysis.status_label || '상세')}</div>
             </div>
             <button type="button" class="detail-close" aria-label="상세 닫기" id="detail-close">×</button>
