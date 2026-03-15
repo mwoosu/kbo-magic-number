@@ -1,246 +1,246 @@
 {
   "phase": "exhibition",
   "phase_label": "시범경기",
-  "updated_at": "2026-03-14 23:37",
-  "data_date": "2026-03-14",
+  "updated_at": "2026-03-15 23:37",
+  "data_date": "2026-03-15",
   "headline": "정규시즌 개막 전까지 시범경기 순위를 제공합니다.",
   "teams": [
     {
       "rank": 1,
       "team": "Lotte",
       "team_label": "롯데",
-      "current_wins": 2,
+      "current_wins": 3,
       "current_losses": 0,
       "current_draws": 1,
-      "games": 3,
+      "games": 4,
       "win_pct": 1.0,
-      "recent": "2승1무0패",
+      "recent": "3승1무0패",
       "analysis": {
         "status": "exhibition",
         "status_label": "시범경기",
         "headline": "현재 시범경기 선두권입니다.",
-        "summary": "롯데는 현재 1위이며 2승 0패 1무를 기록 중입니다.",
-        "reason": "최근 흐름은 2승1무0패입니다.",
+        "summary": "롯데는 현재 1위이며 3승 0패 1무를 기록 중입니다.",
+        "reason": "최근 흐름은 3승1무0패입니다.",
         "notes": [
-          "롯데는 현재 1위이며 2승 0패 1무를 기록 중입니다.",
-          "최근 흐름은 2승1무0패입니다.",
-          "시범경기 승률은 1.000이고, 현재까지 3경기를 소화했습니다."
+          "롯데는 현재 1위이며 3승 0패 1무를 기록 중입니다.",
+          "최근 흐름은 3승1무0패입니다.",
+          "시범경기 승률은 1.000이고, 현재까지 4경기를 소화했습니다."
         ],
         "gap_from_leader": 0
       }
     },
     {
       "rank": 2,
+      "team": "Doosan",
+      "team_label": "두산",
+      "current_wins": 3,
+      "current_losses": 1,
+      "current_draws": 0,
+      "games": 4,
+      "win_pct": 0.75,
+      "recent": "3승0무1패",
+      "analysis": {
+        "status": "exhibition",
+        "status_label": "시범경기",
+        "headline": "선두와 0.5경기 차로 시범경기를 치르고 있습니다.",
+        "summary": "두산은 현재 2위이며 3승 1패 0무를 기록 중입니다.",
+        "reason": "최근 흐름은 3승0무1패입니다.",
+        "notes": [
+          "두산은 현재 2위이며 3승 1패 0무를 기록 중입니다.",
+          "최근 흐름은 3승0무1패입니다.",
+          "시범경기 승률은 0.750이고, 현재까지 4경기를 소화했습니다."
+        ],
+        "gap_from_leader": 0.5
+      }
+    },
+    {
+      "rank": 3,
+      "team": "KIA",
+      "team_label": "KIA",
+      "current_wins": 2,
+      "current_losses": 1,
+      "current_draws": 1,
+      "games": 4,
+      "win_pct": 0.667,
+      "recent": "2승1무1패",
+      "analysis": {
+        "status": "exhibition",
+        "status_label": "시범경기",
+        "headline": "선두와 1경기 차로 시범경기를 치르고 있습니다.",
+        "summary": "KIA는 현재 3위이며 2승 1패 1무를 기록 중입니다.",
+        "reason": "최근 흐름은 2승1무1패입니다.",
+        "notes": [
+          "KIA는 현재 3위이며 2승 1패 1무를 기록 중입니다.",
+          "최근 흐름은 2승1무1패입니다.",
+          "시범경기 승률은 0.667이고, 현재까지 4경기를 소화했습니다."
+        ],
+        "gap_from_leader": 1
+      }
+    },
+    {
+      "rank": 4,
+      "team": "Hanwha",
+      "team_label": "한화",
+      "current_wins": 2,
+      "current_losses": 2,
+      "current_draws": 0,
+      "games": 4,
+      "win_pct": 0.5,
+      "recent": "2승0무2패",
+      "analysis": {
+        "status": "exhibition",
+        "status_label": "시범경기",
+        "headline": "선두와 1.5경기 차로 시범경기를 치르고 있습니다.",
+        "summary": "한화는 현재 4위이며 2승 2패 0무를 기록 중입니다.",
+        "reason": "최근 흐름은 2승0무2패입니다.",
+        "notes": [
+          "한화는 현재 4위이며 2승 2패 0무를 기록 중입니다.",
+          "최근 흐름은 2승0무2패입니다.",
+          "시범경기 승률은 0.500이고, 현재까지 4경기를 소화했습니다."
+        ],
+        "gap_from_leader": 1.5
+      }
+    },
+    {
+      "rank": 4,
       "team": "SSG",
       "team_label": "SSG",
       "current_wins": 2,
-      "current_losses": 1,
+      "current_losses": 2,
       "current_draws": 0,
-      "games": 3,
-      "win_pct": 0.667,
-      "recent": "2승0무1패",
+      "games": 4,
+      "win_pct": 0.5,
+      "recent": "2승0무2패",
       "analysis": {
         "status": "exhibition",
         "status_label": "시범경기",
-        "headline": "선두와 0.5경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "SSG는 현재 2위이며 2승 1패 0무를 기록 중입니다.",
-        "reason": "최근 흐름은 2승0무1패입니다.",
+        "headline": "선두와 1.5경기 차로 시범경기를 치르고 있습니다.",
+        "summary": "SSG는 현재 4위이며 2승 2패 0무를 기록 중입니다.",
+        "reason": "최근 흐름은 2승0무2패입니다.",
         "notes": [
-          "SSG는 현재 2위이며 2승 1패 0무를 기록 중입니다.",
-          "최근 흐름은 2승0무1패입니다.",
-          "시범경기 승률은 0.667이고, 현재까지 3경기를 소화했습니다."
+          "SSG는 현재 4위이며 2승 2패 0무를 기록 중입니다.",
+          "최근 흐름은 2승0무2패입니다.",
+          "시범경기 승률은 0.500이고, 현재까지 4경기를 소화했습니다."
         ],
-        "gap_from_leader": 0.5
+        "gap_from_leader": 1.5
       }
     },
     {
-      "rank": 2,
+      "rank": 4,
       "team": "Samsung",
       "team_label": "삼성",
       "current_wins": 2,
-      "current_losses": 1,
+      "current_losses": 2,
       "current_draws": 0,
-      "games": 3,
-      "win_pct": 0.667,
-      "recent": "2승0무1패",
+      "games": 4,
+      "win_pct": 0.5,
+      "recent": "2승0무2패",
       "analysis": {
         "status": "exhibition",
         "status_label": "시범경기",
-        "headline": "선두와 0.5경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "삼성은 현재 2위이며 2승 1패 0무를 기록 중입니다.",
-        "reason": "최근 흐름은 2승0무1패입니다.",
+        "headline": "선두와 1.5경기 차로 시범경기를 치르고 있습니다.",
+        "summary": "삼성은 현재 4위이며 2승 2패 0무를 기록 중입니다.",
+        "reason": "최근 흐름은 2승0무2패입니다.",
         "notes": [
-          "삼성은 현재 2위이며 2승 1패 0무를 기록 중입니다.",
-          "최근 흐름은 2승0무1패입니다.",
-          "시범경기 승률은 0.667이고, 현재까지 3경기를 소화했습니다."
+          "삼성은 현재 4위이며 2승 2패 0무를 기록 중입니다.",
+          "최근 흐름은 2승0무2패입니다.",
+          "시범경기 승률은 0.500이고, 현재까지 4경기를 소화했습니다."
         ],
-        "gap_from_leader": 0.5
+        "gap_from_leader": 1.5
       }
     },
     {
-      "rank": 2,
-      "team": "Doosan",
-      "team_label": "두산",
-      "current_wins": 2,
-      "current_losses": 1,
-      "current_draws": 0,
-      "games": 3,
-      "win_pct": 0.667,
-      "recent": "2승0무1패",
-      "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 0.5경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "두산은 현재 2위이며 2승 1패 0무를 기록 중입니다.",
-        "reason": "최근 흐름은 2승0무1패입니다.",
-        "notes": [
-          "두산은 현재 2위이며 2승 1패 0무를 기록 중입니다.",
-          "최근 흐름은 2승0무1패입니다.",
-          "시범경기 승률은 0.667이고, 현재까지 3경기를 소화했습니다."
-        ],
-        "gap_from_leader": 0.5
-      }
-    },
-    {
-      "rank": 5,
+      "rank": 7,
       "team": "LG",
       "team_label": "LG",
       "current_wins": 1,
-      "current_losses": 1,
+      "current_losses": 2,
       "current_draws": 1,
-      "games": 3,
-      "win_pct": 0.5,
-      "recent": "1승1무1패",
+      "games": 4,
+      "win_pct": 0.333,
+      "recent": "1승1무2패",
       "analysis": {
         "status": "exhibition",
         "status_label": "시범경기",
-        "headline": "선두와 1경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "LG는 현재 5위이며 1승 1패 1무를 기록 중입니다.",
-        "reason": "최근 흐름은 1승1무1패입니다.",
+        "headline": "선두와 2경기 차로 시범경기를 치르고 있습니다.",
+        "summary": "LG는 현재 7위이며 1승 2패 1무를 기록 중입니다.",
+        "reason": "최근 흐름은 1승1무2패입니다.",
         "notes": [
-          "LG는 현재 5위이며 1승 1패 1무를 기록 중입니다.",
-          "최근 흐름은 1승1무1패입니다.",
-          "시범경기 승률은 0.500이고, 현재까지 3경기를 소화했습니다."
+          "LG는 현재 7위이며 1승 2패 1무를 기록 중입니다.",
+          "최근 흐름은 1승1무2패입니다.",
+          "시범경기 승률은 0.333이고, 현재까지 4경기를 소화했습니다."
         ],
-        "gap_from_leader": 1
+        "gap_from_leader": 2
       }
     },
     {
-      "rank": 5,
+      "rank": 7,
       "team": "NC",
       "team_label": "NC",
       "current_wins": 1,
-      "current_losses": 1,
-      "current_draws": 1,
-      "games": 3,
-      "win_pct": 0.5,
-      "recent": "1승1무1패",
-      "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 1경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "NC는 현재 5위이며 1승 1패 1무를 기록 중입니다.",
-        "reason": "최근 흐름은 1승1무1패입니다.",
-        "notes": [
-          "NC는 현재 5위이며 1승 1패 1무를 기록 중입니다.",
-          "최근 흐름은 1승1무1패입니다.",
-          "시범경기 승률은 0.500이고, 현재까지 3경기를 소화했습니다."
-        ],
-        "gap_from_leader": 1
-      }
-    },
-    {
-      "rank": 5,
-      "team": "KIA",
-      "team_label": "KIA",
-      "current_wins": 1,
-      "current_losses": 1,
-      "current_draws": 1,
-      "games": 3,
-      "win_pct": 0.5,
-      "recent": "1승1무1패",
-      "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 1경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "KIA는 현재 5위이며 1승 1패 1무를 기록 중입니다.",
-        "reason": "최근 흐름은 1승1무1패입니다.",
-        "notes": [
-          "KIA는 현재 5위이며 1승 1패 1무를 기록 중입니다.",
-          "최근 흐름은 1승1무1패입니다.",
-          "시범경기 승률은 0.500이고, 현재까지 3경기를 소화했습니다."
-        ],
-        "gap_from_leader": 1
-      }
-    },
-    {
-      "rank": 8,
-      "team": "Hanwha",
-      "team_label": "한화",
-      "current_wins": 1,
       "current_losses": 2,
-      "current_draws": 0,
-      "games": 3,
+      "current_draws": 1,
+      "games": 4,
       "win_pct": 0.333,
-      "recent": "1승0무2패",
+      "recent": "1승1무2패",
       "analysis": {
         "status": "exhibition",
         "status_label": "시범경기",
-        "headline": "선두와 1.5경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "한화는 현재 8위이며 1승 2패 0무를 기록 중입니다.",
-        "reason": "최근 흐름은 1승0무2패입니다.",
+        "headline": "선두와 2경기 차로 시범경기를 치르고 있습니다.",
+        "summary": "NC는 현재 7위이며 1승 2패 1무를 기록 중입니다.",
+        "reason": "최근 흐름은 1승1무2패입니다.",
         "notes": [
-          "한화는 현재 8위이며 1승 2패 0무를 기록 중입니다.",
-          "최근 흐름은 1승0무2패입니다.",
-          "시범경기 승률은 0.333이고, 현재까지 3경기를 소화했습니다."
+          "NC는 현재 7위이며 1승 2패 1무를 기록 중입니다.",
+          "최근 흐름은 1승1무2패입니다.",
+          "시범경기 승률은 0.333이고, 현재까지 4경기를 소화했습니다."
         ],
-        "gap_from_leader": 1.5
-      }
-    },
-    {
-      "rank": 9,
-      "team": "KT",
-      "team_label": "KT",
-      "current_wins": 0,
-      "current_losses": 1,
-      "current_draws": 2,
-      "games": 3,
-      "win_pct": 0.0,
-      "recent": "0승2무1패",
-      "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 1.5경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "KT는 현재 9위이며 0승 1패 2무를 기록 중입니다.",
-        "reason": "최근 흐름은 0승2무1패입니다.",
-        "notes": [
-          "KT는 현재 9위이며 0승 1패 2무를 기록 중입니다.",
-          "최근 흐름은 0승2무1패입니다.",
-          "시범경기 승률은 0.000이고, 현재까지 3경기를 소화했습니다."
-        ],
-        "gap_from_leader": 1.5
+        "gap_from_leader": 2
       }
     },
     {
       "rank": 9,
       "team": "Kiwoom",
       "team_label": "키움",
-      "current_wins": 0,
+      "current_wins": 1,
       "current_losses": 3,
       "current_draws": 0,
-      "games": 3,
-      "win_pct": 0.0,
-      "recent": "0승0무3패",
+      "games": 4,
+      "win_pct": 0.25,
+      "recent": "1승0무3패",
       "analysis": {
         "status": "exhibition",
         "status_label": "시범경기",
         "headline": "선두와 2.5경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "키움은 현재 9위이며 0승 3패 0무를 기록 중입니다.",
-        "reason": "최근 흐름은 0승0무3패입니다.",
+        "summary": "키움은 현재 9위이며 1승 3패 0무를 기록 중입니다.",
+        "reason": "최근 흐름은 1승0무3패입니다.",
         "notes": [
-          "키움은 현재 9위이며 0승 3패 0무를 기록 중입니다.",
-          "최근 흐름은 0승0무3패입니다.",
-          "시범경기 승률은 0.000이고, 현재까지 3경기를 소화했습니다."
+          "키움은 현재 9위이며 1승 3패 0무를 기록 중입니다.",
+          "최근 흐름은 1승0무3패입니다.",
+          "시범경기 승률은 0.250이고, 현재까지 4경기를 소화했습니다."
+        ],
+        "gap_from_leader": 2.5
+      }
+    },
+    {
+      "rank": 10,
+      "team": "KT",
+      "team_label": "KT",
+      "current_wins": 0,
+      "current_losses": 2,
+      "current_draws": 2,
+      "games": 4,
+      "win_pct": 0.0,
+      "recent": "0승2무2패",
+      "analysis": {
+        "status": "exhibition",
+        "status_label": "시범경기",
+        "headline": "선두와 2.5경기 차로 시범경기를 치르고 있습니다.",
+        "summary": "KT는 현재 10위이며 0승 2패 2무를 기록 중입니다.",
+        "reason": "최근 흐름은 0승2무2패입니다.",
+        "notes": [
+          "KT는 현재 10위이며 0승 2패 2무를 기록 중입니다.",
+          "최근 흐름은 0승2무2패입니다.",
+          "시범경기 승률은 0.000이고, 현재까지 4경기를 소화했습니다."
         ],
         "gap_from_leader": 2.5
       }
