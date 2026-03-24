@@ -1,117 +1,117 @@
 {
   "phase": "exhibition",
   "phase_label": "시범경기",
-  "data_date": "2026-03-23",
+  "data_date": "2026-03-24",
   "standings": [
     {
       "rank": 1,
       "team_ko": "롯데",
       "team": "Lotte",
-      "games": 11,
+      "games": 12,
       "wins": 8,
-      "losses": 1,
+      "losses": 2,
       "draws": 2,
-      "win_pct": 0.889,
-      "recent": "7승2무1패"
+      "win_pct": 0.8,
+      "recent": "7승1무2패"
     },
     {
       "rank": 2,
       "team_ko": "두산",
       "team": "Doosan",
-      "games": 11,
+      "games": 12,
       "wins": 7,
-      "losses": 3,
+      "losses": 4,
       "draws": 1,
-      "win_pct": 0.7,
-      "recent": "6승1무3패"
+      "win_pct": 0.636,
+      "recent": "5승1무4패"
+    },
+    {
+      "rank": 3,
+      "team_ko": "한화",
+      "team": "Hanwha",
+      "games": 12,
+      "wins": 6,
+      "losses": 6,
+      "draws": 0,
+      "win_pct": 0.5,
+      "recent": "5승0무5패"
     },
     {
       "rank": 3,
       "team_ko": "삼성",
       "team": "Samsung",
-      "games": 11,
+      "games": 12,
       "wins": 6,
-      "losses": 5,
-      "draws": 0,
-      "win_pct": 0.545,
-      "recent": "5승0무5패"
-    },
-    {
-      "rank": 4,
-      "team_ko": "LG",
-      "team": "LG",
-      "games": 11,
-      "wins": 5,
-      "losses": 5,
-      "draws": 1,
-      "win_pct": 0.5,
-      "recent": "4승1무5패"
-    },
-    {
-      "rank": 5,
-      "team_ko": "한화",
-      "team": "Hanwha",
-      "games": 11,
-      "wins": 5,
       "losses": 6,
       "draws": 0,
-      "win_pct": 0.455,
+      "win_pct": 0.5,
       "recent": "5승0무5패"
+    },
+    {
+      "rank": 3,
+      "team_ko": "KT",
+      "team": "KT",
+      "games": 12,
+      "wins": 5,
+      "losses": 5,
+      "draws": 2,
+      "win_pct": 0.5,
+      "recent": "5승1무4패"
     },
     {
       "rank": 6,
-      "team_ko": "KT",
-      "team": "KT",
-      "games": 11,
-      "wins": 4,
-      "losses": 5,
-      "draws": 2,
-      "win_pct": 0.444,
-      "recent": "4승2무4패"
-    },
-    {
-      "rank": 7,
-      "team_ko": "NC",
-      "team": "NC",
-      "games": 11,
-      "wins": 4,
+      "team_ko": "LG",
+      "team": "LG",
+      "games": 12,
+      "wins": 5,
       "losses": 6,
       "draws": 1,
-      "win_pct": 0.4,
-      "recent": "4승1무5패"
-    },
-    {
-      "rank": 7,
-      "team_ko": "키움",
-      "team": "Kiwoom",
-      "games": 11,
-      "wins": 4,
-      "losses": 6,
-      "draws": 1,
-      "win_pct": 0.4,
-      "recent": "4승1무5패"
-    },
-    {
-      "rank": 9,
-      "team_ko": "SSG",
-      "team": "SSG",
-      "games": 11,
-      "wins": 4,
-      "losses": 7,
-      "draws": 0,
-      "win_pct": 0.364,
+      "win_pct": 0.455,
       "recent": "4승0무6패"
     },
     {
-      "rank": 10,
+      "rank": 6,
+      "team_ko": "키움",
+      "team": "Kiwoom",
+      "games": 12,
+      "wins": 5,
+      "losses": 6,
+      "draws": 1,
+      "win_pct": 0.455,
+      "recent": "5승1무4패"
+    },
+    {
+      "rank": 8,
+      "team_ko": "SSG",
+      "team": "SSG",
+      "games": 12,
+      "wins": 5,
+      "losses": 7,
+      "draws": 0,
+      "win_pct": 0.417,
+      "recent": "4승0무6패"
+    },
+    {
+      "rank": 9,
       "team_ko": "KIA",
       "team": "KIA",
-      "games": 11,
-      "wins": 3,
+      "games": 12,
+      "wins": 4,
       "losses": 6,
       "draws": 2,
-      "win_pct": 0.333,
-      "recent": "2승2무6패"
+      "win_pct": 0.4,
+      "recent": "3승2무5패"
+    },
+    {
+      "rank": 10,
+      "team_ko": "NC",
+      "team": "NC",
+      "games": 12,
+      "wins": 4,
+      "losses": 7,
+      "draws": 1,
+      "win_pct": 0.364,
+      "recent": "4승0무6패"
     }
   ]
 }
