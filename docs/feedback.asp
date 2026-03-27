@@ -1,15 +1,15 @@
 <%@ Language="VBScript" %>
 <%
 ' KBO Dashboard: 피드백 수신 엔드포인트
-' POST /kbo/feedback.asp
-' Body: feedback=<text>
+' POST /tools/kbo/feedback.asp
 '
-' MSSQL KBO_FEEDBACK 테이블에 INSERT
+' 보안: 파라미터화 쿼리 (SQL 인젝션 방지) + IP 기반 1분 쿨다운 (스팸 방지)
 
 Option Explicit
 Response.ContentType = "application/json"
 Response.Charset = "UTF-8"
 
+' POST만 허용
 If Request.ServerVariables("REQUEST_METHOD") <> "POST" Then
     Response.Status = "405 Method Not Allowed"
     Response.Write "{""error"":""POST only""}"
@@ -17,30 +17,53 @@ If Request.ServerVariables("REQUEST_METHOD") <> "POST" Then
 End If
 
 Dim feedbackText
-feedbackText = Request.Form("feedback")
+feedbackText = Trim(Request.Form("feedback"))
 
-If Len(Trim(feedbackText)) = 0 Then
+' 빈 피드백 거부
+If Len(feedbackText) = 0 Then
     Response.Status = "400 Bad Request"
-    Response.Write "{""error"":""empty feedback""}"
+    Response.Write "{""error"":""empty""}"
     Response.End
 End If
 
-' XSS 방지
-feedbackText = Replace(feedbackText, "'", "''")
+' 1000자 제한
 If Len(feedbackText) > 1000 Then
     feedbackText = Left(feedbackText, 1000)
 End If
 
-Dim conn, sql
-Set conn = Server.CreateObject("ADODB.Connection")
+Dim clientIP
+clientIP = Request.ServerVariables("REMOTE_ADDR")
 
-' 기존 가비아 DB 연결 문자열 사용
-' conf/site_config.inc 와 동일하게 설정
+Dim conn
+Set conn = Server.CreateObject("ADODB.Connection")
 conn.Open Application("DB_CONN_STR")
 
-sql = "INSERT INTO KBO_FEEDBACK (feedback_text, created_at, ip_address) " & _
-      "VALUES (N'" & feedbackText & "', GETDATE(), '" & Request.ServerVariables("REMOTE_ADDR") & "')"
-conn.Execute sql
+' --- 스팸 방지: 같은 IP에서 1분 내 재전송 차단 ---
+Dim spamCheck, recentCount
+Set spamCheck = Server.CreateObject("ADODB.Command")
+spamCheck.ActiveConnection = conn
+spamCheck.CommandText = "SELECT COUNT(*) FROM KBO_FEEDBACK WHERE ip_address = ? AND created_at > DATEADD(minute, -1, GETDATE())"
+spamCheck.Parameters.Append spamCheck.CreateParameter("ip", 200, 1, 45, clientIP)
+Set recentCount = spamCheck.Execute
+
+If recentCount(0) > 0 Then
+    recentCount.Close
+    conn.Close
+    Set conn = Nothing
+    Response.Status = "429 Too Many Requests"
+    Response.Write "{""error"":""too_many_requests""}"
+    Response.End
+End If
+recentCount.Close
+
+' --- 파라미터화 쿼리로 INSERT (SQL 인젝션 완전 차단) ---
+Dim cmd
+Set cmd = Server.CreateObject("ADODB.Command")
+cmd.ActiveConnection = conn
+cmd.CommandText = "INSERT INTO KBO_FEEDBACK (feedback_text, created_at, ip_address) VALUES (?, GETDATE(), ?)"
+cmd.Parameters.Append cmd.CreateParameter("fb", 203, 1, 1000, feedbackText)
+cmd.Parameters.Append cmd.CreateParameter("ip", 200, 1, 45, clientIP)
+cmd.Execute
 
 conn.Close
 Set conn = Nothing
