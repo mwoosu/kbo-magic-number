@@ -102,5 +102,5 @@ jobs:
           password: ${{ secrets.GABIA_SFTP_PASS }}
           port: 22
           local_path: docs/data/result.json
-          remote_path: /kbo/data/result.json
+          remote_path: /tools/kbo/data/result.json
           sftp_only: true
