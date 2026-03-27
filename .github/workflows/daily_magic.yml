@@ -32,7 +32,7 @@ jobs:
   calculate:
     runs-on: ubuntu-latest
     env:
-      DASHBOARD_PHASE: exhibition
+      DASHBOARD_PHASE: regular
 
     steps:
       - name: Checkout repository
@@ -83,3 +83,24 @@ jobs:
           # 변경사항이 있을 때만 커밋 (없으면 조기 종료)
           git diff --staged --quiet || git commit -m "Update KBO dashboard $(date +%Y-%m-%d)"
           git push
+
+      # ============================================================
+      # 가비아 서버 동기화 (result.json만 매일 업로드)
+      # 필요한 GitHub Secrets:
+      #   - GABIA_SFTP_HOST : 가비아 SFTP 호스트 (예: cois.dankook.ac.kr)
+      #   - GABIA_SFTP_USER : 가비아 SFTP 사용자명
+      #   - GABIA_SFTP_PASS : 가비아 SFTP 비밀번호
+      # ============================================================
+      - name: Upload result.json to Gabia via SFTP
+        if: env.GABIA_SFTP_HOST != ''
+        env:
+          GABIA_SFTP_HOST: ${{ secrets.GABIA_SFTP_HOST }}
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.GABIA_SFTP_HOST }}
+          username: ${{ secrets.GABIA_SFTP_USER }}
+          password: ${{ secrets.GABIA_SFTP_PASS }}
+          port: 22
+          local_path: docs/data/result.json
+          remote_path: /kbo/data/result.json
+          sftp_only: true

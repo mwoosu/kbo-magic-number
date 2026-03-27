@@ -4,7 +4,6 @@
 
 const pageConfig = {
     dataUrl: document.body.dataset.dataUrl || 'data/result.json',
-    pageMode: document.body.dataset.pageMode || 'live',
 };
 
 const appState = {
@@ -12,10 +11,6 @@ const appState = {
     selectedTeamId: null,
     hasAnimatedCards: false,
 };
-
-function isDemoPage() {
-    return pageConfig.pageMode === 'demo';
-}
 
 async function loadData() {
     try {
@@ -115,24 +110,13 @@ function setHeader(data) {
     const title = document.getElementById('page-title');
     const info = document.getElementById('update-info');
     const legend = document.getElementById('info-legend');
-    const demoMode = isDemoPage();
-    const demoLegend = demoMode
-        ? `
-            <div class="legend-item">
-                <span class="legend-label">데모</span>
-                <span class="legend-desc">2025 기준 데이터로 구성한 모델 시연 페이지입니다.</span>
-            </div>
-        `
-        : '';
 
     const phase = data.phase || 'regular';
 
     if (phase === 'exhibition') {
-        badge.textContent = demoMode ? 'SPRING DEMO' : 'SPRING TRAINING';
-        title.textContent = demoMode ? 'KBO 시범경기 DEMO' : 'KBO 시범경기';
-        info.textContent = demoMode
-            ? `${data.data_date} 기준 · 시범경기 테스트 데이터`
-            : `${data.data_date} 기준 · 업데이트 ${data.updated_at}`;
+        badge.textContent = 'SPRING TRAINING';
+        title.textContent = 'KBO 시범경기';
+        info.textContent = `${data.data_date} 기준 · 업데이트 ${data.updated_at}`;
         legend.innerHTML = `
             <div class="legend-item">
                 <span class="legend-label">현재 상태</span>
@@ -142,7 +126,6 @@ function setHeader(data) {
                 <span class="legend-label">카드 숫자</span>
                 <span class="legend-desc">왼쪽은 승률, 오른쪽은 경기수입니다.</span>
             </div>
-            ${demoLegend}
         `;
         return;
     }
@@ -156,19 +139,13 @@ function setHeader(data) {
                 <span class="legend-label">안내</span>
                 <span class="legend-desc">${data.headline || '현재 활성화된 경기 데이터가 없습니다.'}</span>
             </div>
-            ${demoLegend}
         `;
         return;
     }
 
-    badge.textContent = demoMode ? 'HISTORICAL DEMO' : 'LIVE TRACKER';
-    if (demoMode) {
-        badge.textContent = 'MODEL DEMO';
-    }
-    title.textContent = demoMode ? 'KBO 매직넘버 DEMO' : 'KBO 매직넘버';
-    info.textContent = demoMode
-        ? `${data.data_date} 기준 · 모델 시연 데이터`
-        : `${data.data_date} 기준 · 업데이트 ${data.updated_at}`;
+    badge.textContent = 'LIVE TRACKER';
+    title.textContent = 'KBO 매직넘버';
+    info.textContent = `${data.data_date} 기준 · 업데이트 ${data.updated_at}`;
     legend.innerHTML = `
         <div class="legend-item">
             <span class="legend-label">탈락방지</span>
@@ -182,7 +159,6 @@ function setHeader(data) {
             <span class="legend-label">기호</span>
             <span class="legend-desc"><code>*</code>는 전승해도 자력 확정을 보장할 수 없다는 뜻이고, <code>-</code>는 이미 탈락해 해당 없음입니다. <code>In</code>은 이미 진출 확정입니다.</span>
         </div>
-        ${demoLegend}
     `;
 }
 

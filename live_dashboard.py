@@ -585,9 +585,16 @@ def main_cli():
         if not regular_snapshot:
             raise RuntimeError("regular season was selected but the regular-season crawl did not succeed")
         source_payload = build_regular_snapshot(regular_snapshot, args.historical_standings)
-        output_payload = main.run_model(data=source_payload, show_progress=False)
-        output_payload["phase"] = "regular"
-        output_payload["phase_label"] = regular_snapshot.phase_label
+        try:
+            output_payload = main.run_model(data=source_payload, show_progress=False)
+            output_payload["phase"] = "regular"
+            output_payload["phase_label"] = regular_snapshot.phase_label
+        except Exception as exc:
+            print(f"[WARN] solver failed, falling back to standings-only: {exc}")
+            output_payload = build_exhibition_output(regular_snapshot)
+            output_payload["phase"] = "regular"
+            output_payload["phase_label"] = regular_snapshot.phase_label
+            output_payload["headline"] = "모델 계산 중 오류가 발생하여 현재 순위만 표시합니다."
     elif selected_phase == "exhibition":
         if not exhibition_snapshot:
             raise RuntimeError("exhibition was selected but the exhibition crawl did not succeed")

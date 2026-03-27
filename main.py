@@ -217,6 +217,7 @@ def solve_magic_number(env, data, target_team, verbose=False):
     model.Params.NonConvex = 2
     model.Params.DualReductions = 0
     model.Params.OutputFlag = 1 if verbose else 0
+    model.Params.TimeLimit = 600  # 10분 제한
 
     # --- 변수 ---
     N = model.addVars(teams, vtype=GRB.CONTINUOUS, lb=0.0, ub=1.0, name='N')
@@ -387,10 +388,12 @@ def solve_magic_number(env, data, target_team, verbose=False):
         result['eliminated'] = True
         result['min_wins'] = None
         result['magic_number'] = None
-    elif model.status == GRB.OPTIMAL:
+    elif model.status == GRB.OPTIMAL or (model.status == GRB.TIME_LIMIT and model.SolCount > 0):
         result['eliminated'] = False
         result['min_wins'] = int(round(W[k].X))
         result['magic_number'] = int(round(W[k].X)) - w_hat[k]
+        if model.status == GRB.TIME_LIMIT:
+            result['solver_note'] = 'time_limit_feasible'
     else:
         result['eliminated'] = None
         result['min_wins'] = None
@@ -440,6 +443,7 @@ def solve_clinch_number(env, data, target_team, verbose=False):
     model.Params.NonConvex = 2
     model.Params.DualReductions = 0
     model.Params.OutputFlag = 1 if verbose else 0
+    model.Params.TimeLimit = 300  # 5분 제한
 
     # --- 변수 (탈락 모델과 동일) ---
     N = model.addVars(teams, vtype=GRB.CONTINUOUS, lb=0.0, ub=1.0, name='N')
@@ -592,7 +596,7 @@ def solve_clinch_number(env, data, target_team, verbose=False):
         result['clinched'] = True
         result['clinch_number'] = 0
         result['clinch_wins'] = w_hat[k]
-    elif model.status == GRB.OPTIMAL:
+    elif model.status == GRB.OPTIMAL or (model.status == GRB.TIME_LIMIT and model.SolCount > 0):
         max_lose_wins = int(round(W[k].X))
         clinch_wins = max_lose_wins + 1
         clinch_num = clinch_wins - w_hat[k]
@@ -606,6 +610,8 @@ def solve_clinch_number(env, data, target_team, verbose=False):
             result['clinched'] = False
             result['clinch_number'] = clinch_num
             result['clinch_wins'] = clinch_wins
+        if model.status == GRB.TIME_LIMIT:
+            result['solver_note'] = 'time_limit_feasible'
     else:
         result['clinched'] = None
         result['clinch_number'] = None
