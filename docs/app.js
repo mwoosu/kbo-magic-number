@@ -667,11 +667,15 @@ document.getElementById('feedback-submit')?.addEventListener('click', async () =
     btn.textContent = '전송 중...';
 
     try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 5000);
         await fetch('/kbo/feedback.asp', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `feedback=${encodeURIComponent(text)}`,
+            signal: controller.signal,
         });
+        clearTimeout(timeout);
     } catch (err) {
         console.log('[feedback] endpoint not available:', err.message);
     }
