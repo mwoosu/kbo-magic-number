@@ -594,7 +594,6 @@ def main_cli():
             output_payload = build_exhibition_output(regular_snapshot)
             output_payload["phase"] = "regular"
             output_payload["phase_label"] = regular_snapshot.phase_label
-            output_payload["headline"] = "모델 계산 중 오류가 발생하여 현재 순위만 표시합니다."
     elif selected_phase == "exhibition":
         if not exhibition_snapshot:
             raise RuntimeError("exhibition was selected but the exhibition crawl did not succeed")
