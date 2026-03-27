@@ -83,8 +83,29 @@
                 <p><strong>COIS Lab</strong> · Computational Optimization for Intelligent Systems</p>
                 <p class="footer-sub">Minsu Woo (TL) · Hyojun An · Changan Heo · 단국대학교 경영공학과</p>
             </div>
+            <button class="feedback-btn" id="feedback-open" aria-label="피드백 보내기">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                피드백
+            </button>
         </footer>
     </div>
+
+    <div class="feedback-overlay" id="feedback-overlay">
+        <div class="feedback-modal" id="feedback-modal">
+            <button class="feedback-close" id="feedback-close" aria-label="닫기">✕</button>
+            <h2 class="feedback-title">피드백</h2>
+            <p class="feedback-desc">서비스 개선을 위한 의견을 남겨주세요.</p>
+            <textarea class="feedback-textarea" id="feedback-text" placeholder="의견을 자유롭게 작성해 주세요." rows="5" maxlength="1000"></textarea>
+            <div class="feedback-footer">
+                <span class="feedback-charcount" id="feedback-charcount">0 / 1000</span>
+                <button class="feedback-submit" id="feedback-submit">보내기</button>
+            </div>
+            <div class="feedback-done" id="feedback-done" style="display:none;">
+                <p>소중한 의견 감사합니다. 더 나은 서비스를 만드는 데 반영하겠습니다.</p>
+            </div>
+        </div>
+    </div>
+
     <script src="app.js?v=20260313-21"></script>
 </body>
 

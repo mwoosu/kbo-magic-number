@@ -614,7 +614,70 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && appState.selectedTeamId) {
-        clearSelectedTeam();
+    if (event.key === 'Escape') {
+        if (document.getElementById('feedback-overlay')?.classList.contains('is-open')) {
+            closeFeedback();
+        } else if (appState.selectedTeamId) {
+            clearSelectedTeam();
+        }
     }
+});
+
+/* --- Feedback --- */
+function openFeedback() {
+    document.getElementById('feedback-overlay').classList.add('is-open');
+    document.getElementById('feedback-text').focus();
+}
+
+function closeFeedback() {
+    const overlay = document.getElementById('feedback-overlay');
+    overlay.classList.remove('is-open');
+    setTimeout(() => {
+        document.getElementById('feedback-text').value = '';
+        document.getElementById('feedback-charcount').textContent = '0 / 1000';
+        document.getElementById('feedback-done').style.display = 'none';
+        document.getElementById('feedback-text').style.display = '';
+        document.getElementById('feedback-footer').style.display = '';
+        document.getElementById('feedback-desc').style.display = '';
+        document.getElementById('feedback-submit').disabled = false;
+    }, 300);
+}
+
+document.getElementById('feedback-open')?.addEventListener('click', openFeedback);
+document.getElementById('feedback-close')?.addEventListener('click', closeFeedback);
+document.getElementById('feedback-overlay')?.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeFeedback();
+});
+
+document.getElementById('feedback-text')?.addEventListener('input', (e) => {
+    const len = e.target.value.length;
+    document.getElementById('feedback-charcount').textContent = `${len} / 1000`;
+});
+
+document.getElementById('feedback-submit')?.addEventListener('click', async () => {
+    const textarea = document.getElementById('feedback-text');
+    const text = textarea.value.trim();
+    if (!text) {
+        textarea.focus();
+        return;
+    }
+
+    const btn = document.getElementById('feedback-submit');
+    btn.disabled = true;
+    btn.textContent = '전송 중...';
+
+    try {
+        await fetch('/kbo/feedback.asp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `feedback=${encodeURIComponent(text)}`,
+        });
+    } catch (err) {
+        console.log('[feedback] endpoint not available:', err.message);
+    }
+
+    document.getElementById('feedback-text').style.display = 'none';
+    document.getElementById('feedback-footer').style.display = 'none';
+    document.getElementById('feedback-desc').style.display = 'none';
+    document.getElementById('feedback-done').style.display = 'block';
 });
