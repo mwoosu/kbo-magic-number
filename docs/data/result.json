@@ -1,651 +1,441 @@
 {
-  "updated_at": "2026-03-28 17:26",
-  "data_date": "2026-03-24",
+  "updated_at": "2026-03-28 23:39",
+  "data_date": "2026-03-28",
   "n_playoff": 5,
   "teams": [
     {
-      "team": "Lotte",
-      "team_label": "롯데",
-      "rank": 1,
-      "current_wins": 8,
-      "current_losses": 2,
-      "current_draws": 2,
-      "remaining_games": 1,
-      "win_pct": 0.8,
-      "eliminated": false,
-      "min_wins": 8,
-      "magic_number": 0,
-      "clinched": true,
-      "clinch_number": 0,
-      "clinch_wins": 8,
-      "analysis": {
-        "status": "clinched",
-        "status_label": "확정",
-        "headline": "이미 포스트시즌 진출이 확정됐습니다.",
-        "summary": "롯데는 현재 1위, 8승 2패 2무로 잔여 1경기를 남겨두고 있습니다.",
-        "reason": "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
-        "cutline_note": null,
-        "schedule_note": "가장 큰 변수는 삼성전 1경기입니다.",
-        "notes": [
-          "롯데는 현재 1위, 8승 2패 2무로 잔여 1경기를 남겨두고 있습니다.",
-          "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
-          "가장 큰 변수는 삼성전 1경기입니다."
-        ],
-        "rivals": [
-          {
-            "team": "Doosan",
-            "team_label": "두산",
-            "rank": 2,
-            "wins": 7,
-            "losses": 4,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정",
-            "gap_from_selected": 1.5
-          },
-          {
-            "team": "LG",
-            "team_label": "LG",
-            "rank": 6,
-            "wins": 5,
-            "losses": 6,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": 3.5
-          }
-        ],
-        "remaining_schedule": [
-          {
-            "team": "Samsung",
-            "team_label": "삼성",
-            "games_left": 1,
-            "head_to_head_wins": 0,
-            "head_to_head_losses": 0,
-            "runs_for": 0,
-            "runs_against": 0
-          }
-        ]
-      }
-    },
-    {
-      "team": "Doosan",
-      "team_label": "두산",
-      "rank": 2,
-      "current_wins": 7,
-      "current_losses": 4,
-      "current_draws": 1,
-      "remaining_games": 1,
-      "win_pct": 0.6364,
-      "eliminated": false,
-      "min_wins": 7,
-      "magic_number": 0,
-      "clinched": true,
-      "clinch_number": 0,
-      "clinch_wins": 7,
-      "analysis": {
-        "status": "clinched",
-        "status_label": "확정",
-        "headline": "이미 포스트시즌 진출이 확정됐습니다.",
-        "summary": "두산은 현재 2위, 7승 4패 1무로 잔여 1경기를 남겨두고 있습니다.",
-        "reason": "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
-        "cutline_note": null,
-        "schedule_note": "가장 큰 변수는 NC전 1경기입니다.",
-        "notes": [
-          "두산은 현재 2위, 7승 4패 1무로 잔여 1경기를 남겨두고 있습니다.",
-          "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
-          "가장 큰 변수는 NC전 1경기입니다."
-        ],
-        "rivals": [
-          {
-            "team": "Lotte",
-            "team_label": "롯데",
-            "rank": 1,
-            "wins": 8,
-            "losses": 2,
-            "draws": 2,
-            "remaining_games": 1,
-            "status_label": "확정",
-            "gap_from_selected": -1.5
-          },
-          {
-            "team": "Samsung",
-            "team_label": "삼성",
-            "rank": 3,
-            "wins": 6,
-            "losses": 6,
-            "draws": 0,
-            "remaining_games": 1,
-            "status_label": "확정",
-            "gap_from_selected": 1.5
-          },
-          {
-            "team": "LG",
-            "team_label": "LG",
-            "rank": 6,
-            "wins": 5,
-            "losses": 6,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": 2
-          }
-        ],
-        "remaining_schedule": [
-          {
-            "team": "NC",
-            "team_label": "NC",
-            "games_left": 1,
-            "head_to_head_wins": 0,
-            "head_to_head_losses": 0,
-            "runs_for": 0,
-            "runs_against": 0
-          }
-        ]
-      }
-    },
-    {
       "team": "Hanwha",
       "team_label": "한화",
-      "rank": 3,
-      "current_wins": 6,
-      "current_losses": 6,
+      "rank": 1,
+      "current_wins": 1,
+      "current_losses": 0,
       "current_draws": 0,
-      "remaining_games": 1,
-      "win_pct": 0.5,
+      "remaining_games": 0,
+      "win_pct": 1.0,
       "eliminated": false,
-      "min_wins": 6,
+      "min_wins": 1,
       "magic_number": 0,
-      "clinched": false,
-      "clinch_number": 1,
-      "clinch_wins": 7,
+      "clinched": true,
+      "clinch_number": 0,
+      "clinch_wins": 1,
       "analysis": {
-        "status": "near_clinch",
-        "status_label": "확정 경쟁",
-        "headline": "앞으로 1승만 더하면 포스트시즌 진출이 확정됩니다.",
-        "summary": "한화는 현재 3위, 6승 6패 0무로 잔여 1경기를 남겨두고 있습니다.",
-        "reason": "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "status": "clinched",
+        "status_label": "확정",
+        "headline": "이미 포스트시즌 진출이 확정됐습니다.",
+        "summary": "한화는 현재 1위, 1승 0패 0무로 잔여 0경기를 남겨두고 있습니다.",
+        "reason": "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
         "cutline_note": null,
-        "schedule_note": "가장 큰 변수는 키움전 1경기입니다.",
+        "schedule_note": "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다.",
         "notes": [
-          "한화는 현재 3위, 6승 6패 0무로 잔여 1경기를 남겨두고 있습니다.",
-          "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-          "가장 큰 변수는 키움전 1경기입니다."
+          "한화는 현재 1위, 1승 0패 0무로 잔여 0경기를 남겨두고 있습니다.",
+          "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+          "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다."
         ],
         "rivals": [
           {
-            "team": "Doosan",
-            "team_label": "두산",
-            "rank": 2,
-            "wins": 7,
-            "losses": 4,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정",
-            "gap_from_selected": -1.5
-          },
-          {
-            "team": "LG",
-            "team_label": "LG",
+            "team": "Samsung",
+            "team_label": "삼성",
             "rank": 6,
-            "wins": 5,
-            "losses": 6,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": 0.5
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "remaining_games": 0,
+            "status_label": "탈락",
+            "gap_from_selected": 1
           }
         ],
-        "remaining_schedule": [
-          {
-            "team": "Kiwoom",
-            "team_label": "키움",
-            "games_left": 1,
-            "head_to_head_wins": 0,
-            "head_to_head_losses": 0,
-            "runs_for": 0,
-            "runs_against": 0
-          }
-        ]
+        "remaining_schedule": []
       }
     },
     {
       "team": "KT",
       "team_label": "KT",
-      "rank": 3,
-      "current_wins": 5,
-      "current_losses": 5,
-      "current_draws": 2,
-      "remaining_games": 1,
-      "win_pct": 0.5,
-      "eliminated": false,
-      "min_wins": 5,
-      "magic_number": 0,
-      "clinched": false,
-      "clinch_number": 1,
-      "clinch_wins": 6,
-      "analysis": {
-        "status": "near_clinch",
-        "status_label": "확정 경쟁",
-        "headline": "앞으로 1승만 더하면 포스트시즌 진출이 확정됩니다.",
-        "summary": "KT는 현재 3위, 5승 5패 2무로 잔여 1경기를 남겨두고 있습니다.",
-        "reason": "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-        "cutline_note": null,
-        "schedule_note": "가장 큰 변수는 LG전 1경기입니다.",
-        "notes": [
-          "KT는 현재 3위, 5승 5패 2무로 잔여 1경기를 남겨두고 있습니다.",
-          "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-          "가장 큰 변수는 LG전 1경기입니다."
-        ],
-        "rivals": [
-          {
-            "team": "Doosan",
-            "team_label": "두산",
-            "rank": 2,
-            "wins": 7,
-            "losses": 4,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정",
-            "gap_from_selected": -1.5
-          },
-          {
-            "team": "LG",
-            "team_label": "LG",
-            "rank": 6,
-            "wins": 5,
-            "losses": 6,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": 0.5
-          }
-        ],
-        "remaining_schedule": [
-          {
-            "team": "LG",
-            "team_label": "LG",
-            "games_left": 1,
-            "head_to_head_wins": 1,
-            "head_to_head_losses": 1,
-            "runs_for": 0,
-            "runs_against": 0
-          }
-        ]
-      }
-    },
-    {
-      "team": "Samsung",
-      "team_label": "삼성",
-      "rank": 3,
-      "current_wins": 6,
-      "current_losses": 6,
+      "rank": 1,
+      "current_wins": 1,
+      "current_losses": 0,
       "current_draws": 0,
-      "remaining_games": 1,
-      "win_pct": 0.5,
+      "remaining_games": 0,
+      "win_pct": 1.0,
       "eliminated": false,
-      "min_wins": 6,
+      "min_wins": 1,
       "magic_number": 0,
       "clinched": true,
       "clinch_number": 0,
-      "clinch_wins": 6,
+      "clinch_wins": 1,
       "analysis": {
         "status": "clinched",
         "status_label": "확정",
         "headline": "이미 포스트시즌 진출이 확정됐습니다.",
-        "summary": "삼성은 현재 3위, 6승 6패 0무로 잔여 1경기를 남겨두고 있습니다.",
+        "summary": "KT는 현재 1위, 1승 0패 0무로 잔여 0경기를 남겨두고 있습니다.",
         "reason": "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
         "cutline_note": null,
-        "schedule_note": "가장 큰 변수는 롯데전 1경기입니다.",
+        "schedule_note": "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다.",
         "notes": [
-          "삼성은 현재 3위, 6승 6패 0무로 잔여 1경기를 남겨두고 있습니다.",
+          "KT는 현재 1위, 1승 0패 0무로 잔여 0경기를 남겨두고 있습니다.",
           "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
-          "가장 큰 변수는 롯데전 1경기입니다."
+          "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다."
         ],
         "rivals": [
           {
-            "team": "Doosan",
-            "team_label": "두산",
-            "rank": 2,
-            "wins": 7,
-            "losses": 4,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정",
-            "gap_from_selected": -1.5
-          },
-          {
-            "team": "LG",
-            "team_label": "LG",
+            "team": "Samsung",
+            "team_label": "삼성",
             "rank": 6,
-            "wins": 5,
-            "losses": 6,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": 0.5
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "remaining_games": 0,
+            "status_label": "탈락",
+            "gap_from_selected": 1
           }
         ],
-        "remaining_schedule": [
+        "remaining_schedule": []
+      }
+    },
+    {
+      "team": "Lotte",
+      "team_label": "롯데",
+      "rank": 1,
+      "current_wins": 1,
+      "current_losses": 0,
+      "current_draws": 0,
+      "remaining_games": 0,
+      "win_pct": 1.0,
+      "eliminated": false,
+      "min_wins": 1,
+      "magic_number": 0,
+      "clinched": true,
+      "clinch_number": 0,
+      "clinch_wins": 1,
+      "analysis": {
+        "status": "clinched",
+        "status_label": "확정",
+        "headline": "이미 포스트시즌 진출이 확정됐습니다.",
+        "summary": "롯데는 현재 1위, 1승 0패 0무로 잔여 0경기를 남겨두고 있습니다.",
+        "reason": "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+        "cutline_note": null,
+        "schedule_note": "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다.",
+        "notes": [
+          "롯데는 현재 1위, 1승 0패 0무로 잔여 0경기를 남겨두고 있습니다.",
+          "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+          "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다."
+        ],
+        "rivals": [
           {
-            "team": "Lotte",
-            "team_label": "롯데",
-            "games_left": 1,
-            "head_to_head_wins": 0,
-            "head_to_head_losses": 0,
-            "runs_for": 0,
-            "runs_against": 0
+            "team": "Samsung",
+            "team_label": "삼성",
+            "rank": 6,
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "remaining_games": 0,
+            "status_label": "탈락",
+            "gap_from_selected": 1
           }
-        ]
+        ],
+        "remaining_schedule": []
+      }
+    },
+    {
+      "team": "NC",
+      "team_label": "NC",
+      "rank": 1,
+      "current_wins": 1,
+      "current_losses": 0,
+      "current_draws": 0,
+      "remaining_games": 0,
+      "win_pct": 1.0,
+      "eliminated": false,
+      "min_wins": 1,
+      "magic_number": 0,
+      "clinched": true,
+      "clinch_number": 0,
+      "clinch_wins": 1,
+      "analysis": {
+        "status": "clinched",
+        "status_label": "확정",
+        "headline": "이미 포스트시즌 진출이 확정됐습니다.",
+        "summary": "NC는 현재 1위, 1승 0패 0무로 잔여 0경기를 남겨두고 있습니다.",
+        "reason": "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+        "cutline_note": null,
+        "schedule_note": "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다.",
+        "notes": [
+          "NC는 현재 1위, 1승 0패 0무로 잔여 0경기를 남겨두고 있습니다.",
+          "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+          "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다."
+        ],
+        "rivals": [
+          {
+            "team": "Samsung",
+            "team_label": "삼성",
+            "rank": 6,
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "remaining_games": 0,
+            "status_label": "탈락",
+            "gap_from_selected": 1
+          }
+        ],
+        "remaining_schedule": []
+      }
+    },
+    {
+      "team": "SSG",
+      "team_label": "SSG",
+      "rank": 1,
+      "current_wins": 1,
+      "current_losses": 0,
+      "current_draws": 0,
+      "remaining_games": 0,
+      "win_pct": 1.0,
+      "eliminated": false,
+      "min_wins": 1,
+      "magic_number": 0,
+      "clinched": true,
+      "clinch_number": 0,
+      "clinch_wins": 1,
+      "analysis": {
+        "status": "clinched",
+        "status_label": "확정",
+        "headline": "이미 포스트시즌 진출이 확정됐습니다.",
+        "summary": "SSG는 현재 1위, 1승 0패 0무로 잔여 0경기를 남겨두고 있습니다.",
+        "reason": "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+        "cutline_note": null,
+        "schedule_note": "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다.",
+        "notes": [
+          "SSG는 현재 1위, 1승 0패 0무로 잔여 0경기를 남겨두고 있습니다.",
+          "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+          "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다."
+        ],
+        "rivals": [
+          {
+            "team": "Samsung",
+            "team_label": "삼성",
+            "rank": 6,
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "remaining_games": 0,
+            "status_label": "탈락",
+            "gap_from_selected": 1
+          }
+        ],
+        "remaining_schedule": []
+      }
+    },
+    {
+      "team": "Doosan",
+      "team_label": "두산",
+      "rank": 6,
+      "current_wins": 0,
+      "current_losses": 1,
+      "current_draws": 0,
+      "remaining_games": 0,
+      "win_pct": 0.0,
+      "eliminated": true,
+      "min_wins": null,
+      "magic_number": null,
+      "clinched": false,
+      "clinch_number": null,
+      "clinch_wins": null,
+      "analysis": {
+        "status": "eliminated",
+        "status_label": "탈락",
+        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "summary": "두산은 현재 6위, 0승 1패 0무로 잔여 0경기를 남겨두고 있습니다.",
+        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "cutline_note": null,
+        "schedule_note": "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다.",
+        "notes": [
+          "두산은 현재 6위, 0승 1패 0무로 잔여 0경기를 남겨두고 있습니다.",
+          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다."
+        ],
+        "rivals": [
+          {
+            "team": "Samsung",
+            "team_label": "삼성",
+            "rank": 6,
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "remaining_games": 0,
+            "status_label": "탈락",
+            "gap_from_selected": 0
+          }
+        ],
+        "remaining_schedule": []
+      }
+    },
+    {
+      "team": "KIA",
+      "team_label": "KIA",
+      "rank": 6,
+      "current_wins": 0,
+      "current_losses": 1,
+      "current_draws": 0,
+      "remaining_games": 0,
+      "win_pct": 0.0,
+      "eliminated": true,
+      "min_wins": null,
+      "magic_number": null,
+      "clinched": false,
+      "clinch_number": null,
+      "clinch_wins": null,
+      "analysis": {
+        "status": "eliminated",
+        "status_label": "탈락",
+        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "summary": "KIA는 현재 6위, 0승 1패 0무로 잔여 0경기를 남겨두고 있습니다.",
+        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "cutline_note": null,
+        "schedule_note": "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다.",
+        "notes": [
+          "KIA는 현재 6위, 0승 1패 0무로 잔여 0경기를 남겨두고 있습니다.",
+          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다."
+        ],
+        "rivals": [
+          {
+            "team": "Samsung",
+            "team_label": "삼성",
+            "rank": 6,
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "remaining_games": 0,
+            "status_label": "탈락",
+            "gap_from_selected": 0
+          }
+        ],
+        "remaining_schedule": []
       }
     },
     {
       "team": "Kiwoom",
       "team_label": "키움",
       "rank": 6,
-      "current_wins": 5,
-      "current_losses": 6,
-      "current_draws": 1,
-      "remaining_games": 1,
-      "win_pct": 0.4545,
-      "eliminated": false,
-      "min_wins": 6,
-      "magic_number": 1,
+      "current_wins": 0,
+      "current_losses": 1,
+      "current_draws": 0,
+      "remaining_games": 0,
+      "win_pct": 0.0,
+      "eliminated": true,
+      "min_wins": null,
+      "magic_number": null,
       "clinched": false,
-      "clinch_number": 1,
-      "clinch_wins": 6,
+      "clinch_number": null,
+      "clinch_wins": null,
       "analysis": {
-        "status": "near_clinch",
-        "status_label": "확정 경쟁",
-        "headline": "앞으로 1승만 더하면 포스트시즌 진출이 확정됩니다.",
-        "summary": "키움은 현재 6위, 5승 6패 1무로 잔여 1경기를 남겨두고 있습니다.",
-        "reason": "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "status": "eliminated",
+        "status_label": "탈락",
+        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "summary": "키움은 현재 6위, 0승 1패 0무로 잔여 0경기를 남겨두고 있습니다.",
+        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
         "cutline_note": null,
-        "schedule_note": "가장 큰 변수는 한화전 1경기입니다.",
+        "schedule_note": "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다.",
         "notes": [
-          "키움은 현재 6위, 5승 6패 1무로 잔여 1경기를 남겨두고 있습니다.",
-          "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-          "가장 큰 변수는 한화전 1경기입니다."
+          "키움은 현재 6위, 0승 1패 0무로 잔여 0경기를 남겨두고 있습니다.",
+          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다."
         ],
         "rivals": [
           {
-            "team": "LG",
-            "team_label": "LG",
+            "team": "Samsung",
+            "team_label": "삼성",
             "rank": 6,
-            "wins": 5,
-            "losses": 6,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정 경쟁",
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "remaining_games": 0,
+            "status_label": "탈락",
             "gap_from_selected": 0
           }
         ],
-        "remaining_schedule": [
-          {
-            "team": "Hanwha",
-            "team_label": "한화",
-            "games_left": 1,
-            "head_to_head_wins": 0,
-            "head_to_head_losses": 0,
-            "runs_for": 0,
-            "runs_against": 0
-          }
-        ]
+        "remaining_schedule": []
       }
     },
     {
       "team": "LG",
       "team_label": "LG",
       "rank": 6,
-      "current_wins": 5,
-      "current_losses": 6,
-      "current_draws": 1,
-      "remaining_games": 1,
-      "win_pct": 0.4545,
-      "eliminated": false,
-      "min_wins": 6,
-      "magic_number": 1,
+      "current_wins": 0,
+      "current_losses": 1,
+      "current_draws": 0,
+      "remaining_games": 0,
+      "win_pct": 0.0,
+      "eliminated": true,
+      "min_wins": null,
+      "magic_number": null,
       "clinched": false,
-      "clinch_number": 1,
-      "clinch_wins": 6,
+      "clinch_number": null,
+      "clinch_wins": null,
       "analysis": {
-        "status": "near_clinch",
-        "status_label": "확정 경쟁",
-        "headline": "앞으로 1승만 더하면 포스트시즌 진출이 확정됩니다.",
-        "summary": "LG는 현재 6위, 5승 6패 1무로 잔여 1경기를 남겨두고 있습니다.",
-        "reason": "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "status": "eliminated",
+        "status_label": "탈락",
+        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "summary": "LG는 현재 6위, 0승 1패 0무로 잔여 0경기를 남겨두고 있습니다.",
+        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
         "cutline_note": null,
-        "schedule_note": "가장 큰 변수는 KT전 1경기입니다.",
+        "schedule_note": "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다.",
         "notes": [
-          "LG는 현재 6위, 5승 6패 1무로 잔여 1경기를 남겨두고 있습니다.",
-          "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-          "가장 큰 변수는 KT전 1경기입니다."
+          "LG는 현재 6위, 0승 1패 0무로 잔여 0경기를 남겨두고 있습니다.",
+          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다."
+        ],
+        "rivals": [
+          {
+            "team": "Samsung",
+            "team_label": "삼성",
+            "rank": 6,
+            "wins": 0,
+            "losses": 1,
+            "draws": 0,
+            "remaining_games": 0,
+            "status_label": "탈락",
+            "gap_from_selected": 0
+          }
+        ],
+        "remaining_schedule": []
+      }
+    },
+    {
+      "team": "Samsung",
+      "team_label": "삼성",
+      "rank": 6,
+      "current_wins": 0,
+      "current_losses": 1,
+      "current_draws": 0,
+      "remaining_games": 0,
+      "win_pct": 0.0,
+      "eliminated": true,
+      "min_wins": null,
+      "magic_number": null,
+      "clinched": false,
+      "clinch_number": null,
+      "clinch_wins": null,
+      "analysis": {
+        "status": "eliminated",
+        "status_label": "탈락",
+        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "summary": "삼성은 현재 6위, 0승 1패 0무로 잔여 0경기를 남겨두고 있습니다.",
+        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "cutline_note": null,
+        "schedule_note": "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다.",
+        "notes": [
+          "삼성은 현재 6위, 0승 1패 0무로 잔여 0경기를 남겨두고 있습니다.",
+          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "남은 경기가 없어 다른 팀 경기 결과만 지켜봐야 합니다."
         ],
         "rivals": [],
-        "remaining_schedule": [
-          {
-            "team": "KT",
-            "team_label": "KT",
-            "games_left": 1,
-            "head_to_head_wins": 1,
-            "head_to_head_losses": 1,
-            "runs_for": 0,
-            "runs_against": 0
-          }
-        ]
-      }
-    },
-    {
-      "team": "SSG",
-      "team_label": "SSG",
-      "rank": 8,
-      "current_wins": 5,
-      "current_losses": 7,
-      "current_draws": 0,
-      "remaining_games": 1,
-      "win_pct": 0.4167,
-      "eliminated": false,
-      "min_wins": 6,
-      "magic_number": 1,
-      "clinched": false,
-      "clinch_number": null,
-      "clinch_wins": null,
-      "analysis": {
-        "status": "under_pressure",
-        "status_label": "생존 경쟁",
-        "headline": "포스트시즌 가능성을 유지하려면 최소 1승이 더 필요합니다.",
-        "summary": "SSG는 현재 8위, 5승 7패 0무로 잔여 1경기를 남겨두고 있습니다.",
-        "reason": "모델이 찾은 생존 시나리오에서는 최소 1승의 추가 승리가 필요합니다. 그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다.",
-        "cutline_note": null,
-        "schedule_note": "가장 큰 변수는 KIA전 1경기입니다.",
-        "notes": [
-          "SSG는 현재 8위, 5승 7패 0무로 잔여 1경기를 남겨두고 있습니다.",
-          "모델이 찾은 생존 시나리오에서는 최소 1승의 추가 승리가 필요합니다. 그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다.",
-          "가장 큰 변수는 KIA전 1경기입니다."
-        ],
-        "rivals": [
-          {
-            "team": "LG",
-            "team_label": "LG",
-            "rank": 6,
-            "wins": 5,
-            "losses": 6,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": -0.5
-          },
-          {
-            "team": "KIA",
-            "team_label": "KIA",
-            "rank": 9,
-            "wins": 4,
-            "losses": 6,
-            "draws": 2,
-            "remaining_games": 1,
-            "status_label": "탈락",
-            "gap_from_selected": 0
-          }
-        ],
-        "remaining_schedule": [
-          {
-            "team": "KIA",
-            "team_label": "KIA",
-            "games_left": 1,
-            "head_to_head_wins": 1,
-            "head_to_head_losses": 1,
-            "runs_for": 0,
-            "runs_against": 0
-          }
-        ]
-      }
-    },
-    {
-      "team": "KIA",
-      "team_label": "KIA",
-      "rank": 9,
-      "current_wins": 4,
-      "current_losses": 6,
-      "current_draws": 2,
-      "remaining_games": 1,
-      "win_pct": 0.4,
-      "eliminated": true,
-      "min_wins": null,
-      "magic_number": null,
-      "clinched": false,
-      "clinch_number": null,
-      "clinch_wins": null,
-      "analysis": {
-        "status": "eliminated",
-        "status_label": "탈락",
-        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
-        "summary": "KIA는 현재 9위, 4승 6패 2무로 잔여 1경기를 남겨두고 있습니다.",
-        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
-        "cutline_note": null,
-        "schedule_note": "가장 큰 변수는 SSG전 1경기입니다.",
-        "notes": [
-          "KIA는 현재 9위, 4승 6패 2무로 잔여 1경기를 남겨두고 있습니다.",
-          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
-          "가장 큰 변수는 SSG전 1경기입니다."
-        ],
-        "rivals": [
-          {
-            "team": "LG",
-            "team_label": "LG",
-            "rank": 6,
-            "wins": 5,
-            "losses": 6,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": -0.5
-          },
-          {
-            "team": "SSG",
-            "team_label": "SSG",
-            "rank": 8,
-            "wins": 5,
-            "losses": 7,
-            "draws": 0,
-            "remaining_games": 1,
-            "status_label": "생존 경쟁",
-            "gap_from_selected": 0
-          },
-          {
-            "team": "NC",
-            "team_label": "NC",
-            "rank": 10,
-            "wins": 4,
-            "losses": 7,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "탈락",
-            "gap_from_selected": 0.5
-          }
-        ],
-        "remaining_schedule": [
-          {
-            "team": "SSG",
-            "team_label": "SSG",
-            "games_left": 1,
-            "head_to_head_wins": 1,
-            "head_to_head_losses": 1,
-            "runs_for": 0,
-            "runs_against": 0
-          }
-        ]
-      }
-    },
-    {
-      "team": "NC",
-      "team_label": "NC",
-      "rank": 10,
-      "current_wins": 4,
-      "current_losses": 7,
-      "current_draws": 1,
-      "remaining_games": 1,
-      "win_pct": 0.3636,
-      "eliminated": true,
-      "min_wins": null,
-      "magic_number": null,
-      "clinched": false,
-      "clinch_number": null,
-      "clinch_wins": null,
-      "analysis": {
-        "status": "eliminated",
-        "status_label": "탈락",
-        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
-        "summary": "NC는 현재 10위, 4승 7패 1무로 잔여 1경기를 남겨두고 있습니다.",
-        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
-        "cutline_note": null,
-        "schedule_note": "가장 큰 변수는 두산전 1경기입니다.",
-        "notes": [
-          "NC는 현재 10위, 4승 7패 1무로 잔여 1경기를 남겨두고 있습니다.",
-          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
-          "가장 큰 변수는 두산전 1경기입니다."
-        ],
-        "rivals": [
-          {
-            "team": "LG",
-            "team_label": "LG",
-            "rank": 6,
-            "wins": 5,
-            "losses": 6,
-            "draws": 1,
-            "remaining_games": 1,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": -1
-          },
-          {
-            "team": "KIA",
-            "team_label": "KIA",
-            "rank": 9,
-            "wins": 4,
-            "losses": 6,
-            "draws": 2,
-            "remaining_games": 1,
-            "status_label": "탈락",
-            "gap_from_selected": -0.5
-          }
-        ],
-        "remaining_schedule": [
-          {
-            "team": "Doosan",
-            "team_label": "두산",
-            "games_left": 1,
-            "head_to_head_wins": 0,
-            "head_to_head_losses": 0,
-            "runs_for": 0,
-            "runs_against": 0
-          }
-        ]
+        "remaining_schedule": []
       }
     }
   ],
   "bubble": {
     "rank": 6,
-    "team": "Kiwoom",
-    "team_label": "키움"
+    "team": "Doosan",
+    "team_label": "두산"
   },
   "phase": "regular",
   "phase_label": "정규시즌"
