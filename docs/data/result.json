@@ -1,249 +1,652 @@
 {
-  "phase": "exhibition",
-  "phase_label": "시범경기",
-  "updated_at": "2026-03-27 00:14",
+  "updated_at": "2026-03-28 17:16",
   "data_date": "2026-03-24",
-  "headline": "정규시즌 개막 전까지 시범경기 순위를 제공합니다.",
+  "n_playoff": 5,
   "teams": [
     {
-      "rank": 1,
       "team": "Lotte",
       "team_label": "롯데",
+      "rank": 1,
       "current_wins": 8,
       "current_losses": 2,
       "current_draws": 2,
-      "games": 12,
+      "remaining_games": 1,
       "win_pct": 0.8,
-      "recent": "7승1무2패",
+      "eliminated": false,
+      "min_wins": 8,
+      "magic_number": 0,
+      "clinched": true,
+      "clinch_number": 0,
+      "clinch_wins": 8,
       "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "현재 시범경기 선두권입니다.",
-        "summary": "롯데는 현재 1위이며 8승 2패 2무를 기록 중입니다.",
-        "reason": "최근 흐름은 7승1무2패입니다.",
+        "status": "clinched",
+        "status_label": "확정",
+        "headline": "이미 포스트시즌 진출이 확정됐습니다.",
+        "summary": "롯데는 현재 1위, 8승 2패 2무로 잔여 1경기를 남겨두고 있습니다.",
+        "reason": "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+        "cutline_note": null,
+        "schedule_note": "가장 큰 변수는 삼성전 1경기입니다.",
         "notes": [
-          "롯데는 현재 1위이며 8승 2패 2무를 기록 중입니다.",
-          "최근 흐름은 7승1무2패입니다.",
-          "시범경기 승률은 0.800이고, 현재까지 12경기를 소화했습니다."
+          "롯데는 현재 1위, 8승 2패 2무로 잔여 1경기를 남겨두고 있습니다.",
+          "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+          "가장 큰 변수는 삼성전 1경기입니다."
         ],
-        "gap_from_leader": 0
+        "rivals": [
+          {
+            "team": "Doosan",
+            "team_label": "두산",
+            "rank": 2,
+            "wins": 7,
+            "losses": 4,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정",
+            "gap_from_selected": 1.5
+          },
+          {
+            "team": "LG",
+            "team_label": "LG",
+            "rank": 6,
+            "wins": 5,
+            "losses": 6,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": 3.5
+          }
+        ],
+        "remaining_schedule": [
+          {
+            "team": "Samsung",
+            "team_label": "삼성",
+            "games_left": 1,
+            "head_to_head_wins": 0,
+            "head_to_head_losses": 0,
+            "runs_for": 0,
+            "runs_against": 0
+          }
+        ]
       }
     },
     {
-      "rank": 2,
       "team": "Doosan",
       "team_label": "두산",
+      "rank": 2,
       "current_wins": 7,
       "current_losses": 4,
       "current_draws": 1,
-      "games": 12,
-      "win_pct": 0.636,
-      "recent": "5승1무4패",
+      "remaining_games": 1,
+      "win_pct": 0.6364,
+      "eliminated": false,
+      "min_wins": 7,
+      "magic_number": 0,
+      "clinched": true,
+      "clinch_number": 0,
+      "clinch_wins": 7,
       "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 1.5경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "두산은 현재 2위이며 7승 4패 1무를 기록 중입니다.",
-        "reason": "최근 흐름은 5승1무4패입니다.",
+        "status": "clinched",
+        "status_label": "확정",
+        "headline": "이미 포스트시즌 진출이 확정됐습니다.",
+        "summary": "두산은 현재 2위, 7승 4패 1무로 잔여 1경기를 남겨두고 있습니다.",
+        "reason": "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+        "cutline_note": null,
+        "schedule_note": "가장 큰 변수는 NC전 1경기입니다.",
         "notes": [
-          "두산은 현재 2위이며 7승 4패 1무를 기록 중입니다.",
-          "최근 흐름은 5승1무4패입니다.",
-          "시범경기 승률은 0.636이고, 현재까지 12경기를 소화했습니다."
+          "두산은 현재 2위, 7승 4패 1무로 잔여 1경기를 남겨두고 있습니다.",
+          "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+          "가장 큰 변수는 NC전 1경기입니다."
         ],
-        "gap_from_leader": 1.5
+        "rivals": [
+          {
+            "team": "Lotte",
+            "team_label": "롯데",
+            "rank": 1,
+            "wins": 8,
+            "losses": 2,
+            "draws": 2,
+            "remaining_games": 1,
+            "status_label": "확정",
+            "gap_from_selected": -1.5
+          },
+          {
+            "team": "Samsung",
+            "team_label": "삼성",
+            "rank": 3,
+            "wins": 6,
+            "losses": 6,
+            "draws": 0,
+            "remaining_games": 1,
+            "status_label": "확정",
+            "gap_from_selected": 1.5
+          },
+          {
+            "team": "LG",
+            "team_label": "LG",
+            "rank": 6,
+            "wins": 5,
+            "losses": 6,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": 2
+          }
+        ],
+        "remaining_schedule": [
+          {
+            "team": "NC",
+            "team_label": "NC",
+            "games_left": 1,
+            "head_to_head_wins": 0,
+            "head_to_head_losses": 0,
+            "runs_for": 0,
+            "runs_against": 0
+          }
+        ]
       }
     },
     {
-      "rank": 3,
       "team": "Hanwha",
       "team_label": "한화",
+      "rank": 3,
       "current_wins": 6,
       "current_losses": 6,
       "current_draws": 0,
-      "games": 12,
+      "remaining_games": 1,
       "win_pct": 0.5,
-      "recent": "5승0무5패",
+      "eliminated": false,
+      "min_wins": 6,
+      "magic_number": 0,
+      "clinched": false,
+      "clinch_number": 1,
+      "clinch_wins": 7,
       "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 3경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "한화는 현재 3위이며 6승 6패 0무를 기록 중입니다.",
-        "reason": "최근 흐름은 5승0무5패입니다.",
+        "status": "near_clinch",
+        "status_label": "확정 경쟁",
+        "headline": "앞으로 1승만 더하면 포스트시즌 진출이 확정됩니다.",
+        "summary": "한화는 현재 3위, 6승 6패 0무로 잔여 1경기를 남겨두고 있습니다.",
+        "reason": "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "cutline_note": null,
+        "schedule_note": "가장 큰 변수는 키움전 1경기입니다.",
         "notes": [
-          "한화는 현재 3위이며 6승 6패 0무를 기록 중입니다.",
-          "최근 흐름은 5승0무5패입니다.",
-          "시범경기 승률은 0.500이고, 현재까지 12경기를 소화했습니다."
+          "한화는 현재 3위, 6승 6패 0무로 잔여 1경기를 남겨두고 있습니다.",
+          "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+          "가장 큰 변수는 키움전 1경기입니다."
         ],
-        "gap_from_leader": 3
+        "rivals": [
+          {
+            "team": "Doosan",
+            "team_label": "두산",
+            "rank": 2,
+            "wins": 7,
+            "losses": 4,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정",
+            "gap_from_selected": -1.5
+          },
+          {
+            "team": "LG",
+            "team_label": "LG",
+            "rank": 6,
+            "wins": 5,
+            "losses": 6,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": 0.5
+          }
+        ],
+        "remaining_schedule": [
+          {
+            "team": "Kiwoom",
+            "team_label": "키움",
+            "games_left": 1,
+            "head_to_head_wins": 0,
+            "head_to_head_losses": 0,
+            "runs_for": 0,
+            "runs_against": 0
+          }
+        ]
       }
     },
     {
-      "rank": 3,
-      "team": "Samsung",
-      "team_label": "삼성",
-      "current_wins": 6,
-      "current_losses": 6,
-      "current_draws": 0,
-      "games": 12,
-      "win_pct": 0.5,
-      "recent": "5승0무5패",
-      "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 3경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "삼성은 현재 3위이며 6승 6패 0무를 기록 중입니다.",
-        "reason": "최근 흐름은 5승0무5패입니다.",
-        "notes": [
-          "삼성은 현재 3위이며 6승 6패 0무를 기록 중입니다.",
-          "최근 흐름은 5승0무5패입니다.",
-          "시범경기 승률은 0.500이고, 현재까지 12경기를 소화했습니다."
-        ],
-        "gap_from_leader": 3
-      }
-    },
-    {
-      "rank": 3,
       "team": "KT",
       "team_label": "KT",
+      "rank": 3,
       "current_wins": 5,
       "current_losses": 5,
       "current_draws": 2,
-      "games": 12,
+      "remaining_games": 1,
       "win_pct": 0.5,
-      "recent": "5승1무4패",
+      "eliminated": false,
+      "min_wins": 5,
+      "magic_number": 0,
+      "clinched": false,
+      "clinch_number": 1,
+      "clinch_wins": 6,
       "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 3경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "KT는 현재 3위이며 5승 5패 2무를 기록 중입니다.",
-        "reason": "최근 흐름은 5승1무4패입니다.",
+        "status": "near_clinch",
+        "status_label": "확정 경쟁",
+        "headline": "앞으로 1승만 더하면 포스트시즌 진출이 확정됩니다.",
+        "summary": "KT는 현재 3위, 5승 5패 2무로 잔여 1경기를 남겨두고 있습니다.",
+        "reason": "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "cutline_note": null,
+        "schedule_note": "가장 큰 변수는 LG전 1경기입니다.",
         "notes": [
-          "KT는 현재 3위이며 5승 5패 2무를 기록 중입니다.",
-          "최근 흐름은 5승1무4패입니다.",
-          "시범경기 승률은 0.500이고, 현재까지 12경기를 소화했습니다."
+          "KT는 현재 3위, 5승 5패 2무로 잔여 1경기를 남겨두고 있습니다.",
+          "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+          "가장 큰 변수는 LG전 1경기입니다."
         ],
-        "gap_from_leader": 3
+        "rivals": [
+          {
+            "team": "Doosan",
+            "team_label": "두산",
+            "rank": 2,
+            "wins": 7,
+            "losses": 4,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정",
+            "gap_from_selected": -1.5
+          },
+          {
+            "team": "LG",
+            "team_label": "LG",
+            "rank": 6,
+            "wins": 5,
+            "losses": 6,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": 0.5
+          }
+        ],
+        "remaining_schedule": [
+          {
+            "team": "LG",
+            "team_label": "LG",
+            "games_left": 1,
+            "head_to_head_wins": 1,
+            "head_to_head_losses": 1,
+            "runs_for": 0,
+            "runs_against": 0
+          }
+        ]
       }
     },
     {
-      "rank": 6,
-      "team": "LG",
-      "team_label": "LG",
-      "current_wins": 5,
+      "team": "Samsung",
+      "team_label": "삼성",
+      "rank": 3,
+      "current_wins": 6,
       "current_losses": 6,
-      "current_draws": 1,
-      "games": 12,
-      "win_pct": 0.455,
-      "recent": "4승0무6패",
+      "current_draws": 0,
+      "remaining_games": 1,
+      "win_pct": 0.5,
+      "eliminated": false,
+      "min_wins": 6,
+      "magic_number": 0,
+      "clinched": true,
+      "clinch_number": 0,
+      "clinch_wins": 6,
       "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 3.5경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "LG는 현재 6위이며 5승 6패 1무를 기록 중입니다.",
-        "reason": "최근 흐름은 4승0무6패입니다.",
+        "status": "clinched",
+        "status_label": "확정",
+        "headline": "이미 포스트시즌 진출이 확정됐습니다.",
+        "summary": "삼성은 현재 3위, 6승 6패 0무로 잔여 1경기를 남겨두고 있습니다.",
+        "reason": "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+        "cutline_note": null,
+        "schedule_note": "가장 큰 변수는 롯데전 1경기입니다.",
         "notes": [
-          "LG는 현재 6위이며 5승 6패 1무를 기록 중입니다.",
-          "최근 흐름은 4승0무6패입니다.",
-          "시범경기 승률은 0.455이고, 현재까지 12경기를 소화했습니다."
+          "삼성은 현재 3위, 6승 6패 0무로 잔여 1경기를 남겨두고 있습니다.",
+          "모델이 이 팀을 5위 밖으로 밀어내는 시나리오를 찾지 못했습니다.",
+          "가장 큰 변수는 롯데전 1경기입니다."
         ],
-        "gap_from_leader": 3.5
+        "rivals": [
+          {
+            "team": "Doosan",
+            "team_label": "두산",
+            "rank": 2,
+            "wins": 7,
+            "losses": 4,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정",
+            "gap_from_selected": -1.5
+          },
+          {
+            "team": "LG",
+            "team_label": "LG",
+            "rank": 6,
+            "wins": 5,
+            "losses": 6,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": 0.5
+          }
+        ],
+        "remaining_schedule": [
+          {
+            "team": "Lotte",
+            "team_label": "롯데",
+            "games_left": 1,
+            "head_to_head_wins": 0,
+            "head_to_head_losses": 0,
+            "runs_for": 0,
+            "runs_against": 0
+          }
+        ]
       }
     },
     {
-      "rank": 6,
       "team": "Kiwoom",
       "team_label": "키움",
+      "rank": 6,
       "current_wins": 5,
       "current_losses": 6,
       "current_draws": 1,
-      "games": 12,
-      "win_pct": 0.455,
-      "recent": "5승1무4패",
+      "remaining_games": 1,
+      "win_pct": 0.4545,
+      "eliminated": false,
+      "min_wins": 6,
+      "magic_number": 1,
+      "clinched": false,
+      "clinch_number": 1,
+      "clinch_wins": 6,
       "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 3.5경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "키움은 현재 6위이며 5승 6패 1무를 기록 중입니다.",
-        "reason": "최근 흐름은 5승1무4패입니다.",
+        "status": "near_clinch",
+        "status_label": "확정 경쟁",
+        "headline": "앞으로 1승만 더하면 포스트시즌 진출이 확정됩니다.",
+        "summary": "키움은 현재 6위, 5승 6패 1무로 잔여 1경기를 남겨두고 있습니다.",
+        "reason": "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "cutline_note": null,
+        "schedule_note": "가장 큰 변수는 한화전 1경기입니다.",
         "notes": [
-          "키움은 현재 6위이며 5승 6패 1무를 기록 중입니다.",
-          "최근 흐름은 5승1무4패입니다.",
-          "시범경기 승률은 0.455이고, 현재까지 12경기를 소화했습니다."
+          "키움은 현재 6위, 5승 6패 1무로 잔여 1경기를 남겨두고 있습니다.",
+          "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+          "가장 큰 변수는 한화전 1경기입니다."
         ],
-        "gap_from_leader": 3.5
+        "rivals": [
+          {
+            "team": "LG",
+            "team_label": "LG",
+            "rank": 6,
+            "wins": 5,
+            "losses": 6,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": 0
+          }
+        ],
+        "remaining_schedule": [
+          {
+            "team": "Hanwha",
+            "team_label": "한화",
+            "games_left": 1,
+            "head_to_head_wins": 0,
+            "head_to_head_losses": 0,
+            "runs_for": 0,
+            "runs_against": 0
+          }
+        ]
       }
     },
     {
-      "rank": 8,
+      "team": "LG",
+      "team_label": "LG",
+      "rank": 6,
+      "current_wins": 5,
+      "current_losses": 6,
+      "current_draws": 1,
+      "remaining_games": 1,
+      "win_pct": 0.4545,
+      "eliminated": false,
+      "min_wins": 6,
+      "magic_number": 1,
+      "clinched": false,
+      "clinch_number": 1,
+      "clinch_wins": 6,
+      "analysis": {
+        "status": "near_clinch",
+        "status_label": "확정 경쟁",
+        "headline": "앞으로 1승만 더하면 포스트시즌 진출이 확정됩니다.",
+        "summary": "LG는 현재 6위, 5승 6패 1무로 잔여 1경기를 남겨두고 있습니다.",
+        "reason": "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "cutline_note": null,
+        "schedule_note": "가장 큰 변수는 KT전 1경기입니다.",
+        "notes": [
+          "LG는 현재 6위, 5승 6패 1무로 잔여 1경기를 남겨두고 있습니다.",
+          "현재는 아직 확정 전이지만, 1승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+          "가장 큰 변수는 KT전 1경기입니다."
+        ],
+        "rivals": [],
+        "remaining_schedule": [
+          {
+            "team": "KT",
+            "team_label": "KT",
+            "games_left": 1,
+            "head_to_head_wins": 1,
+            "head_to_head_losses": 1,
+            "runs_for": 0,
+            "runs_against": 0
+          }
+        ]
+      }
+    },
+    {
       "team": "SSG",
       "team_label": "SSG",
+      "rank": 8,
       "current_wins": 5,
       "current_losses": 7,
       "current_draws": 0,
-      "games": 12,
-      "win_pct": 0.417,
-      "recent": "4승0무6패",
+      "remaining_games": 1,
+      "win_pct": 0.4167,
+      "eliminated": false,
+      "min_wins": 6,
+      "magic_number": 1,
+      "clinched": false,
+      "clinch_number": null,
+      "clinch_wins": null,
       "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 4경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "SSG는 현재 8위이며 5승 7패 0무를 기록 중입니다.",
-        "reason": "최근 흐름은 4승0무6패입니다.",
+        "status": "under_pressure",
+        "status_label": "생존 경쟁",
+        "headline": "포스트시즌 가능성을 유지하려면 최소 1승이 더 필요합니다.",
+        "summary": "SSG는 현재 8위, 5승 7패 0무로 잔여 1경기를 남겨두고 있습니다.",
+        "reason": "모델이 찾은 생존 시나리오에서는 최소 1승의 추가 승리가 필요합니다. 그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다.",
+        "cutline_note": null,
+        "schedule_note": "가장 큰 변수는 KIA전 1경기입니다.",
         "notes": [
-          "SSG는 현재 8위이며 5승 7패 0무를 기록 중입니다.",
-          "최근 흐름은 4승0무6패입니다.",
-          "시범경기 승률은 0.417이고, 현재까지 12경기를 소화했습니다."
+          "SSG는 현재 8위, 5승 7패 0무로 잔여 1경기를 남겨두고 있습니다.",
+          "모델이 찾은 생존 시나리오에서는 최소 1승의 추가 승리가 필요합니다. 그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다.",
+          "가장 큰 변수는 KIA전 1경기입니다."
         ],
-        "gap_from_leader": 4
+        "rivals": [
+          {
+            "team": "LG",
+            "team_label": "LG",
+            "rank": 6,
+            "wins": 5,
+            "losses": 6,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": -0.5
+          },
+          {
+            "team": "KIA",
+            "team_label": "KIA",
+            "rank": 9,
+            "wins": 4,
+            "losses": 6,
+            "draws": 2,
+            "remaining_games": 1,
+            "status_label": "탈락",
+            "gap_from_selected": 0
+          }
+        ],
+        "remaining_schedule": [
+          {
+            "team": "KIA",
+            "team_label": "KIA",
+            "games_left": 1,
+            "head_to_head_wins": 1,
+            "head_to_head_losses": 1,
+            "runs_for": 0,
+            "runs_against": 0
+          }
+        ]
       }
     },
     {
-      "rank": 9,
       "team": "KIA",
       "team_label": "KIA",
+      "rank": 9,
       "current_wins": 4,
       "current_losses": 6,
       "current_draws": 2,
-      "games": 12,
+      "remaining_games": 1,
       "win_pct": 0.4,
-      "recent": "3승2무5패",
+      "eliminated": true,
+      "min_wins": null,
+      "magic_number": null,
+      "clinched": false,
+      "clinch_number": null,
+      "clinch_wins": null,
       "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 4경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "KIA는 현재 9위이며 4승 6패 2무를 기록 중입니다.",
-        "reason": "최근 흐름은 3승2무5패입니다.",
+        "status": "eliminated",
+        "status_label": "탈락",
+        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "summary": "KIA는 현재 9위, 4승 6패 2무로 잔여 1경기를 남겨두고 있습니다.",
+        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "cutline_note": null,
+        "schedule_note": "가장 큰 변수는 SSG전 1경기입니다.",
         "notes": [
-          "KIA는 현재 9위이며 4승 6패 2무를 기록 중입니다.",
-          "최근 흐름은 3승2무5패입니다.",
-          "시범경기 승률은 0.400이고, 현재까지 12경기를 소화했습니다."
+          "KIA는 현재 9위, 4승 6패 2무로 잔여 1경기를 남겨두고 있습니다.",
+          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "가장 큰 변수는 SSG전 1경기입니다."
         ],
-        "gap_from_leader": 4
+        "rivals": [
+          {
+            "team": "LG",
+            "team_label": "LG",
+            "rank": 6,
+            "wins": 5,
+            "losses": 6,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": -0.5
+          },
+          {
+            "team": "SSG",
+            "team_label": "SSG",
+            "rank": 8,
+            "wins": 5,
+            "losses": 7,
+            "draws": 0,
+            "remaining_games": 1,
+            "status_label": "생존 경쟁",
+            "gap_from_selected": 0
+          },
+          {
+            "team": "NC",
+            "team_label": "NC",
+            "rank": 10,
+            "wins": 4,
+            "losses": 7,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "탈락",
+            "gap_from_selected": 0.5
+          }
+        ],
+        "remaining_schedule": [
+          {
+            "team": "SSG",
+            "team_label": "SSG",
+            "games_left": 1,
+            "head_to_head_wins": 1,
+            "head_to_head_losses": 1,
+            "runs_for": 0,
+            "runs_against": 0
+          }
+        ]
       }
     },
     {
-      "rank": 10,
       "team": "NC",
       "team_label": "NC",
+      "rank": 10,
       "current_wins": 4,
       "current_losses": 7,
       "current_draws": 1,
-      "games": 12,
-      "win_pct": 0.364,
-      "recent": "4승0무6패",
+      "remaining_games": 1,
+      "win_pct": 0.3636,
+      "eliminated": true,
+      "min_wins": null,
+      "magic_number": null,
+      "clinched": false,
+      "clinch_number": null,
+      "clinch_wins": null,
       "analysis": {
-        "status": "exhibition",
-        "status_label": "시범경기",
-        "headline": "선두와 4.5경기 차로 시범경기를 치르고 있습니다.",
-        "summary": "NC는 현재 10위이며 4승 7패 1무를 기록 중입니다.",
-        "reason": "최근 흐름은 4승0무6패입니다.",
+        "status": "eliminated",
+        "status_label": "탈락",
+        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "summary": "NC는 현재 10위, 4승 7패 1무로 잔여 1경기를 남겨두고 있습니다.",
+        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "cutline_note": null,
+        "schedule_note": "가장 큰 변수는 두산전 1경기입니다.",
         "notes": [
-          "NC는 현재 10위이며 4승 7패 1무를 기록 중입니다.",
-          "최근 흐름은 4승0무6패입니다.",
-          "시범경기 승률은 0.364이고, 현재까지 12경기를 소화했습니다."
+          "NC는 현재 10위, 4승 7패 1무로 잔여 1경기를 남겨두고 있습니다.",
+          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "가장 큰 변수는 두산전 1경기입니다."
         ],
-        "gap_from_leader": 4.5
+        "rivals": [
+          {
+            "team": "LG",
+            "team_label": "LG",
+            "rank": 6,
+            "wins": 5,
+            "losses": 6,
+            "draws": 1,
+            "remaining_games": 1,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": -1
+          },
+          {
+            "team": "KIA",
+            "team_label": "KIA",
+            "rank": 9,
+            "wins": 4,
+            "losses": 6,
+            "draws": 2,
+            "remaining_games": 1,
+            "status_label": "탈락",
+            "gap_from_selected": -0.5
+          }
+        ],
+        "remaining_schedule": [
+          {
+            "team": "Doosan",
+            "team_label": "두산",
+            "games_left": 1,
+            "head_to_head_wins": 0,
+            "head_to_head_losses": 0,
+            "runs_for": 0,
+            "runs_against": 0
+          }
+        ]
       }
     }
-  ]
+  ],
+  "bubble": {
+    "rank": 6,
+    "team": "Kiwoom",
+    "team_label": "키움"
+  },
+  "phase": "regular",
+  "phase_label": "정규시즌"
 }
