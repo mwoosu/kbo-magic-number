@@ -45,6 +45,7 @@ import main
 KST = ZoneInfo("Asia/Seoul")
 KBO_DAILY_URL = "https://www.koreabaseball.com/Record/TeamRank/TeamRankDaily.aspx"
 KBO_SCHEDULE_API = "https://www.koreabaseball.com/ws/Schedule.asmx/GetScheduleList"
+GAMES_PER_PAIR = 16  # KBO 정규시즌: 각 팀 간 16경기 (144경기 / 9개 상대)
 USER_AGENT = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
@@ -409,7 +410,7 @@ def _parse_play_cell(html: str):
 
 def crawl_schedule_snapshot(current_date: date):
     """KBO 공식 스케줄 API에서 정규시즌 경기 데이터를 크롤링."""
-    remaining = {(team, other): 0 for team in TEAM_NAMES for other in TEAM_NAMES}
+    completed_games = {(team, other): 0 for team in TEAM_NAMES for other in TEAM_NAMES}
     runs = {(team, other): 0 for team in TEAM_NAMES for other in TEAM_NAMES}
 
     session = requests.Session()
@@ -448,14 +449,15 @@ def crawl_schedule_snapshot(current_date: date):
                     away_team, away_score, home_score, home_team, completed = result
 
                     if completed and current_game_date and current_game_date <= current_date:
+                        completed_games[away_team, home_team] += 1
+                        completed_games[home_team, away_team] += 1
                         runs[away_team, home_team] += away_score
                         runs[home_team, away_team] += home_score
-                    elif not completed or (current_game_date and current_game_date > current_date):
-                        remaining[away_team, home_team] += 1
-                        remaining[home_team, away_team] += 1
 
+    # 잔여 경기 = 팀 간 총 경기(16) - 완료된 경기
     remaining_matrix = [
-        [0 if team == other else remaining[team, other] for other in TEAM_NAMES]
+        [0 if team == other else max(0, GAMES_PER_PAIR - completed_games[team, other])
+         for other in TEAM_NAMES]
         for team in TEAM_NAMES
     ]
     runs_matrix = [
