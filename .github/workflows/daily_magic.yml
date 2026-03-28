@@ -95,7 +95,7 @@ jobs:
         if: env.GABIA_FTP_HOST != ''
         env:
           GABIA_FTP_HOST: ${{ secrets.GABIA_FTP_HOST }}
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.GABIA_FTP_HOST }}
           username: ${{ secrets.GABIA_FTP_USER }}
