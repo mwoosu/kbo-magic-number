@@ -102,4 +102,4 @@ jobs:
           password: ${{ secrets.GABIA_FTP_PASS }}
           port: 21
           local-dir: docs/data/
-          server-dir: /tools/kbo/data/
+          server-dir: /file/board/Tools/kbo/data/
