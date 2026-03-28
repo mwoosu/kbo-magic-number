@@ -87,20 +87,19 @@ jobs:
       # ============================================================
       # 가비아 서버 동기화 (result.json만 매일 업로드)
       # 필요한 GitHub Secrets:
-      #   - GABIA_SFTP_HOST : 가비아 SFTP 호스트 (예: cois.dankook.ac.kr)
-      #   - GABIA_SFTP_USER : 가비아 SFTP 사용자명
-      #   - GABIA_SFTP_PASS : 가비아 SFTP 비밀번호
+      #   - GABIA_FTP_HOST : 가비아 FTP 호스트 (예: cois.dankook.ac.kr)
+      #   - GABIA_FTP_USER : 가비아 FTP 사용자명
+      #   - GABIA_FTP_PASS : 가비아 FTP 비밀번호
       # ============================================================
-      - name: Upload result.json to Gabia via SFTP
-        if: env.GABIA_SFTP_HOST != ''
+      - name: Upload result.json to Gabia via FTP
+        if: env.GABIA_FTP_HOST != ''
         env:
-          GABIA_SFTP_HOST: ${{ secrets.GABIA_SFTP_HOST }}
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+          GABIA_FTP_HOST: ${{ secrets.GABIA_FTP_HOST }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.GABIA_SFTP_HOST }}
-          username: ${{ secrets.GABIA_SFTP_USER }}
-          password: ${{ secrets.GABIA_SFTP_PASS }}
-          port: 22
-          local_path: docs/data/result.json
-          remote_path: /tools/kbo/data/result.json
-          sftp_only: true
+          server: ${{ secrets.GABIA_FTP_HOST }}
+          username: ${{ secrets.GABIA_FTP_USER }}
+          password: ${{ secrets.GABIA_FTP_PASS }}
+          port: 21
+          local-dir: docs/data/
+          server-dir: /tools/kbo/data/

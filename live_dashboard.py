@@ -44,7 +44,7 @@ import main
 
 KST = ZoneInfo("Asia/Seoul")
 KBO_DAILY_URL = "https://www.koreabaseball.com/Record/TeamRank/TeamRankDaily.aspx"
-MYKBO_WEEK_URL = "https://mykbostats.com/schedule/week_of/{date_value}"
+KBO_SCHEDULE_API = "https://www.koreabaseball.com/ws/Schedule.asmx/GetScheduleList"
 USER_AGENT = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
@@ -64,18 +64,6 @@ KBO_TO_EN = {
     "한화": "Hanwha",
     "NC": "NC",
     "KT": "KT",
-}
-MYKBO_LOGO_TO_EN = {
-    "doosan": "Doosan",
-    "hanwha": "Hanwha",
-    "kia": "KIA",
-    "kt": "KT",
-    "kiwoom": "Kiwoom",
-    "lg": "LG",
-    "lotte": "Lotte",
-    "nc": "NC",
-    "ssg": "SSG",
-    "samsung": "Samsung",
 }
 
 
@@ -377,73 +365,103 @@ def current_prior_year_rank(csv_path: str, previous_year: int) -> dict[str, int]
     return {team: index + 1 for index, team in enumerate(TEAM_NAMES)}
 
 
-def find_game_section(soup: BeautifulSoup, target: date):
-    target_text = target.strftime("%Y-%m-%d")
-    for heading in soup.find_all("h3"):
-        if target_text in heading.get_text(" ", strip=True) or target_text in str(heading):
-            return heading
-    return None
+def _parse_play_cell(html: str):
+    """KBO 스케줄 API의 play 셀 HTML을 파싱하여 (원정팀, 원정점수, 홈점수, 홈팀, 완료여부)를 반환."""
+    soup = BeautifulSoup(html, "html.parser")
+    spans = soup.find_all("span", recursive=False)
+    if len(spans) < 2:
+        spans = soup.select("em > span")
+        team_spans = [s for s in soup.find_all("span", recursive=True) if s.parent.name != "em"]
+        if len(team_spans) < 2:
+            return None
+        away_ko = team_spans[0].get_text(strip=True)
+        home_ko = team_spans[-1].get_text(strip=True)
+    else:
+        away_ko = spans[0].get_text(strip=True)
+        home_ko = spans[-1].get_text(strip=True)
 
-
-def parse_logo_team(node) -> str | None:
-    team_logo = node.select_one(".team-logo")
-    if not team_logo:
+    away_team = KBO_TO_EN.get(away_ko)
+    home_team = KBO_TO_EN.get(home_ko)
+    if not away_team or not home_team:
         return None
-    for class_name in team_logo.get("class", []):
-        if class_name in MYKBO_LOGO_TO_EN:
-            return MYKBO_LOGO_TO_EN[class_name]
-    return None
 
-
-def parse_score(node, selector: str) -> int | None:
-    score_node = node.select_one(selector)
-    if not score_node:
+    score_spans = soup.select("em > span")
+    # score_spans: [원정점수, "vs", 홈점수]
+    if len(score_spans) < 3:
         return None
-    text = score_node.get_text(strip=True)
-    return int(text) if text.isdigit() else None
+
+    away_cls = score_spans[0].get("class", [])
+    away_text = score_spans[0].get_text(strip=True)
+    home_text = score_spans[2].get_text(strip=True)
+
+    # win/lose 클래스가 있으면 완료된 경기, same + 0vs0이면 미완료
+    completed = "win" in away_cls or "lose" in away_cls
+    if not completed and away_text.isdigit() and home_text.isdigit():
+        # same 클래스인데 점수가 둘 다 0이 아니면 무승부(완료)
+        if int(away_text) > 0 or int(home_text) > 0:
+            completed = True
+
+    away_score = int(away_text) if away_text.isdigit() else 0
+    home_score = int(home_text) if home_text.isdigit() else 0
+
+    return away_team, away_score, home_score, home_team, completed
 
 
 def crawl_schedule_snapshot(current_date: date):
-    season_start = date(current_date.year, 3, 1)
-    season_end = date(current_date.year, 11, 30)
-
+    """KBO 공식 스케줄 API에서 정규시즌 경기 데이터를 크롤링."""
     remaining = {(team, other): 0 for team in TEAM_NAMES for other in TEAM_NAMES}
     runs = {(team, other): 0 for team in TEAM_NAMES for other in TEAM_NAMES}
 
     session = requests.Session()
     session.headers.update({"User-Agent": USER_AGENT})
 
-    cursor = season_start
-    while cursor <= season_end:
-        response = session.get(MYKBO_WEEK_URL.format(date_value=cursor.strftime("%Y-%m-%d")), timeout=20)
+    year = current_date.year
+    for month in range(3, 12):  # 3월~11월
+        response = session.post(
+            KBO_SCHEDULE_API,
+            data={
+                "leId": 1,
+                "srIdList": "0,9,6",  # 정규시즌
+                "seasonId": year,
+                "gameMonth": f"{month:02d}",
+                "teamId": "",
+            },
+            timeout=20,
+        )
         response.raise_for_status()
-        soup = BeautifulSoup(response.text, "html.parser")
-        section = find_game_section(soup, cursor)
-        if section:
-            node = section.find_next_sibling()
-            while node and node.name != "h3":
-                if node.name == "a" and "game-line" in node.get("class", []):
-                    away_team = parse_logo_team(node.select_one(".away-logo") or node)
-                    home_team = parse_logo_team(node.select_one(".home-logo") or node)
-                    away_score = parse_score(node, ".away-score")
-                    home_score = parse_score(node, ".home-score")
+        data = response.json()
 
-                    if away_team and home_team:
-                        completed = away_score is not None and home_score is not None
-                        if completed and cursor <= current_date:
-                            runs[away_team, home_team] += away_score
-                            runs[home_team, away_team] += home_score
-                        elif cursor > current_date or not completed:
-                            remaining[away_team, home_team] += 1
-                            remaining[home_team, away_team] += 1
-                node = node.find_next_sibling()
-        cursor += timedelta(days=1)
+        current_game_date = None
+        for row_obj in data.get("rows", []):
+            cells = row_obj.get("row", [])
+            for cell in cells:
+                if cell.get("Class") == "day":
+                    # "03.28(토)" → 날짜 파싱
+                    match = re.match(r"(\d{2})\.(\d{2})", cell["Text"])
+                    if match:
+                        current_game_date = date(year, int(match.group(1)), int(match.group(2)))
+
+                if cell.get("Class") == "play":
+                    result = _parse_play_cell(cell["Text"])
+                    if not result:
+                        continue
+                    away_team, away_score, home_score, home_team, completed = result
+
+                    if completed and current_game_date and current_game_date <= current_date:
+                        runs[away_team, home_team] += away_score
+                        runs[home_team, away_team] += home_score
+                    elif not completed or (current_game_date and current_game_date > current_date):
+                        remaining[away_team, home_team] += 1
+                        remaining[home_team, away_team] += 1
 
     remaining_matrix = [
         [0 if team == other else remaining[team, other] for other in TEAM_NAMES]
         for team in TEAM_NAMES
     ]
-    runs_matrix = [[0 if team == other else runs[team, other] for other in TEAM_NAMES] for team in TEAM_NAMES]
+    runs_matrix = [
+        [0 if team == other else runs[team, other] for other in TEAM_NAMES]
+        for team in TEAM_NAMES
+    ]
     return remaining_matrix, runs_matrix
 
 

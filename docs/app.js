@@ -428,10 +428,10 @@ function renderMetrics(team, phase) {
     const clinchValue = team.eliminated
         ? '-'
         : team.clinched
-        ? 'In'
-        : team.clinch_number === null || team.clinch_number === undefined
-            ? '*'
-            : String(team.clinch_number);
+            ? 'In'
+            : team.clinch_number === null || team.clinch_number === undefined
+                ? '*'
+                : String(team.clinch_number);
 
     return `
         <div class="detail-metrics">
@@ -669,7 +669,7 @@ document.getElementById('feedback-submit')?.addEventListener('click', async () =
     try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 5000);
-        await fetch('/tools/kbo/feedback.asp', {
+        await fetch('/file/board/Tools/kbo/feedback.asp', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `feedback=${encodeURIComponent(text)}`,
