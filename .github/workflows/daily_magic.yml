@@ -32,7 +32,7 @@ jobs:
   calculate:
     runs-on: ubuntu-latest
     env:
-      DASHBOARD_PHASE: regular
+      DASHBOARD_PHASE: auto
 
     steps:
       - name: Checkout repository

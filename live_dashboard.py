@@ -386,9 +386,9 @@ def _parse_play_cell(html: str):
         return None
 
     score_spans = soup.select("em > span")
-    # score_spans: [원정점수, "vs", 홈점수]
+    # 미래 경기: <em><span>vs</span></em> → score_spans == 1개 (점수 없음)
     if len(score_spans) < 3:
-        return None
+        return away_team, 0, 0, home_team, False
 
     away_cls = score_spans[0].get("class", [])
     away_text = score_spans[0].get_text(strip=True)
