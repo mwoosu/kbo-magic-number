@@ -689,7 +689,12 @@ def select_rivals(results, team, n_playoff):
     if len(results) <= 1 or 'rank' not in team or team['rank'] is None:
         return []
 
-    by_rank = {row.get('rank'): row for row in results if row.get('rank') is not None}
+    by_rank: dict[int, list] = {}
+    for row in results:
+        r = row.get('rank')
+        if r is not None:
+            by_rank.setdefault(r, []).append(row)
+
     candidate_ranks = {
         team['rank'] - 1,
         team['rank'] + 1,
@@ -700,22 +705,22 @@ def select_rivals(results, team, n_playoff):
     }
     rivals = []
     for rank in sorted(candidate_ranks):
-        row = by_rank.get(rank)
-        if not row or row['team'] == team['team']:
-            continue
-        rivals.append(
-            {
-                'team': row['team'],
-                'team_label': row.get('team_label', TEAM_LABELS.get(row['team'], row['team'])),
-                'rank': row.get('rank'),
-                'wins': row['current_wins'],
-                'losses': row['current_losses'],
-                'draws': row['current_draws'],
-                'remaining_games': row['remaining_games'],
-                'status_label': team_status_label(row),
-                'gap_from_selected': pretty_gap(games_behind(row, team)),
-            }
-        )
+        for row in by_rank.get(rank, []):
+            if row['team'] == team['team']:
+                continue
+            rivals.append(
+                {
+                    'team': row['team'],
+                    'team_label': row.get('team_label', TEAM_LABELS.get(row['team'], row['team'])),
+                    'rank': row.get('rank'),
+                    'wins': row['current_wins'],
+                    'losses': row['current_losses'],
+                    'draws': row['current_draws'],
+                    'remaining_games': row['remaining_games'],
+                    'status_label': team_status_label(row),
+                    'gap_from_selected': pretty_gap(games_behind(row, team)),
+                }
+            )
     return rivals
 
 
