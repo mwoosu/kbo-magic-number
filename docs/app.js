@@ -174,8 +174,9 @@ function setHeader(data) {
             <span class="legend-desc">다른 경기 결과와 무관하게 포스트시즌 진출을 확정하기 위한 추가 승수</span>
         </div>
         ${symbolLegend}
+        <hr class="legend-divider">
         <div class="legend-item legend-hint">
-            <span class="legend-desc">* 각 팀 카드를 클릭하면 상세 해설을 확인할 수 있습니다.</span>
+            <span class="legend-desc">각 팀 카드를 클릭하면 상세 해설을 확인할 수 있습니다.</span>
         </div>
     `;
 }

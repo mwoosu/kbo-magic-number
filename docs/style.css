@@ -172,8 +172,15 @@ header {
     line-height: 1.4;
 }
 
-.legend-hint {
-    padding-left: 74px;
+.legend-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2px 0;
+}
+
+.legend-hint .legend-desc {
+    color: var(--text-tertiary, #999);
+    font-size: 12px;
 }
 
 .legend-desc code {
