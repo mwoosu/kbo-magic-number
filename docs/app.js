@@ -176,7 +176,7 @@ function setHeader(data) {
         ${symbolLegend}
         <hr class="legend-divider">
         <div class="legend-item legend-hint">
-            <span class="legend-desc">각 팀 카드를 클릭하면 상세 해설을 확인할 수 있습니다.</span>
+            <span class="legend-desc">· 각 팀 카드를 클릭하면 상세 해설을 확인할 수 있습니다.</span>
         </div>
     `;
 }
