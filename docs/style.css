@@ -183,6 +183,13 @@ header {
     font-size: 12px;
 }
 
+.legend-hint .legend-dot {
+    font-size: 18px;
+    line-height: 1;
+    vertical-align: middle;
+    margin-right: 2px;
+}
+
 .legend-desc code {
     font-family: 'JetBrains Mono', 'Inter', monospace;
     font-size: 12px;
