@@ -186,7 +186,7 @@ header {
 .legend-hint .legend-dot {
     font-size: 22px;
     line-height: 1;
-    vertical-align: middle;
+    vertical-align: 2px;
     margin-right: 4px;
 }
 
