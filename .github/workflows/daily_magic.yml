@@ -82,6 +82,7 @@ jobs:
           git add docs/data/result.json data/live_source.json
           # 변경사항이 있을 때만 커밋 (없으면 조기 종료)
           git diff --staged --quiet || git commit -m "Update KBO dashboard $(date +%Y-%m-%d)"
+          git pull --rebase || true
           git push
 
       # ============================================================
