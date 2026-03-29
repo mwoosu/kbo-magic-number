@@ -184,10 +184,10 @@ header {
 }
 
 .legend-hint .legend-dot {
-    font-size: 18px;
+    font-size: 22px;
     line-height: 1;
     vertical-align: middle;
-    margin-right: 2px;
+    margin-right: 4px;
 }
 
 .legend-desc code {
