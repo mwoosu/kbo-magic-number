@@ -616,10 +616,8 @@ function render(data) {
     }
 
     const nPlayoff = data.n_playoff || 5;
-    let playoffLineInserted = false;
     data.teams.forEach((team, index) => {
-        if (!playoffLineInserted && team.rank > nPlayoff) {
-            playoffLineInserted = true;
+        if (index === nPlayoff) {
             playoffLine.classList.add('visible');
             grid.appendChild(playoffLine);
         }
