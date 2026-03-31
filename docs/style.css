@@ -562,6 +562,12 @@ header {
     justify-content: space-between;
     gap: 16px;
     margin-bottom: 18px;
+    position: sticky;
+    top: -22px;
+    background: var(--bg-card);
+    padding-top: 22px;
+    padding-bottom: 10px;
+    z-index: 1;
 }
 
 .detail-heading {
