@@ -91,6 +91,7 @@ TEAM_LABELS = {
 }
 
 N_PLAYOFF = 5  # 포스트시즌 진출 팀 수
+MAX_RUNS_PER_GAME = 30  # 한 경기 팀당 최대 득점 추정치 (big-M 타이트닝용)
 
 DEFAULT_DATA = {
     "date": "2025-08-15",
@@ -282,7 +283,7 @@ def solve_magic_number(env, data, target_team, verbose=False):
 
     # === A.7 + A.14a~d 타이브레이크 기준1 (상대 다승) ===
     M_G = {t: sum(w_data[t, tp] + g[t, tp] for tp in teams if tp != t) for t in teams}
-    M_G_pair = {(t, tp): M_G[t] + M_G[tp] + 1 for t in teams for tp in teams if t != tp}
+    M_G_pair = {(t, tp): max(M_G[t], M_G[tp]) for t in teams for tp in teams if t != tp}
 
     model.addConstr(G[k] == gp.quicksum((w_data[k, t] + X[k, t]) * Z[t] for t in T_k), name="A.14a")
     model.addConstrs((G[t] == (w_data[t, k] + X[t, k]) * Z[t] + gp.quicksum((w_data[t, tp] + X[t, tp]) * Z_hat[ordered_pair(t, tp)] for tp in T_k if tp != t) for t in T_k), name="A.14b")
@@ -299,12 +300,12 @@ def solve_magic_number(env, data, target_team, verbose=False):
     ), name="A.7b_ub")
 
     # === A.8 + A.14 변형 타이브레이크 기준2 (상대 다득점) ===
-    M_R = {t: sum(r_hat[t, tp] for tp in teams if tp != t) + 1000 for t in teams}
-    M_R_pair = {(t, tp): M_R[t] + M_R[tp] + 1 for t in teams for tp in teams if t != tp}
+    M_R = {t: sum(r_hat[t, tp] + MAX_RUNS_PER_GAME * g[t, tp] for tp in teams if tp != t) for t in teams}
+    M_R_pair = {(t, tp): max(M_R[t], M_R[tp]) for t in teams for tp in teams if t != tp}
 
     model.addConstr(R_var[k] == gp.quicksum((r_hat[k, t] + A[k, t]) * Z[t] for t in T_k), name="A.14a_R")
     model.addConstrs((R_var[t] == (r_hat[t, k] + A[t, k]) * Z[t] + gp.quicksum((r_hat[t, tp] + A[t, tp]) * Z_hat[ordered_pair(t, tp)] for tp in T_k if tp != t) for t in T_k), name="A.14b_R")
-    model.addConstr(R_var[k] <= gp.quicksum(r_hat[k, t] + 1000 for t in T_k), name="A.14c_R")
+    model.addConstr(R_var[k] <= gp.quicksum(r_hat[k, t] + MAX_RUNS_PER_GAME * g[k, t] for t in T_k), name="A.14c_R")
     model.addConstrs((R_var[t] <= M_R[t] * Z[t] for t in T_k), name="A.14d_R")
 
     model.addConstrs((
@@ -503,7 +504,7 @@ def solve_clinch_number(env, data, target_team, verbose=False):
 
     # === A.7~A.10 (타이브레이크 — 동일) ===
     M_G = {t: sum(w_data[t, tp] + g[t, tp] for tp in teams if tp != t) for t in teams}
-    M_G_pair = {(t, tp): M_G[t] + M_G[tp] + 1 for t in teams for tp in teams if t != tp}
+    M_G_pair = {(t, tp): max(M_G[t], M_G[tp]) for t in teams for tp in teams if t != tp}
     model.addConstr(G[k] == gp.quicksum((w_data[k, t] + X[k, t]) * Z[t] for t in T_k), name="A.14a")
     model.addConstrs((G[t] == (w_data[t, k] + X[t, k]) * Z[t] + gp.quicksum((w_data[t, tp] + X[t, tp]) * Z_hat[ordered_pair(t, tp)] for tp in T_k if tp != t) for t in T_k), name="A.14b")
     model.addConstr(G[k] <= gp.quicksum(w_data[k, t] + g[k, t] for t in T_k), name="A.14c")
@@ -517,11 +518,11 @@ def solve_clinch_number(env, data, target_team, verbose=False):
         for t in teams for tp in teams if tp != t
     ), name="A.7b_ub")
 
-    M_R = {t: sum(r_hat[t, tp] for tp in teams if tp != t) + 1000 for t in teams}
-    M_R_pair = {(t, tp): M_R[t] + M_R[tp] + 1 for t in teams for tp in teams if t != tp}
+    M_R = {t: sum(r_hat[t, tp] + MAX_RUNS_PER_GAME * g[t, tp] for tp in teams if tp != t) for t in teams}
+    M_R_pair = {(t, tp): max(M_R[t], M_R[tp]) for t in teams for tp in teams if t != tp}
     model.addConstr(R_var[k] == gp.quicksum((r_hat[k, t] + A[k, t]) * Z[t] for t in T_k), name="A.14a_R")
     model.addConstrs((R_var[t] == (r_hat[t, k] + A[t, k]) * Z[t] + gp.quicksum((r_hat[t, tp] + A[t, tp]) * Z_hat[ordered_pair(t, tp)] for tp in T_k if tp != t) for t in T_k), name="A.14b_R")
-    model.addConstr(R_var[k] <= gp.quicksum(r_hat[k, t] + 1000 for t in T_k), name="A.14c_R")
+    model.addConstr(R_var[k] <= gp.quicksum(r_hat[k, t] + MAX_RUNS_PER_GAME * g[k, t] for t in T_k), name="A.14c_R")
     model.addConstrs((R_var[t] <= M_R[t] * Z[t] for t in T_k), name="A.14d_R")
     model.addConstrs((
         R_var[t] - R_var[tp] >= 1 - M_R_pair[t, tp] * (1 - T_crit[t, tp, 2]) - M_R_pair[t, tp] * (1 - Z_hat[ordered_pair(t, tp)])
