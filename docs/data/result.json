@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-21 00:32",
+  "updated_at": "2026-04-21 19:13",
   "data_date": "2026-04-19",
   "n_playoff": 5,
   "teams": [
@@ -15,6 +15,7 @@
       "eliminated": false,
       "min_wins": 36,
       "magic_number": 24,
+      "solver_note": "time_limit_feasible",
       "clinched": false,
       "clinch_number": 92,
       "clinch_wins": 104,
@@ -539,6 +540,7 @@
       "eliminated": false,
       "min_wins": 36,
       "magic_number": 26,
+      "solver_note": "time_limit_feasible",
       "clinched": false,
       "clinch_number": 95,
       "clinch_wins": 105,
