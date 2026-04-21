@@ -688,7 +688,7 @@ document.getElementById('feedback-submit')?.addEventListener('click', async () =
     try {
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 5000);
-        await fetch('/exec/kbo/feedback.asp', {
+        await fetch('/exec/action/kbo_feedback.asp', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `feedback=${encodeURIComponent(text)}`,
