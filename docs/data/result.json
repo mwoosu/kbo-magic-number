@@ -1,36 +1,36 @@
 {
-  "updated_at": "2026-04-28 01:01",
-  "data_date": "2026-04-26",
+  "updated_at": "2026-04-29 01:33",
+  "data_date": "2026-04-28",
   "n_playoff": 5,
   "teams": [
     {
       "team": "KT",
       "team_label": "KT",
       "rank": 1,
-      "current_wins": 17,
+      "current_wins": 18,
       "current_losses": 8,
       "current_draws": 0,
-      "remaining_games": 119,
-      "win_pct": 0.68,
+      "remaining_games": 118,
+      "win_pct": 0.6923,
       "eliminated": false,
       "min_wins": 38,
-      "magic_number": 21,
+      "magic_number": 20,
       "clinched": false,
-      "clinch_number": 86,
+      "clinch_number": 85,
       "clinch_wins": 103,
       "analysis": {
         "status": "near_clinch",
         "status_label": "확정 경쟁",
-        "headline": "앞으로 86승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
-        "summary": "KT는 현재 1위, 17승 8패 0무로 잔여 119경기를 남겨두고 있습니다.",
-        "reason": "현재는 아직 확정 전이지만, 86승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-        "cutline_note": "현재 포스트시즌 컷라인인 5위 KIA보다 4.5경기 앞서 있습니다.",
-        "schedule_note": "가장 많이 남은 상대는 LG로 14경기가 남아 있습니다.",
+        "headline": "앞으로 85승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
+        "summary": "KT는 현재 1위, 18승 8패 0무로 잔여 118경기를 남겨두고 있습니다.",
+        "reason": "현재는 아직 확정 전이지만, 85승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "cutline_note": "현재 포스트시즌 컷라인인 5위 KIA보다 5.5경기 앞서 있습니다.",
+        "schedule_note": "가장 많이 남은 상대는 롯데로 14경기가 남아 있습니다.",
         "notes": [
-          "KT는 현재 1위, 17승 8패 0무로 잔여 119경기를 남겨두고 있습니다.",
-          "현재는 아직 확정 전이지만, 86승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-          "현재 포스트시즌 컷라인인 5위 KIA보다 4.5경기 앞서 있습니다.",
-          "가장 많이 남은 상대는 LG로 14경기가 남아 있습니다."
+          "KT는 현재 1위, 18승 8패 0무로 잔여 118경기를 남겨두고 있습니다.",
+          "현재는 아직 확정 전이지만, 85승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+          "현재 포스트시즌 컷라인인 5위 KIA보다 5.5경기 앞서 있습니다.",
+          "가장 많이 남은 상대는 롯데로 14경기가 남아 있습니다."
         ],
         "rivals": [
           {
@@ -38,20 +38,20 @@
             "team_label": "LG",
             "rank": 2,
             "wins": 16,
-            "losses": 8,
+            "losses": 9,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 0.5
+            "gap_from_selected": 1.5
           },
           {
             "team": "Samsung",
             "team_label": "삼성",
             "rank": 4,
-            "wins": 12,
+            "wins": 13,
             "losses": 11,
             "draws": 1,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
             "gap_from_selected": 4
           },
@@ -60,56 +60,36 @@
             "team_label": "KIA",
             "rank": 5,
             "wins": 12,
-            "losses": 12,
-            "draws": 1,
-            "remaining_games": 119,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": 4.5
-          },
-          {
-            "team": "NC",
-            "team_label": "NC",
-            "rank": 6,
-            "wins": 11,
             "losses": 13,
-            "draws": 0,
-            "remaining_games": 120,
+            "draws": 1,
+            "remaining_games": 118,
             "status_label": "확정 경쟁",
             "gap_from_selected": 5.5
           },
           {
-            "team": "Doosan",
-            "team_label": "두산",
-            "rank": 7,
-            "wins": 10,
-            "losses": 14,
-            "draws": 1,
+            "team": "NC",
+            "team_label": "NC",
+            "rank": 5,
+            "wins": 12,
+            "losses": 13,
+            "draws": 0,
             "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 6.5
+            "gap_from_selected": 5.5
           },
           {
             "team": "Hanwha",
             "team_label": "한화",
             "rank": 7,
-            "wins": 10,
+            "wins": 11,
             "losses": 14,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
             "gap_from_selected": 6.5
           }
         ],
         "remaining_schedule": [
-          {
-            "team": "LG",
-            "team_label": "LG",
-            "games_left": 14,
-            "head_to_head_wins": 2,
-            "head_to_head_losses": 0,
-            "runs_for": 17,
-            "runs_against": 12
-          },
           {
             "team": "Lotte",
             "team_label": "롯데",
@@ -156,6 +136,15 @@
             "runs_against": 5
           },
           {
+            "team": "LG",
+            "team_label": "LG",
+            "games_left": 13,
+            "head_to_head_wins": 3,
+            "head_to_head_losses": 0,
+            "runs_for": 23,
+            "runs_against": 17
+          },
+          {
             "team": "NC",
             "team_label": "NC",
             "games_left": 13,
@@ -190,10 +179,10 @@
       "team_label": "LG",
       "rank": 2,
       "current_wins": 16,
-      "current_losses": 8,
+      "current_losses": 9,
       "current_draws": 0,
-      "remaining_games": 120,
-      "win_pct": 0.6667,
+      "remaining_games": 119,
+      "win_pct": 0.64,
       "eliminated": false,
       "min_wins": 38,
       "magic_number": 22,
@@ -204,36 +193,36 @@
         "status": "near_clinch",
         "status_label": "확정 경쟁",
         "headline": "앞으로 87승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
-        "summary": "LG는 현재 2위, 16승 8패 0무로 잔여 120경기를 남겨두고 있습니다.",
+        "summary": "LG는 현재 2위, 16승 9패 0무로 잔여 119경기를 남겨두고 있습니다.",
         "reason": "현재는 아직 확정 전이지만, 87승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
         "cutline_note": "현재 포스트시즌 컷라인인 5위 KIA보다 4경기 앞서 있습니다.",
-        "schedule_note": "가장 많이 남은 상대는 KT로 14경기가 남아 있습니다.",
+        "schedule_note": "가장 많이 남은 상대는 NC로 14경기가 남아 있습니다.",
         "notes": [
-          "LG는 현재 2위, 16승 8패 0무로 잔여 120경기를 남겨두고 있습니다.",
+          "LG는 현재 2위, 16승 9패 0무로 잔여 119경기를 남겨두고 있습니다.",
           "현재는 아직 확정 전이지만, 87승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
           "현재 포스트시즌 컷라인인 5위 KIA보다 4경기 앞서 있습니다.",
-          "가장 많이 남은 상대는 KT로 14경기가 남아 있습니다."
+          "가장 많이 남은 상대는 NC로 14경기가 남아 있습니다."
         ],
         "rivals": [
           {
             "team": "KT",
             "team_label": "KT",
             "rank": 1,
-            "wins": 17,
+            "wins": 18,
             "losses": 8,
             "draws": 0,
-            "remaining_games": 119,
+            "remaining_games": 118,
             "status_label": "확정 경쟁",
-            "gap_from_selected": -0.5
+            "gap_from_selected": -1.5
           },
           {
             "team": "SSG",
             "team_label": "SSG",
             "rank": 3,
             "wins": 15,
-            "losses": 9,
+            "losses": 10,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
             "gap_from_selected": 1
           },
@@ -241,68 +230,48 @@
             "team": "Samsung",
             "team_label": "삼성",
             "rank": 4,
-            "wins": 12,
+            "wins": 13,
             "losses": 11,
             "draws": 1,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 3.5
+            "gap_from_selected": 2.5
           },
           {
             "team": "KIA",
             "team_label": "KIA",
             "rank": 5,
             "wins": 12,
-            "losses": 12,
+            "losses": 13,
             "draws": 1,
-            "remaining_games": 119,
+            "remaining_games": 118,
             "status_label": "확정 경쟁",
             "gap_from_selected": 4
           },
           {
             "team": "NC",
             "team_label": "NC",
-            "rank": 6,
-            "wins": 11,
+            "rank": 5,
+            "wins": 12,
             "losses": 13,
             "draws": 0,
-            "remaining_games": 120,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": 5
-          },
-          {
-            "team": "Doosan",
-            "team_label": "두산",
-            "rank": 7,
-            "wins": 10,
-            "losses": 14,
-            "draws": 1,
             "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 6
+            "gap_from_selected": 4
           },
           {
             "team": "Hanwha",
             "team_label": "한화",
             "rank": 7,
-            "wins": 10,
+            "wins": 11,
             "losses": 14,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 6
+            "gap_from_selected": 5
           }
         ],
         "remaining_schedule": [
-          {
-            "team": "KT",
-            "team_label": "KT",
-            "games_left": 14,
-            "head_to_head_wins": 0,
-            "head_to_head_losses": 2,
-            "runs_for": 12,
-            "runs_against": 17
-          },
           {
             "team": "NC",
             "team_label": "NC",
@@ -349,6 +318,15 @@
             "runs_against": 10
           },
           {
+            "team": "KT",
+            "team_label": "KT",
+            "games_left": 13,
+            "head_to_head_wins": 0,
+            "head_to_head_losses": 3,
+            "runs_for": 17,
+            "runs_against": 23
+          },
+          {
             "team": "Kiwoom",
             "team_label": "키움",
             "games_left": 13,
@@ -383,13 +361,14 @@
       "team_label": "SSG",
       "rank": 3,
       "current_wins": 15,
-      "current_losses": 9,
+      "current_losses": 10,
       "current_draws": 0,
-      "remaining_games": 120,
-      "win_pct": 0.625,
+      "remaining_games": 119,
+      "win_pct": 0.6,
       "eliminated": false,
       "min_wins": 38,
       "magic_number": 23,
+      "solver_note": "time_limit_feasible",
       "clinched": false,
       "clinch_number": 88,
       "clinch_wins": 103,
@@ -397,15 +376,15 @@
         "status": "near_clinch",
         "status_label": "확정 경쟁",
         "headline": "앞으로 88승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
-        "summary": "SSG는 현재 3위, 15승 9패 0무로 잔여 120경기를 남겨두고 있습니다.",
+        "summary": "SSG는 현재 3위, 15승 10패 0무로 잔여 119경기를 남겨두고 있습니다.",
         "reason": "현재는 아직 확정 전이지만, 88승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
         "cutline_note": "현재 포스트시즌 컷라인인 5위 KIA보다 3경기 앞서 있습니다.",
-        "schedule_note": "가장 많이 남은 상대는 한화로 14경기가 남아 있습니다.",
+        "schedule_note": "가장 많이 남은 상대는 KIA로 14경기가 남아 있습니다.",
         "notes": [
-          "SSG는 현재 3위, 15승 9패 0무로 잔여 120경기를 남겨두고 있습니다.",
+          "SSG는 현재 3위, 15승 10패 0무로 잔여 119경기를 남겨두고 있습니다.",
           "현재는 아직 확정 전이지만, 88승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
           "현재 포스트시즌 컷라인인 5위 KIA보다 3경기 앞서 있습니다.",
-          "가장 많이 남은 상대는 한화로 14경기가 남아 있습니다."
+          "가장 많이 남은 상대는 KIA로 14경기가 남아 있습니다."
         ],
         "rivals": [
           {
@@ -413,9 +392,9 @@
             "team_label": "LG",
             "rank": 2,
             "wins": 16,
-            "losses": 8,
+            "losses": 9,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
             "gap_from_selected": -1
           },
@@ -423,68 +402,48 @@
             "team": "Samsung",
             "team_label": "삼성",
             "rank": 4,
-            "wins": 12,
+            "wins": 13,
             "losses": 11,
             "draws": 1,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 2.5
+            "gap_from_selected": 1.5
           },
           {
             "team": "KIA",
             "team_label": "KIA",
             "rank": 5,
             "wins": 12,
-            "losses": 12,
+            "losses": 13,
             "draws": 1,
-            "remaining_games": 119,
+            "remaining_games": 118,
             "status_label": "확정 경쟁",
             "gap_from_selected": 3
           },
           {
             "team": "NC",
             "team_label": "NC",
-            "rank": 6,
-            "wins": 11,
+            "rank": 5,
+            "wins": 12,
             "losses": 13,
             "draws": 0,
-            "remaining_games": 120,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": 4
-          },
-          {
-            "team": "Doosan",
-            "team_label": "두산",
-            "rank": 7,
-            "wins": 10,
-            "losses": 14,
-            "draws": 1,
             "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 5
+            "gap_from_selected": 3
           },
           {
             "team": "Hanwha",
             "team_label": "한화",
             "rank": 7,
-            "wins": 10,
+            "wins": 11,
             "losses": 14,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 5
+            "gap_from_selected": 4
           }
         ],
         "remaining_schedule": [
-          {
-            "team": "Hanwha",
-            "team_label": "한화",
-            "games_left": 14,
-            "head_to_head_wins": 0,
-            "head_to_head_losses": 2,
-            "runs_for": 5,
-            "runs_against": 10
-          },
           {
             "team": "KIA",
             "team_label": "KIA",
@@ -511,6 +470,15 @@
             "head_to_head_losses": 1,
             "runs_for": 11,
             "runs_against": 12
+          },
+          {
+            "team": "Hanwha",
+            "team_label": "한화",
+            "games_left": 13,
+            "head_to_head_wins": 0,
+            "head_to_head_losses": 3,
+            "runs_for": 11,
+            "runs_against": 17
           },
           {
             "team": "KT",
@@ -564,29 +532,29 @@
       "team": "Samsung",
       "team_label": "삼성",
       "rank": 4,
-      "current_wins": 12,
+      "current_wins": 13,
       "current_losses": 11,
       "current_draws": 1,
-      "remaining_games": 120,
-      "win_pct": 0.5217,
+      "remaining_games": 119,
+      "win_pct": 0.5417,
       "eliminated": false,
       "min_wins": 37,
-      "magic_number": 25,
+      "magic_number": 24,
       "clinched": false,
-      "clinch_number": 90,
+      "clinch_number": 89,
       "clinch_wins": 102,
       "analysis": {
         "status": "near_clinch",
         "status_label": "확정 경쟁",
-        "headline": "앞으로 90승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
-        "summary": "삼성은 현재 4위, 12승 11패 1무로 잔여 120경기를 남겨두고 있습니다.",
-        "reason": "현재는 아직 확정 전이지만, 90승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-        "cutline_note": "현재 포스트시즌 컷라인인 5위 KIA보다 0.5경기 앞서 있습니다.",
+        "headline": "앞으로 89승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
+        "summary": "삼성은 현재 4위, 13승 11패 1무로 잔여 119경기를 남겨두고 있습니다.",
+        "reason": "현재는 아직 확정 전이지만, 89승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "cutline_note": "현재 포스트시즌 컷라인인 5위 KIA보다 1.5경기 앞서 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 KIA로 14경기가 남아 있습니다.",
         "notes": [
-          "삼성은 현재 4위, 12승 11패 1무로 잔여 120경기를 남겨두고 있습니다.",
-          "현재는 아직 확정 전이지만, 90승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-          "현재 포스트시즌 컷라인인 5위 KIA보다 0.5경기 앞서 있습니다.",
+          "삼성은 현재 4위, 13승 11패 1무로 잔여 119경기를 남겨두고 있습니다.",
+          "현재는 아직 확정 전이지만, 89승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+          "현재 포스트시즌 컷라인인 5위 KIA보다 1.5경기 앞서 있습니다.",
           "가장 많이 남은 상대는 KIA로 14경기가 남아 있습니다."
         ],
         "rivals": [
@@ -595,53 +563,42 @@
             "team_label": "SSG",
             "rank": 3,
             "wins": 15,
-            "losses": 9,
+            "losses": 10,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": -2.5
+            "gap_from_selected": -1.5
           },
           {
             "team": "KIA",
             "team_label": "KIA",
             "rank": 5,
             "wins": 12,
-            "losses": 12,
-            "draws": 1,
-            "remaining_games": 119,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": 0.5
-          },
-          {
-            "team": "NC",
-            "team_label": "NC",
-            "rank": 6,
-            "wins": 11,
             "losses": 13,
-            "draws": 0,
-            "remaining_games": 120,
+            "draws": 1,
+            "remaining_games": 118,
             "status_label": "확정 경쟁",
             "gap_from_selected": 1.5
           },
           {
-            "team": "Doosan",
-            "team_label": "두산",
-            "rank": 7,
-            "wins": 10,
-            "losses": 14,
-            "draws": 1,
+            "team": "NC",
+            "team_label": "NC",
+            "rank": 5,
+            "wins": 12,
+            "losses": 13,
+            "draws": 0,
             "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 2.5
+            "gap_from_selected": 1.5
           },
           {
             "team": "Hanwha",
             "team_label": "한화",
             "rank": 7,
-            "wins": 10,
+            "wins": 11,
             "losses": 14,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
             "gap_from_selected": 2.5
           }
@@ -673,15 +630,6 @@
             "head_to_head_losses": 2,
             "runs_for": 5,
             "runs_against": 12
-          },
-          {
-            "team": "Doosan",
-            "team_label": "두산",
-            "games_left": 13,
-            "head_to_head_wins": 2,
-            "head_to_head_losses": 0,
-            "runs_for": 23,
-            "runs_against": 10
           },
           {
             "team": "Hanwha",
@@ -727,6 +675,15 @@
             "head_to_head_losses": 3,
             "runs_for": 8,
             "runs_against": 16
+          },
+          {
+            "team": "Doosan",
+            "team_label": "두산",
+            "games_left": 12,
+            "head_to_head_wins": 3,
+            "head_to_head_losses": 0,
+            "runs_for": 28,
+            "runs_against": 14
           }
         ]
       }
@@ -736,10 +693,10 @@
       "team_label": "KIA",
       "rank": 5,
       "current_wins": 12,
-      "current_losses": 12,
+      "current_losses": 13,
       "current_draws": 1,
-      "remaining_games": 119,
-      "win_pct": 0.5,
+      "remaining_games": 118,
+      "win_pct": 0.48,
       "eliminated": false,
       "min_wins": 37,
       "magic_number": 25,
@@ -750,14 +707,13 @@
         "status": "near_clinch",
         "status_label": "확정 경쟁",
         "headline": "앞으로 90승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
-        "summary": "KIA는 현재 5위, 12승 12패 1무로 잔여 119경기를 남겨두고 있습니다.",
+        "summary": "KIA는 현재 5위, 12승 13패 1무로 잔여 118경기를 남겨두고 있습니다.",
         "reason": "현재는 아직 확정 전이지만, 90승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-        "cutline_note": "현재 컷라인 아래 NC보다 1경기 앞서 있습니다.",
+        "cutline_note": null,
         "schedule_note": "가장 많이 남은 상대는 SSG로 14경기가 남아 있습니다.",
         "notes": [
-          "KIA는 현재 5위, 12승 12패 1무로 잔여 119경기를 남겨두고 있습니다.",
+          "KIA는 현재 5위, 12승 13패 1무로 잔여 118경기를 남겨두고 있습니다.",
           "현재는 아직 확정 전이지만, 90승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-          "현재 컷라인 아래 NC보다 1경기 앞서 있습니다.",
           "가장 많이 남은 상대는 SSG로 14경기가 남아 있습니다."
         ],
         "rivals": [
@@ -765,45 +721,34 @@
             "team": "Samsung",
             "team_label": "삼성",
             "rank": 4,
-            "wins": 12,
+            "wins": 13,
             "losses": 11,
             "draws": 1,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": -0.5
+            "gap_from_selected": -1.5
           },
           {
             "team": "NC",
             "team_label": "NC",
-            "rank": 6,
-            "wins": 11,
+            "rank": 5,
+            "wins": 12,
             "losses": 13,
             "draws": 0,
-            "remaining_games": 120,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": 1
-          },
-          {
-            "team": "Doosan",
-            "team_label": "두산",
-            "rank": 7,
-            "wins": 10,
-            "losses": 14,
-            "draws": 1,
             "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 2
+            "gap_from_selected": 0
           },
           {
             "team": "Hanwha",
             "team_label": "한화",
             "rank": 7,
-            "wins": 10,
+            "wins": 11,
             "losses": 14,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 2
+            "gap_from_selected": 1
           }
         ],
         "remaining_schedule": [
@@ -882,11 +827,11 @@
           {
             "team": "NC",
             "team_label": "NC",
-            "games_left": 13,
+            "games_left": 12,
             "head_to_head_wins": 1,
-            "head_to_head_losses": 2,
-            "runs_for": 5,
-            "runs_against": 11
+            "head_to_head_losses": 3,
+            "runs_for": 9,
+            "runs_against": 16
           }
         ]
       }
@@ -894,30 +839,29 @@
     {
       "team": "NC",
       "team_label": "NC",
-      "rank": 6,
-      "current_wins": 11,
+      "rank": 5,
+      "current_wins": 12,
       "current_losses": 13,
       "current_draws": 0,
-      "remaining_games": 120,
-      "win_pct": 0.4583,
+      "remaining_games": 119,
+      "win_pct": 0.48,
       "eliminated": false,
       "min_wins": 37,
-      "magic_number": 26,
+      "magic_number": 25,
       "clinched": false,
-      "clinch_number": 92,
+      "clinch_number": 91,
       "clinch_wins": 103,
       "analysis": {
         "status": "near_clinch",
         "status_label": "확정 경쟁",
-        "headline": "앞으로 92승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
-        "summary": "NC는 현재 6위, 11승 13패 0무로 잔여 120경기를 남겨두고 있습니다.",
-        "reason": "현재는 아직 확정 전이지만, 92승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-        "cutline_note": "현재 컷라인 KIA에 1경기 뒤져 있습니다.",
+        "headline": "앞으로 91승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
+        "summary": "NC는 현재 5위, 12승 13패 0무로 잔여 119경기를 남겨두고 있습니다.",
+        "reason": "현재는 아직 확정 전이지만, 91승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "cutline_note": null,
         "schedule_note": "가장 많이 남은 상대는 두산로 14경기가 남아 있습니다.",
         "notes": [
-          "NC는 현재 6위, 11승 13패 0무로 잔여 120경기를 남겨두고 있습니다.",
-          "현재는 아직 확정 전이지만, 92승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-          "현재 컷라인 KIA에 1경기 뒤져 있습니다.",
+          "NC는 현재 5위, 12승 13패 0무로 잔여 119경기를 남겨두고 있습니다.",
+          "현재는 아직 확정 전이지만, 91승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
           "가장 많이 남은 상대는 두산로 14경기가 남아 있습니다."
         ],
         "rivals": [
@@ -925,10 +869,10 @@
             "team": "Samsung",
             "team_label": "삼성",
             "rank": 4,
-            "wins": 12,
+            "wins": 13,
             "losses": 11,
             "draws": 1,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
             "gap_from_selected": -1.5
           },
@@ -937,31 +881,20 @@
             "team_label": "KIA",
             "rank": 5,
             "wins": 12,
-            "losses": 12,
+            "losses": 13,
             "draws": 1,
-            "remaining_games": 119,
+            "remaining_games": 118,
             "status_label": "확정 경쟁",
-            "gap_from_selected": -1
-          },
-          {
-            "team": "Doosan",
-            "team_label": "두산",
-            "rank": 7,
-            "wins": 10,
-            "losses": 14,
-            "draws": 1,
-            "remaining_games": 119,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": 1
+            "gap_from_selected": 0
           },
           {
             "team": "Hanwha",
             "team_label": "한화",
             "rank": 7,
-            "wins": 10,
+            "wins": 11,
             "losses": 14,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
             "gap_from_selected": 1
           }
@@ -1004,15 +937,6 @@
             "runs_against": 14
           },
           {
-            "team": "KIA",
-            "team_label": "KIA",
-            "games_left": 13,
-            "head_to_head_wins": 2,
-            "head_to_head_losses": 1,
-            "runs_for": 11,
-            "runs_against": 5
-          },
-          {
             "team": "KT",
             "team_label": "KT",
             "games_left": 13,
@@ -1047,6 +971,175 @@
             "head_to_head_losses": 3,
             "runs_for": 12,
             "runs_against": 22
+          },
+          {
+            "team": "KIA",
+            "team_label": "KIA",
+            "games_left": 12,
+            "head_to_head_wins": 3,
+            "head_to_head_losses": 1,
+            "runs_for": 16,
+            "runs_against": 9
+          }
+        ]
+      }
+    },
+    {
+      "team": "Hanwha",
+      "team_label": "한화",
+      "rank": 7,
+      "current_wins": 11,
+      "current_losses": 14,
+      "current_draws": 0,
+      "remaining_games": 119,
+      "win_pct": 0.44,
+      "eliminated": false,
+      "min_wins": 37,
+      "magic_number": 26,
+      "clinched": false,
+      "clinch_number": 92,
+      "clinch_wins": 103,
+      "analysis": {
+        "status": "near_clinch",
+        "status_label": "확정 경쟁",
+        "headline": "앞으로 92승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
+        "summary": "한화는 현재 7위, 11승 14패 0무로 잔여 119경기를 남겨두고 있습니다.",
+        "reason": "현재는 아직 확정 전이지만, 92승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "cutline_note": "현재 컷라인 KIA에 1경기 뒤져 있습니다.",
+        "schedule_note": "가장 많이 남은 상대는 키움로 14경기가 남아 있습니다.",
+        "notes": [
+          "한화는 현재 7위, 11승 14패 0무로 잔여 119경기를 남겨두고 있습니다.",
+          "현재는 아직 확정 전이지만, 92승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+          "현재 컷라인 KIA에 1경기 뒤져 있습니다.",
+          "가장 많이 남은 상대는 키움로 14경기가 남아 있습니다."
+        ],
+        "rivals": [
+          {
+            "team": "Samsung",
+            "team_label": "삼성",
+            "rank": 4,
+            "wins": 13,
+            "losses": 11,
+            "draws": 1,
+            "remaining_games": 119,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": -2.5
+          },
+          {
+            "team": "KIA",
+            "team_label": "KIA",
+            "rank": 5,
+            "wins": 12,
+            "losses": 13,
+            "draws": 1,
+            "remaining_games": 118,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": -1
+          },
+          {
+            "team": "NC",
+            "team_label": "NC",
+            "rank": 5,
+            "wins": 12,
+            "losses": 13,
+            "draws": 0,
+            "remaining_games": 119,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": -1
+          },
+          {
+            "team": "Doosan",
+            "team_label": "두산",
+            "rank": 8,
+            "wins": 10,
+            "losses": 15,
+            "draws": 1,
+            "remaining_games": 118,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": 1
+          }
+        ],
+        "remaining_schedule": [
+          {
+            "team": "Kiwoom",
+            "team_label": "키움",
+            "games_left": 14,
+            "head_to_head_wins": 2,
+            "head_to_head_losses": 0,
+            "runs_for": 20,
+            "runs_against": 13
+          },
+          {
+            "team": "Lotte",
+            "team_label": "롯데",
+            "games_left": 14,
+            "head_to_head_wins": 2,
+            "head_to_head_losses": 0,
+            "runs_for": 14,
+            "runs_against": 1
+          },
+          {
+            "team": "Doosan",
+            "team_label": "두산",
+            "games_left": 13,
+            "head_to_head_wins": 2,
+            "head_to_head_losses": 1,
+            "runs_for": 20,
+            "runs_against": 17
+          },
+          {
+            "team": "KIA",
+            "team_label": "KIA",
+            "games_left": 13,
+            "head_to_head_wins": 0,
+            "head_to_head_losses": 3,
+            "runs_for": 13,
+            "runs_against": 21
+          },
+          {
+            "team": "KT",
+            "team_label": "KT",
+            "games_left": 13,
+            "head_to_head_wins": 0,
+            "head_to_head_losses": 3,
+            "runs_for": 23,
+            "runs_against": 36
+          },
+          {
+            "team": "LG",
+            "team_label": "LG",
+            "games_left": 13,
+            "head_to_head_wins": 1,
+            "head_to_head_losses": 2,
+            "runs_for": 13,
+            "runs_against": 13
+          },
+          {
+            "team": "NC",
+            "team_label": "NC",
+            "games_left": 13,
+            "head_to_head_wins": 1,
+            "head_to_head_losses": 2,
+            "runs_for": 14,
+            "runs_against": 13
+          },
+          {
+            "team": "SSG",
+            "team_label": "SSG",
+            "games_left": 13,
+            "head_to_head_wins": 3,
+            "head_to_head_losses": 0,
+            "runs_for": 17,
+            "runs_against": 11
+          },
+          {
+            "team": "Samsung",
+            "team_label": "삼성",
+            "games_left": 13,
+            "head_to_head_wins": 0,
+            "head_to_head_losses": 3,
+            "runs_for": 11,
+            "runs_against": 25
           }
         ]
       }
@@ -1054,28 +1147,29 @@
     {
       "team": "Doosan",
       "team_label": "두산",
-      "rank": 7,
+      "rank": 8,
       "current_wins": 10,
-      "current_losses": 14,
+      "current_losses": 15,
       "current_draws": 1,
-      "remaining_games": 119,
-      "win_pct": 0.4167,
+      "remaining_games": 118,
+      "win_pct": 0.4,
       "eliminated": false,
       "min_wins": 37,
       "magic_number": 27,
       "clinched": false,
       "clinch_number": 92,
       "clinch_wins": 102,
+      "solver_note": "time_limit_feasible",
       "analysis": {
         "status": "near_clinch",
         "status_label": "확정 경쟁",
         "headline": "앞으로 92승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
-        "summary": "두산은 현재 7위, 10승 14패 1무로 잔여 119경기를 남겨두고 있습니다.",
+        "summary": "두산은 현재 8위, 10승 15패 1무로 잔여 118경기를 남겨두고 있습니다.",
         "reason": "현재는 아직 확정 전이지만, 92승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
         "cutline_note": "현재 컷라인 KIA에 2경기 뒤져 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 키움로 14경기가 남아 있습니다.",
         "notes": [
-          "두산은 현재 7위, 10승 14패 1무로 잔여 119경기를 남겨두고 있습니다.",
+          "두산은 현재 8위, 10승 15패 1무로 잔여 118경기를 남겨두고 있습니다.",
           "현재는 아직 확정 전이지만, 92승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
           "현재 컷라인 KIA에 2경기 뒤져 있습니다.",
           "가장 많이 남은 상대는 키움로 14경기가 남아 있습니다."
@@ -1085,45 +1179,56 @@
             "team": "Samsung",
             "team_label": "삼성",
             "rank": 4,
-            "wins": 12,
+            "wins": 13,
             "losses": 11,
             "draws": 1,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": -2.5
+            "gap_from_selected": -3.5
           },
           {
             "team": "KIA",
             "team_label": "KIA",
             "rank": 5,
             "wins": 12,
-            "losses": 12,
+            "losses": 13,
             "draws": 1,
-            "remaining_games": 119,
+            "remaining_games": 118,
             "status_label": "확정 경쟁",
             "gap_from_selected": -2
           },
           {
             "team": "NC",
             "team_label": "NC",
-            "rank": 6,
-            "wins": 11,
+            "rank": 5,
+            "wins": 12,
             "losses": 13,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": -1
+            "gap_from_selected": -2
           },
           {
             "team": "Hanwha",
             "team_label": "한화",
             "rank": 7,
-            "wins": 10,
+            "wins": 11,
             "losses": 14,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 0
+            "gap_from_selected": -1
+          },
+          {
+            "team": "Kiwoom",
+            "team_label": "키움",
+            "rank": 9,
+            "wins": 10,
+            "losses": 16,
+            "draws": 0,
+            "remaining_games": 118,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": 0.5
           }
         ],
         "remaining_schedule": [
@@ -1202,171 +1307,11 @@
           {
             "team": "Samsung",
             "team_label": "삼성",
-            "games_left": 13,
+            "games_left": 12,
             "head_to_head_wins": 0,
-            "head_to_head_losses": 2,
-            "runs_for": 10,
-            "runs_against": 23
-          }
-        ]
-      }
-    },
-    {
-      "team": "Hanwha",
-      "team_label": "한화",
-      "rank": 7,
-      "current_wins": 10,
-      "current_losses": 14,
-      "current_draws": 0,
-      "remaining_games": 120,
-      "win_pct": 0.4167,
-      "eliminated": false,
-      "min_wins": 37,
-      "magic_number": 27,
-      "clinched": false,
-      "clinch_number": 93,
-      "clinch_wins": 103,
-      "analysis": {
-        "status": "near_clinch",
-        "status_label": "확정 경쟁",
-        "headline": "앞으로 93승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
-        "summary": "한화는 현재 7위, 10승 14패 0무로 잔여 120경기를 남겨두고 있습니다.",
-        "reason": "현재는 아직 확정 전이지만, 93승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-        "cutline_note": "현재 컷라인 KIA에 2경기 뒤져 있습니다.",
-        "schedule_note": "가장 많이 남은 상대는 키움로 14경기가 남아 있습니다.",
-        "notes": [
-          "한화는 현재 7위, 10승 14패 0무로 잔여 120경기를 남겨두고 있습니다.",
-          "현재는 아직 확정 전이지만, 93승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-          "현재 컷라인 KIA에 2경기 뒤져 있습니다.",
-          "가장 많이 남은 상대는 키움로 14경기가 남아 있습니다."
-        ],
-        "rivals": [
-          {
-            "team": "Samsung",
-            "team_label": "삼성",
-            "rank": 4,
-            "wins": 12,
-            "losses": 11,
-            "draws": 1,
-            "remaining_games": 120,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": -2.5
-          },
-          {
-            "team": "KIA",
-            "team_label": "KIA",
-            "rank": 5,
-            "wins": 12,
-            "losses": 12,
-            "draws": 1,
-            "remaining_games": 119,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": -2
-          },
-          {
-            "team": "NC",
-            "team_label": "NC",
-            "rank": 6,
-            "wins": 11,
-            "losses": 13,
-            "draws": 0,
-            "remaining_games": 120,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": -1
-          },
-          {
-            "team": "Doosan",
-            "team_label": "두산",
-            "rank": 7,
-            "wins": 10,
-            "losses": 14,
-            "draws": 1,
-            "remaining_games": 119,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": 0
-          }
-        ],
-        "remaining_schedule": [
-          {
-            "team": "Kiwoom",
-            "team_label": "키움",
-            "games_left": 14,
-            "head_to_head_wins": 2,
-            "head_to_head_losses": 0,
-            "runs_for": 20,
-            "runs_against": 13
-          },
-          {
-            "team": "Lotte",
-            "team_label": "롯데",
-            "games_left": 14,
-            "head_to_head_wins": 2,
-            "head_to_head_losses": 0,
+            "head_to_head_losses": 3,
             "runs_for": 14,
-            "runs_against": 1
-          },
-          {
-            "team": "SSG",
-            "team_label": "SSG",
-            "games_left": 14,
-            "head_to_head_wins": 2,
-            "head_to_head_losses": 0,
-            "runs_for": 10,
-            "runs_against": 5
-          },
-          {
-            "team": "Doosan",
-            "team_label": "두산",
-            "games_left": 13,
-            "head_to_head_wins": 2,
-            "head_to_head_losses": 1,
-            "runs_for": 20,
-            "runs_against": 17
-          },
-          {
-            "team": "KIA",
-            "team_label": "KIA",
-            "games_left": 13,
-            "head_to_head_wins": 0,
-            "head_to_head_losses": 3,
-            "runs_for": 13,
-            "runs_against": 21
-          },
-          {
-            "team": "KT",
-            "team_label": "KT",
-            "games_left": 13,
-            "head_to_head_wins": 0,
-            "head_to_head_losses": 3,
-            "runs_for": 23,
-            "runs_against": 36
-          },
-          {
-            "team": "LG",
-            "team_label": "LG",
-            "games_left": 13,
-            "head_to_head_wins": 1,
-            "head_to_head_losses": 2,
-            "runs_for": 13,
-            "runs_against": 13
-          },
-          {
-            "team": "NC",
-            "team_label": "NC",
-            "games_left": 13,
-            "head_to_head_wins": 1,
-            "head_to_head_losses": 2,
-            "runs_for": 14,
-            "runs_against": 13
-          },
-          {
-            "team": "Samsung",
-            "team_label": "삼성",
-            "games_left": 13,
-            "head_to_head_wins": 0,
-            "head_to_head_losses": 3,
-            "runs_for": 11,
-            "runs_against": 25
+            "runs_against": 28
           }
         ]
       }
@@ -1376,27 +1321,27 @@
       "team_label": "키움",
       "rank": 9,
       "current_wins": 10,
-      "current_losses": 15,
+      "current_losses": 16,
       "current_draws": 0,
-      "remaining_games": 119,
-      "win_pct": 0.4,
+      "remaining_games": 118,
+      "win_pct": 0.3846,
       "eliminated": false,
       "min_wins": 37,
       "magic_number": 27,
       "clinched": false,
-      "clinch_number": 93,
-      "clinch_wins": 103,
+      "clinch_number": 92,
+      "clinch_wins": 102,
       "analysis": {
         "status": "near_clinch",
         "status_label": "확정 경쟁",
-        "headline": "앞으로 93승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
-        "summary": "키움은 현재 9위, 10승 15패 0무로 잔여 119경기를 남겨두고 있습니다.",
-        "reason": "현재는 아직 확정 전이지만, 93승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "headline": "앞으로 92승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
+        "summary": "키움은 현재 9위, 10승 16패 0무로 잔여 118경기를 남겨두고 있습니다.",
+        "reason": "현재는 아직 확정 전이지만, 92승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
         "cutline_note": "현재 컷라인 KIA에 2.5경기 뒤져 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 두산로 14경기가 남아 있습니다.",
         "notes": [
-          "키움은 현재 9위, 10승 15패 0무로 잔여 119경기를 남겨두고 있습니다.",
-          "현재는 아직 확정 전이지만, 93승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+          "키움은 현재 9위, 10승 16패 0무로 잔여 118경기를 남겨두고 있습니다.",
+          "현재는 아직 확정 전이지만, 92승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
           "현재 컷라인 KIA에 2.5경기 뒤져 있습니다.",
           "가장 많이 남은 상대는 두산로 14경기가 남아 있습니다."
         ],
@@ -1405,54 +1350,54 @@
             "team": "Samsung",
             "team_label": "삼성",
             "rank": 4,
-            "wins": 12,
+            "wins": 13,
             "losses": 11,
             "draws": 1,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": -3
+            "gap_from_selected": -4
           },
           {
             "team": "KIA",
             "team_label": "KIA",
             "rank": 5,
             "wins": 12,
-            "losses": 12,
+            "losses": 13,
             "draws": 1,
-            "remaining_games": 119,
+            "remaining_games": 118,
             "status_label": "확정 경쟁",
             "gap_from_selected": -2.5
           },
           {
             "team": "NC",
             "team_label": "NC",
-            "rank": 6,
-            "wins": 11,
+            "rank": 5,
+            "wins": 12,
             "losses": 13,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
+            "status_label": "확정 경쟁",
+            "gap_from_selected": -2.5
+          },
+          {
+            "team": "Hanwha",
+            "team_label": "한화",
+            "rank": 7,
+            "wins": 11,
+            "losses": 14,
+            "draws": 0,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
             "gap_from_selected": -1.5
           },
           {
             "team": "Doosan",
             "team_label": "두산",
-            "rank": 7,
+            "rank": 8,
             "wins": 10,
-            "losses": 14,
+            "losses": 15,
             "draws": 1,
-            "remaining_games": 119,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": -0.5
-          },
-          {
-            "team": "Hanwha",
-            "team_label": "한화",
-            "rank": 7,
-            "wins": 10,
-            "losses": 14,
-            "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 118,
             "status_label": "확정 경쟁",
             "gap_from_selected": -0.5
           },
@@ -1460,12 +1405,12 @@
             "team": "Lotte",
             "team_label": "롯데",
             "rank": 10,
-            "wins": 7,
+            "wins": 8,
             "losses": 16,
             "draws": 1,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": 2
+            "gap_from_selected": 1
           }
         ],
         "remaining_schedule": [
@@ -1515,15 +1460,6 @@
             "runs_against": 14
           },
           {
-            "team": "Lotte",
-            "team_label": "롯데",
-            "games_left": 13,
-            "head_to_head_wins": 1,
-            "head_to_head_losses": 2,
-            "runs_for": 4,
-            "runs_against": 6
-          },
-          {
             "team": "NC",
             "team_label": "NC",
             "games_left": 13,
@@ -1549,6 +1485,15 @@
             "head_to_head_losses": 0,
             "runs_for": 12,
             "runs_against": 6
+          },
+          {
+            "team": "Lotte",
+            "team_label": "롯데",
+            "games_left": 12,
+            "head_to_head_wins": 1,
+            "head_to_head_losses": 3,
+            "runs_for": 8,
+            "runs_against": 11
           }
         ]
       }
@@ -1557,29 +1502,29 @@
       "team": "Lotte",
       "team_label": "롯데",
       "rank": 10,
-      "current_wins": 7,
+      "current_wins": 8,
       "current_losses": 16,
       "current_draws": 1,
-      "remaining_games": 120,
-      "win_pct": 0.3043,
+      "remaining_games": 119,
+      "win_pct": 0.3333,
       "eliminated": false,
       "min_wins": 37,
-      "magic_number": 30,
+      "magic_number": 29,
       "clinched": false,
-      "clinch_number": 95,
+      "clinch_number": 94,
       "clinch_wins": 102,
       "analysis": {
         "status": "near_clinch",
         "status_label": "확정 경쟁",
-        "headline": "앞으로 95승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
-        "summary": "롯데는 현재 10위, 7승 16패 1무로 잔여 120경기를 남겨두고 있습니다.",
-        "reason": "현재는 아직 확정 전이지만, 95승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-        "cutline_note": "현재 컷라인 KIA에 4.5경기 뒤져 있습니다.",
+        "headline": "앞으로 94승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
+        "summary": "롯데는 현재 10위, 8승 16패 1무로 잔여 119경기를 남겨두고 있습니다.",
+        "reason": "현재는 아직 확정 전이지만, 94승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+        "cutline_note": "현재 컷라인 KIA에 3.5경기 뒤져 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 한화로 14경기가 남아 있습니다.",
         "notes": [
-          "롯데는 현재 10위, 7승 16패 1무로 잔여 120경기를 남겨두고 있습니다.",
-          "현재는 아직 확정 전이지만, 95승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
-          "현재 컷라인 KIA에 4.5경기 뒤져 있습니다.",
+          "롯데는 현재 10위, 8승 16패 1무로 잔여 119경기를 남겨두고 있습니다.",
+          "현재는 아직 확정 전이지만, 94승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
+          "현재 컷라인 KIA에 3.5경기 뒤져 있습니다.",
           "가장 많이 남은 상대는 한화로 14경기가 남아 있습니다."
         ],
         "rivals": [
@@ -1587,10 +1532,10 @@
             "team": "Samsung",
             "team_label": "삼성",
             "rank": 4,
-            "wins": 12,
+            "wins": 13,
             "losses": 11,
             "draws": 1,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
             "gap_from_selected": -5
           },
@@ -1599,42 +1544,31 @@
             "team_label": "KIA",
             "rank": 5,
             "wins": 12,
-            "losses": 12,
-            "draws": 1,
-            "remaining_games": 119,
-            "status_label": "확정 경쟁",
-            "gap_from_selected": -4.5
-          },
-          {
-            "team": "NC",
-            "team_label": "NC",
-            "rank": 6,
-            "wins": 11,
             "losses": 13,
-            "draws": 0,
-            "remaining_games": 120,
+            "draws": 1,
+            "remaining_games": 118,
             "status_label": "확정 경쟁",
             "gap_from_selected": -3.5
           },
           {
-            "team": "Doosan",
-            "team_label": "두산",
-            "rank": 7,
-            "wins": 10,
-            "losses": 14,
-            "draws": 1,
+            "team": "NC",
+            "team_label": "NC",
+            "rank": 5,
+            "wins": 12,
+            "losses": 13,
+            "draws": 0,
             "remaining_games": 119,
             "status_label": "확정 경쟁",
-            "gap_from_selected": -2.5
+            "gap_from_selected": -3.5
           },
           {
             "team": "Hanwha",
             "team_label": "한화",
             "rank": 7,
-            "wins": 10,
+            "wins": 11,
             "losses": 14,
             "draws": 0,
-            "remaining_games": 120,
+            "remaining_games": 119,
             "status_label": "확정 경쟁",
             "gap_from_selected": -2.5
           },
@@ -1643,11 +1577,11 @@
             "team_label": "키움",
             "rank": 9,
             "wins": 10,
-            "losses": 15,
+            "losses": 16,
             "draws": 0,
-            "remaining_games": 119,
+            "remaining_games": 118,
             "status_label": "확정 경쟁",
-            "gap_from_selected": -2
+            "gap_from_selected": -1
           }
         ],
         "remaining_schedule": [
@@ -1697,15 +1631,6 @@
             "runs_against": 13
           },
           {
-            "team": "Kiwoom",
-            "team_label": "키움",
-            "games_left": 13,
-            "head_to_head_wins": 2,
-            "head_to_head_losses": 1,
-            "runs_for": 6,
-            "runs_against": 4
-          },
-          {
             "team": "LG",
             "team_label": "LG",
             "games_left": 13,
@@ -1731,6 +1656,15 @@
             "head_to_head_losses": 3,
             "runs_for": 11,
             "runs_against": 28
+          },
+          {
+            "team": "Kiwoom",
+            "team_label": "키움",
+            "games_left": 12,
+            "head_to_head_wins": 3,
+            "head_to_head_losses": 1,
+            "runs_for": 11,
+            "runs_against": 8
           }
         ]
       }
@@ -1740,11 +1674,6 @@
     "rank": 5,
     "team": "KIA",
     "team_label": "KIA"
-  },
-  "bubble": {
-    "rank": 6,
-    "team": "NC",
-    "team_label": "NC"
   },
   "phase": "regular",
   "phase_label": "정규시즌"
