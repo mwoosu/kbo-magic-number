@@ -210,7 +210,7 @@ def solve_magic_number(env, data, target_team, verbose=False):
 
     R = [1, 2, 3]
     max_draws = 20
-    i_bar = 14
+    i_bar = 5
     n_playoff = N_PLAYOFF
 
     # --- 모델 생성 ---
@@ -437,7 +437,7 @@ def solve_clinch_number(env, data, target_team, verbose=False):
 
     R = [1, 2, 3]
     max_draws = 20
-    i_bar = 14
+    i_bar = 5
     n_playoff = N_PLAYOFF
 
     model = gp.Model(env=env)
@@ -579,11 +579,23 @@ def solve_clinch_number(env, data, target_team, verbose=False):
     model.addConstrs((N[k] + omega[t, k] >= N[t] + alpha[t, k] for t in T_k), name="A.12b")
     model.addConstrs((N[t] + omega[k, t] >= N[k] + alpha[k, t] for t in T_k), name="A.12b_rev")
 
-    # === 핵심 차이: k가 포스트시즌에 들지 못하는 제약 ===
-    # 탈락 모델(A.12)에서는 "k가 5위 안에 든다"를 강제했지만,
-    # 확정 모델에서는 "k가 5위 밖으로 밀려난다"를 강제합니다.
-    # → n_playoff팀 이상이 k보다 위에 있어야 함
-    model.addConstr(gp.quicksum(omega[t, k] for t in T_k) >= n_playoff, name="Clinch_not_in_PS")
+    # === 논문 Appendix C.3: k가 포스트시즌 진출에 실패하는 시나리오 ===
+    # (C.4) Σ ω_kt ≤ (|T_k| - n) + n·ι^1
+    #   → ι^1=0이면 k 아래 팀이 |T_k|-n=4팀 이하 = k보다 위에 5팀 이상 = 6위 이하
+    #   → ι^1=1이면 완화 (k가 한 팀과만 동률인 경우)
+    # (C.5) Σ β_kt ≤ (|T_k| - n - 1) + (n+1)·(1 - ι^1)
+    #   → ι^1=1이면 k가 strict하게 이긴 팀이 |T_k|-n-1=3팀 이하 = 5위에서 동률 컷되는 경우 차단
+    model.addConstr(
+        gp.quicksum(omega[k, t] for t in T_k) <= (len(T_k) - n_playoff) + n_playoff * I_hat_1,
+        name="C.4",
+    )
+    model.addConstr(
+        gp.quicksum(beta[k, t] for t in T_k) <= (len(T_k) - n_playoff - 1) + (n_playoff + 1) * (1 - I_hat_1),
+        name="C.5",
+    )
+
+    # 이전 단순 제약(Clinch_not_in_PS)은 C.4/C.5로 대체됨
+    # model.addConstr(gp.quicksum(omega[t, k] for t in T_k) >= n_playoff, name="Clinch_not_in_PS")
 
     # === 최적화 ===
     model.optimize()
