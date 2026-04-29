@@ -444,7 +444,7 @@ def solve_clinch_number(env, data, target_team, verbose=False):
     model.Params.NonConvex = 2
     model.Params.DualReductions = 0
     model.Params.OutputFlag = 1 if verbose else 0
-    model.Params.TimeLimit = 300  # 5분 제한
+    model.Params.TimeLimit = 600  # 10분 제한
 
     # --- 변수 (탈락 모델과 동일) ---
     N = model.addVars(teams, vtype=GRB.CONTINUOUS, lb=0.0, ub=1.0, name='N')
