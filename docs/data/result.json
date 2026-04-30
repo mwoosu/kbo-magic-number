@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-30 08:00",
+  "updated_at": "2026-04-30 17:17",
   "data_date": "2026-04-29",
   "n_playoff": 5,
   "teams": [
@@ -206,8 +206,8 @@
       "remaining_games": 118,
       "win_pct": 0.6154,
       "eliminated": false,
-      "min_wins": 42,
-      "magic_number": 26,
+      "min_wins": 43,
+      "magic_number": 27,
       "clinched": false,
       "clinch_number": 85,
       "clinch_wins": 101,
@@ -388,8 +388,8 @@
       "remaining_games": 118,
       "win_pct": 0.6154,
       "eliminated": false,
-      "min_wins": 42,
-      "magic_number": 26,
+      "min_wins": 43,
+      "magic_number": 27,
       "clinched": false,
       "clinch_number": 85,
       "clinch_wins": 101,
