@@ -254,8 +254,8 @@ def solve_magic_number(env, data, target_team, verbose=False):
     model.addConstrs((N[i] * (W[i] + L[i]) == W[i] for i in teams), name="A.3")
 
     # === A.4 Drawn Games ===
-    model.addConstrs((I[i] == gp.quicksum(j * tau[i, j] for j in range(max_draws)) for i in teams), name="A.4a")
-    model.addConstrs((gp.quicksum(tau[i, j] for j in range(max_draws)) == 1 for i in teams), name="A.4b")
+    model.addConstrs((I[i] == gp.quicksum(j * tau[i, j] for j in range(i_bar)) for i in teams), name="A.4a")
+    model.addConstrs((gp.quicksum(tau[i, j] for j in range(i_bar)) == 1 for i in teams), name="A.4b")
     model.addConstrs((I[i] <= max(i_bar, i_hat[i]) for i in teams), name="A.4c")
 
     # === A.5 Tie Indicators ===
@@ -476,8 +476,8 @@ def solve_clinch_number(env, data, target_team, verbose=False):
     model.addConstrs((I[i] == i_hat[i] + gp.quicksum(Y[i, j] for j in teams if i != j) for i in teams), name="A.2d")
     model.addConstrs((Y[i, j] == Y[j, i] for (i, j) in pairs), name="A.2e")
     model.addConstrs((N[i] * (W[i] + L[i]) == W[i] for i in teams), name="A.3")
-    model.addConstrs((I[i] == gp.quicksum(j * tau[i, j] for j in range(max_draws)) for i in teams), name="A.4a")
-    model.addConstrs((gp.quicksum(tau[i, j] for j in range(max_draws)) == 1 for i in teams), name="A.4b")
+    model.addConstrs((I[i] == gp.quicksum(j * tau[i, j] for j in range(i_bar)) for i in teams), name="A.4a")
+    model.addConstrs((gp.quicksum(tau[i, j] for j in range(i_bar)) == 1 for i in teams), name="A.4b")
     model.addConstrs((I[i] <= max(i_bar, i_hat[i]) for i in teams), name="A.4c")
 
     # === A.5~A.6 (동률 제약 — 동일) ===
