@@ -3,7 +3,7 @@
 # ============================================================
 #
 # 이 파일이 하는 일:
-#   1. 매일 KST 23:00 (UTC 14:00)에 자동 실행
+#   1. 매일 KST 02:00 (UTC 17:00)에 자동 실행 — 전날 경기 KBO 갱신 완료 후
 #   2. Chrome + Python + Gurobi 설치
 #   3. 라이브 데이터 크롤링 → phase(시범경기/정규시즌) 판별
 #   4. 정규시즌이면 solver 실행, 시범경기면 standings JSON 생성
@@ -21,8 +21,8 @@ name: Daily KBO Dashboard
 
 on:
   schedule:
-    # UTC 14:00 = KST 23:00 (경기 종료 후)
-    - cron: '0 14 * * *'
+    # UTC 17:00 = KST 다음날 02:00 (KBO 사이트 그날 자 갱신 완료 후)
+    - cron: '0 17 * * *'
   workflow_dispatch:  # 수동 실행 허용
 
 permissions:
