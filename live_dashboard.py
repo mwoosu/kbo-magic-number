@@ -342,6 +342,70 @@ def ordered_pairs() -> Iterable[tuple[str, str]]:
             yield left, right
 
 
+def build_matchup_matrices_from_versus(versus: dict[str, str]):
+    """Build head-to-head wins and remaining games from the standings matchup table."""
+    remaining_matrix = [[0] * len(TEAM_NAMES) for _ in TEAM_NAMES]
+    h2h_wins = [[0] * len(TEAM_NAMES) for _ in TEAM_NAMES]
+
+    for left, right in ordered_pairs():
+        record = versus.get(f"{left} vs {right}")
+        if record:
+            left_wins, right_wins, draws = parse_triplet(record)
+        else:
+            reverse_record = versus.get(f"{right} vs {left}")
+            if not reverse_record:
+                raise ValueError(f"missing head-to-head record for {left} vs {right}")
+            right_wins, left_wins, draws = parse_triplet(reverse_record)
+
+        games_played = left_wins + right_wins + draws
+        if games_played > GAMES_PER_PAIR:
+            raise ValueError(
+                f"head-to-head record for {left} vs {right} exceeds {GAMES_PER_PAIR} games: "
+                f"{left_wins}-{right_wins}-{draws}"
+            )
+
+        left_idx = TEAM_NAMES.index(left)
+        right_idx = TEAM_NAMES.index(right)
+        remaining = GAMES_PER_PAIR - games_played
+
+        h2h_wins[left_idx][right_idx] = left_wins
+        h2h_wins[right_idx][left_idx] = right_wins
+        remaining_matrix[left_idx][right_idx] = remaining
+        remaining_matrix[right_idx][left_idx] = remaining
+
+    return remaining_matrix, h2h_wins
+
+
+def warn_if_schedule_remaining_differs(versus_remaining, schedule_remaining):
+    differences = []
+    for left, right in ordered_pairs():
+        left_idx = TEAM_NAMES.index(left)
+        right_idx = TEAM_NAMES.index(right)
+        expected = versus_remaining[left_idx][right_idx]
+        observed = schedule_remaining[left_idx][right_idx]
+        if expected != observed:
+            differences.append(f"{left}-{right}: standings={expected}, schedule={observed}")
+
+    if differences:
+        preview = "; ".join(differences[:10])
+        if len(differences) > 10:
+            preview += f"; ... +{len(differences) - 10} more"
+        print(f"[WARN] schedule API remaining games differ from standings table; using standings table. {preview}")
+
+
+def validate_remaining_games(snapshot):
+    season_games = GAMES_PER_PAIR * (len(TEAM_NAMES) - 1)
+    for idx, team in enumerate(TEAM_NAMES):
+        played = snapshot["wins"][idx] + snapshot["losses"][idx] + snapshot["draws"][idx]
+        expected_remaining = season_games - played
+        observed_remaining = sum(snapshot["remaining_matrix"][idx])
+        if observed_remaining != expected_remaining:
+            raise ValueError(
+                f"{team} remaining games mismatch: standings imply {expected_remaining}, "
+                f"matrix has {observed_remaining}"
+            )
+
+
 def current_prior_year_rank(csv_path: str, previous_year: int) -> dict[str, int]:
     path = Path(csv_path)
     if not path.exists():
@@ -472,22 +536,13 @@ def build_regular_snapshot(series: SeriesSnapshot, historical_csv: str):
     if series.versus is None:
         raise ValueError("regular season snapshot is missing the versus table")
 
-    remaining_matrix, runs_matrix = crawl_schedule_snapshot(series.data_date)
-
-    h2h_wins = [[0] * len(TEAM_NAMES) for _ in TEAM_NAMES]
-    for home, away in ordered_pairs():
-        record = series.versus.get(f"{home} vs {away}")
-        if not record:
-            continue
-        wins, losses, _draws = parse_triplet(record)
-        home_idx = TEAM_NAMES.index(home)
-        away_idx = TEAM_NAMES.index(away)
-        h2h_wins[home_idx][away_idx] = wins
-        h2h_wins[away_idx][home_idx] = losses
+    remaining_matrix, h2h_wins = build_matchup_matrices_from_versus(series.versus)
+    schedule_remaining, runs_matrix = crawl_schedule_snapshot(series.data_date)
+    warn_if_schedule_remaining_differs(remaining_matrix, schedule_remaining)
 
     prior_year_rank = current_prior_year_rank(historical_csv, series.data_date.year - 1)
 
-    return {
+    snapshot = {
         "date": dashed_date(series.data_date),
         "teams": TEAM_NAMES,
         "wins": [standings_map[team]["wins"] for team in TEAM_NAMES],
@@ -499,6 +554,8 @@ def build_regular_snapshot(series: SeriesSnapshot, historical_csv: str):
         "head_to_head_runs": runs_matrix,
         "prior_year_rank": [prior_year_rank[team] for team in TEAM_NAMES],
     }
+    validate_remaining_games(snapshot)
+    return snapshot
 
 
 def build_exhibition_output(series: SeriesSnapshot):
