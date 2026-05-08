@@ -278,6 +278,7 @@ def solve_magic_number(env, data, target_team, verbose=False):
     model.addConstrs((Z[t] + beta[k, t] + beta[t, k] == 1 for t in T_k), name="A.6h")
     model.addConstrs((Z_hat[i, i] == 0 for i in teams), name="A.6i_diag")
     model.addConstrs((Z_hat[i, j] == Z_hat[j, i] for (i, j) in pairs), name="A.6i_sym")
+    model.addConstr(Z[k] == 1, name="A.6i_target")
     model.addConstrs((Z[i] + Z[j] <= Z_hat[i, j] + 1 for (i, j) in pairs), name="A.6i")
     model.addConstrs((2 * Z_hat[i, j] + beta[k, i] + beta[i, k] + beta[k, j] + beta[j, k] <= 2 for (i, j) in pairs), name="A.6j")
 
@@ -499,6 +500,7 @@ def solve_clinch_number(env, data, target_team, verbose=False):
     model.addConstrs((Z[t] + beta[k, t] + beta[t, k] == 1 for t in T_k), name="A.6h")
     model.addConstrs((Z_hat[i, i] == 0 for i in teams), name="A.6i_diag")
     model.addConstrs((Z_hat[i, j] == Z_hat[j, i] for (i, j) in pairs), name="A.6i_sym")
+    model.addConstr(Z[k] == 1, name="A.6i_target")
     model.addConstrs((Z[i] + Z[j] <= Z_hat[i, j] + 1 for (i, j) in pairs), name="A.6i")
     model.addConstrs((2 * Z_hat[i, j] + beta[k, i] + beta[i, k] + beta[k, j] + beta[j, k] <= 2 for (i, j) in pairs), name="A.6j")
 
