@@ -77,6 +77,15 @@ class SeriesSnapshot:
     versus: dict[str, str] | None = None
 
 
+@dataclass
+class MatchupSnapshot:
+    data_date: date
+    source: str
+    remaining_matrix: list[list[int]]
+    head_to_head_wins: list[list[int]]
+    runs_matrix: list[list[int]]
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Build the KBO dashboard JSON")
     parser.add_argument("--output", required=True, help="Dashboard JSON output path")
@@ -393,6 +402,72 @@ def warn_if_schedule_remaining_differs(versus_remaining, schedule_remaining):
         print(f"[WARN] schedule API remaining games differ from standings table; using standings table. {preview}")
 
 
+def remaining_totals(remaining_matrix):
+    return {
+        team: sum(remaining_matrix[idx])
+        for idx, team in enumerate(TEAM_NAMES)
+    }
+
+
+def expected_remaining_from_standings(standings_map):
+    season_games = GAMES_PER_PAIR * (len(TEAM_NAMES) - 1)
+    return {
+        team: season_games
+        - standings_map[team]["wins"]
+        - standings_map[team]["losses"]
+        - standings_map[team]["draws"]
+        for team in TEAM_NAMES
+    }
+
+
+def remaining_mismatches(remaining_matrix, expected_remaining):
+    observed_remaining = remaining_totals(remaining_matrix)
+    return {
+        team: (expected_remaining[team], observed_remaining[team])
+        for team in TEAM_NAMES
+        if observed_remaining[team] != expected_remaining[team]
+    }
+
+
+def format_remaining_mismatches(mismatches):
+    preview = [
+        f"{team}: standings={expected}, matrix={observed}"
+        for team, (expected, observed) in list(mismatches.items())[:10]
+    ]
+    if len(mismatches) > 10:
+        preview.append(f"... +{len(mismatches) - 10} more")
+    return "; ".join(preview)
+
+
+def find_schedule_matchup_snapshot(displayed_date: date, expected_remaining):
+    last_mismatches = None
+    max_date = min(now_kst().date(), displayed_date + timedelta(days=3))
+    if max_date < displayed_date:
+        max_date = displayed_date
+
+    for offset in range((max_date - displayed_date).days + 1):
+        candidate_date = displayed_date + timedelta(days=offset)
+        remaining_matrix, h2h_wins, runs_matrix = crawl_schedule_snapshot(candidate_date)
+        mismatches = remaining_mismatches(remaining_matrix, expected_remaining)
+        if not mismatches:
+            return MatchupSnapshot(
+                data_date=candidate_date,
+                source="schedule",
+                remaining_matrix=remaining_matrix,
+                head_to_head_wins=h2h_wins,
+                runs_matrix=runs_matrix,
+            )
+        last_mismatches = (candidate_date, mismatches)
+
+    if last_mismatches:
+        candidate_date, mismatches = last_mismatches
+        print(
+            "[WARN] schedule API did not match standings through "
+            f"{candidate_date}: {format_remaining_mismatches(mismatches)}"
+        )
+    return None
+
+
 def validate_remaining_games(snapshot):
     season_games = GAMES_PER_PAIR * (len(TEAM_NAMES) - 1)
     for idx, team in enumerate(TEAM_NAMES):
@@ -475,6 +550,7 @@ def _parse_play_cell(html: str):
 def crawl_schedule_snapshot(current_date: date):
     """KBO 공식 스케줄 API에서 정규시즌 경기 데이터를 크롤링."""
     completed_games = {(team, other): 0 for team in TEAM_NAMES for other in TEAM_NAMES}
+    head_to_head_wins = {(team, other): 0 for team in TEAM_NAMES for other in TEAM_NAMES}
     runs = {(team, other): 0 for team in TEAM_NAMES for other in TEAM_NAMES}
 
     session = requests.Session()
@@ -515,6 +591,10 @@ def crawl_schedule_snapshot(current_date: date):
                     if completed and current_game_date and current_game_date <= current_date:
                         completed_games[away_team, home_team] += 1
                         completed_games[home_team, away_team] += 1
+                        if away_score > home_score:
+                            head_to_head_wins[away_team, home_team] += 1
+                        elif home_score > away_score:
+                            head_to_head_wins[home_team, away_team] += 1
                         runs[away_team, home_team] += away_score
                         runs[home_team, away_team] += home_score
 
@@ -528,7 +608,11 @@ def crawl_schedule_snapshot(current_date: date):
         [0 if team == other else runs[team, other] for other in TEAM_NAMES]
         for team in TEAM_NAMES
     ]
-    return remaining_matrix, runs_matrix
+    h2h_wins_matrix = [
+        [0 if team == other else head_to_head_wins[team, other] for other in TEAM_NAMES]
+        for team in TEAM_NAMES
+    ]
+    return remaining_matrix, h2h_wins_matrix, runs_matrix
 
 
 def build_regular_snapshot(series: SeriesSnapshot, historical_csv: str):
@@ -536,14 +620,39 @@ def build_regular_snapshot(series: SeriesSnapshot, historical_csv: str):
     if series.versus is None:
         raise ValueError("regular season snapshot is missing the versus table")
 
-    remaining_matrix, h2h_wins = build_matchup_matrices_from_versus(series.versus)
-    schedule_remaining, runs_matrix = crawl_schedule_snapshot(series.data_date)
-    warn_if_schedule_remaining_differs(remaining_matrix, schedule_remaining)
+    expected_remaining = expected_remaining_from_standings(standings_map)
+    versus_remaining, versus_h2h_wins = build_matchup_matrices_from_versus(series.versus)
+    versus_mismatches = remaining_mismatches(versus_remaining, expected_remaining)
+    schedule_snapshot = find_schedule_matchup_snapshot(series.data_date, expected_remaining)
+
+    if not versus_mismatches:
+        remaining_matrix = versus_remaining
+        h2h_wins = versus_h2h_wins
+        if schedule_snapshot:
+            warn_if_schedule_remaining_differs(remaining_matrix, schedule_snapshot.remaining_matrix)
+            runs_matrix = schedule_snapshot.runs_matrix
+        else:
+            _schedule_remaining, _schedule_h2h_wins, runs_matrix = crawl_schedule_snapshot(series.data_date)
+        snapshot_date = series.data_date
+    else:
+        if not schedule_snapshot:
+            raise ValueError(
+                "team-vs-team table is out of sync with standings and no schedule snapshot matched: "
+                + format_remaining_mismatches(versus_mismatches)
+            )
+        print(
+            "[WARN] team-vs-team table is out of sync with standings; using schedule API snapshot. "
+            + format_remaining_mismatches(versus_mismatches)
+        )
+        remaining_matrix = schedule_snapshot.remaining_matrix
+        h2h_wins = schedule_snapshot.head_to_head_wins
+        runs_matrix = schedule_snapshot.runs_matrix
+        snapshot_date = schedule_snapshot.data_date
 
     prior_year_rank = current_prior_year_rank(historical_csv, series.data_date.year - 1)
 
     snapshot = {
-        "date": dashed_date(series.data_date),
+        "date": dashed_date(snapshot_date),
         "teams": TEAM_NAMES,
         "wins": [standings_map[team]["wins"] for team in TEAM_NAMES],
         "losses": [standings_map[team]["losses"] for team in TEAM_NAMES],

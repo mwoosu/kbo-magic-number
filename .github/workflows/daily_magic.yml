@@ -42,7 +42,7 @@ jobs:
         id: setup-chrome
         uses: browser-actions/setup-chrome@v2
         with:
-          install-chromedriver: false
+          install-chromedriver: true
 
       - name: Set up Python
         uses: actions/setup-python@v6
