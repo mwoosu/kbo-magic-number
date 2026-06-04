@@ -554,7 +554,14 @@ def crawl_schedule_snapshot(current_date: date):
     runs = {(team, other): 0 for team in TEAM_NAMES for other in TEAM_NAMES}
 
     session = requests.Session()
-    session.headers.update({"User-Agent": USER_AGENT})
+    session.headers.update(
+        {
+            "User-Agent": USER_AGENT,
+            "Referer": "https://www.koreabaseball.com/Schedule/Schedule.aspx",
+            "Accept": "application/json, text/javascript, */*; q=0.01",
+            "X-Requested-With": "XMLHttpRequest",
+        }
+    )
 
     year = current_date.year
     for month in range(3, 12):  # 3월~11월
@@ -570,7 +577,15 @@ def crawl_schedule_snapshot(current_date: date):
             timeout=20,
         )
         response.raise_for_status()
-        data = response.json()
+        try:
+            data = response.json()
+        except ValueError as exc:
+            snippet = response.text[:200].replace("\n", " ").replace("\r", " ")
+            raise RuntimeError(
+                "KBO schedule API returned non-JSON response "
+                f"for {year}-{month:02d}: content-type={response.headers.get('content-type')!r}, "
+                f"body={snippet!r}"
+            ) from exc
 
         current_game_date = None
         for row_obj in data.get("rows", []):
