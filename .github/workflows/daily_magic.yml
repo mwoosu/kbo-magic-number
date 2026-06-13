@@ -75,6 +75,28 @@ jobs:
             --output docs/data/result.json \
             --source-output data/live_source.json
 
+      - name: Validate dashboard JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path("docs/data/result.json").read_text())
+          teams = payload.get("teams") or []
+          if payload.get("phase") == "regular":
+              required = {"remaining_games", "magic_number", "clinch_number"}
+              missing = [
+                  team.get("team", f"team#{idx}")
+                  for idx, team in enumerate(teams)
+                  if not required <= team.keys()
+              ]
+              if missing:
+                  raise SystemExit(
+                      "regular dashboard output is missing solver fields for: "
+                      + ", ".join(missing)
+                  )
+          PY
+
       - name: Commit and push results
         run: |
           git config user.name "github-actions[bot]"

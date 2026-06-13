@@ -791,10 +791,9 @@ def main_cli():
             output_payload["phase"] = "regular"
             output_payload["phase_label"] = regular_snapshot.phase_label
         except Exception as exc:
-            print(f"[WARN] solver failed, falling back to standings-only: {exc}")
-            output_payload = build_exhibition_output(regular_snapshot)
-            output_payload["phase"] = "regular"
-            output_payload["phase_label"] = regular_snapshot.phase_label
+            raise RuntimeError(
+                "regular-season solver failed; refusing to publish standings-only output"
+            ) from exc
     elif selected_phase == "exhibition":
         if not exhibition_snapshot:
             raise RuntimeError("exhibition was selected but the exhibition crawl did not succeed")
