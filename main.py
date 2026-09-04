@@ -254,8 +254,11 @@ def solve_magic_number(env, data, target_team, verbose=False):
     model.addConstrs((N[i] * (W[i] + L[i]) == W[i] for i in teams), name="A.3")
 
     # === A.4 Drawn Games ===
-    model.addConstrs((I[i] == gp.quicksum(j * tau[i, j] for j in range(i_bar)) for i in teams), name="A.4a")
-    model.addConstrs((gp.quicksum(tau[i, j] for j in range(i_bar)) == 1 for i in teams), name="A.4b")
+    # I[i]의 도메인은 A.4c 상한(max(i_bar, i_hat[i]))과 일치해야 한다.
+    # range(i_bar)로 고정하면 무승부가 i_bar개 이상인 팀이 생기는 순간 모든 모델이 infeasible이 된다.
+    draw_range = {i: range(min(max_draws, max(i_bar, i_hat[i]) + 1)) for i in teams}
+    model.addConstrs((I[i] == gp.quicksum(j * tau[i, j] for j in draw_range[i]) for i in teams), name="A.4a")
+    model.addConstrs((gp.quicksum(tau[i, j] for j in draw_range[i]) == 1 for i in teams), name="A.4b")
     model.addConstrs((I[i] <= max(i_bar, i_hat[i]) for i in teams), name="A.4c")
 
     # === A.5 Tie Indicators ===
@@ -477,8 +480,11 @@ def solve_clinch_number(env, data, target_team, verbose=False):
     model.addConstrs((I[i] == i_hat[i] + gp.quicksum(Y[i, j] for j in teams if i != j) for i in teams), name="A.2d")
     model.addConstrs((Y[i, j] == Y[j, i] for (i, j) in pairs), name="A.2e")
     model.addConstrs((N[i] * (W[i] + L[i]) == W[i] for i in teams), name="A.3")
-    model.addConstrs((I[i] == gp.quicksum(j * tau[i, j] for j in range(i_bar)) for i in teams), name="A.4a")
-    model.addConstrs((gp.quicksum(tau[i, j] for j in range(i_bar)) == 1 for i in teams), name="A.4b")
+    # I[i]의 도메인은 A.4c 상한(max(i_bar, i_hat[i]))과 일치해야 한다.
+    # range(i_bar)로 고정하면 무승부가 i_bar개 이상인 팀이 생기는 순간 모든 모델이 infeasible이 된다.
+    draw_range = {i: range(min(max_draws, max(i_bar, i_hat[i]) + 1)) for i in teams}
+    model.addConstrs((I[i] == gp.quicksum(j * tau[i, j] for j in draw_range[i]) for i in teams), name="A.4a")
+    model.addConstrs((gp.quicksum(tau[i, j] for j in draw_range[i]) == 1 for i in teams), name="A.4b")
     model.addConstrs((I[i] <= max(i_bar, i_hat[i]) for i in teams), name="A.4c")
 
     # === A.5~A.6 (동률 제약 — 동일) ===
