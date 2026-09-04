@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-04 19:35",
+  "updated_at": "2026-09-04 19:46",
   "data_date": "2026-09-03",
   "n_playoff": 5,
   "teams": [
@@ -12,23 +12,23 @@
       "current_draws": 3,
       "remaining_games": 29,
       "win_pct": 0.6161,
-      "eliminated": true,
-      "min_wins": null,
-      "magic_number": null,
-      "clinched": true,
-      "clinch_number": 0,
-      "clinch_wins": 69,
+      "eliminated": false,
+      "min_wins": 69,
+      "magic_number": 0,
+      "clinched": false,
+      "clinch_number": 14,
+      "clinch_wins": 83,
       "analysis": {
-        "status": "eliminated",
-        "status_label": "탈락",
-        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "status": "near_clinch",
+        "status_label": "확정 경쟁",
+        "headline": "앞으로 14승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
         "summary": "KT는 현재 1위, 69승 43패 3무로 잔여 29경기를 남겨두고 있습니다.",
-        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "reason": "현재는 아직 확정 전이지만, 14승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
         "cutline_note": "현재 포스트시즌 컷라인인 5위 두산보다 10경기 앞서 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 KIA로 7경기가 남아 있습니다.",
         "notes": [
           "KT는 현재 1위, 69승 43패 3무로 잔여 29경기를 남겨두고 있습니다.",
-          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "현재는 아직 확정 전이지만, 14승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
           "현재 포스트시즌 컷라인인 5위 두산보다 10경기 앞서 있습니다.",
           "가장 많이 남은 상대는 KIA로 7경기가 남아 있습니다."
         ],
@@ -41,7 +41,7 @@
             "losses": 45,
             "draws": 3,
             "remaining_games": 26,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 0.5
           },
           {
@@ -52,7 +52,7 @@
             "losses": 52,
             "draws": 2,
             "remaining_games": 27,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 7.5
           },
           {
@@ -63,7 +63,7 @@
             "losses": 55,
             "draws": 4,
             "remaining_games": 24,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 10
           },
           {
@@ -74,7 +74,7 @@
             "losses": 58,
             "draws": 2,
             "remaining_games": 31,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 15.5
           },
           {
@@ -85,7 +85,7 @@
             "losses": 63,
             "draws": 2,
             "remaining_games": 28,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": 19
           }
         ],
@@ -183,23 +183,23 @@
       "current_draws": 3,
       "remaining_games": 26,
       "win_pct": 0.6087,
-      "eliminated": true,
-      "min_wins": null,
-      "magic_number": null,
-      "clinched": true,
-      "clinch_number": 0,
-      "clinch_wins": 70,
+      "eliminated": false,
+      "min_wins": 70,
+      "magic_number": 0,
+      "clinched": false,
+      "clinch_number": 12,
+      "clinch_wins": 82,
       "analysis": {
-        "status": "eliminated",
-        "status_label": "탈락",
-        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "status": "near_clinch",
+        "status_label": "확정 경쟁",
+        "headline": "앞으로 12승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
         "summary": "삼성은 현재 2위, 70승 45패 3무로 잔여 26경기를 남겨두고 있습니다.",
-        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "reason": "현재는 아직 확정 전이지만, 12승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
         "cutline_note": "현재 포스트시즌 컷라인인 5위 두산보다 9.5경기 앞서 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 LG로 5경기가 남아 있습니다.",
         "notes": [
           "삼성은 현재 2위, 70승 45패 3무로 잔여 26경기를 남겨두고 있습니다.",
-          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "현재는 아직 확정 전이지만, 12승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
           "현재 포스트시즌 컷라인인 5위 두산보다 9.5경기 앞서 있습니다.",
           "가장 많이 남은 상대는 LG로 5경기가 남아 있습니다."
         ],
@@ -212,7 +212,7 @@
             "losses": 43,
             "draws": 3,
             "remaining_games": 29,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -0.5
           },
           {
@@ -223,7 +223,7 @@
             "losses": 51,
             "draws": 1,
             "remaining_games": 25,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 4.5
           },
           {
@@ -234,7 +234,7 @@
             "losses": 52,
             "draws": 2,
             "remaining_games": 27,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 7
           },
           {
@@ -245,7 +245,7 @@
             "losses": 55,
             "draws": 4,
             "remaining_games": 24,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 9.5
           },
           {
@@ -256,7 +256,7 @@
             "losses": 58,
             "draws": 2,
             "remaining_games": 31,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 15
           },
           {
@@ -267,7 +267,7 @@
             "losses": 63,
             "draws": 2,
             "remaining_games": 28,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": 18.5
           }
         ],
@@ -365,23 +365,23 @@
       "current_draws": 1,
       "remaining_games": 25,
       "win_pct": 0.5678,
-      "eliminated": true,
-      "min_wins": null,
-      "magic_number": null,
-      "clinched": true,
-      "clinch_number": 0,
-      "clinch_wins": 67,
+      "eliminated": false,
+      "min_wins": 67,
+      "magic_number": 0,
+      "clinched": false,
+      "clinch_number": 17,
+      "clinch_wins": 84,
       "analysis": {
-        "status": "eliminated",
-        "status_label": "탈락",
-        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "status": "near_clinch",
+        "status_label": "확정 경쟁",
+        "headline": "앞으로 17승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
         "summary": "LG는 현재 3위, 67승 51패 1무로 잔여 25경기를 남겨두고 있습니다.",
-        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "reason": "현재는 아직 확정 전이지만, 17승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
         "cutline_note": "현재 포스트시즌 컷라인인 5위 두산보다 5경기 앞서 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 KIA로 5경기가 남아 있습니다.",
         "notes": [
           "LG는 현재 3위, 67승 51패 1무로 잔여 25경기를 남겨두고 있습니다.",
-          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "현재는 아직 확정 전이지만, 17승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
           "현재 포스트시즌 컷라인인 5위 두산보다 5경기 앞서 있습니다.",
           "가장 많이 남은 상대는 KIA로 5경기가 남아 있습니다."
         ],
@@ -394,7 +394,7 @@
             "losses": 45,
             "draws": 3,
             "remaining_games": 26,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -4.5
           },
           {
@@ -405,7 +405,7 @@
             "losses": 52,
             "draws": 2,
             "remaining_games": 27,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 2.5
           },
           {
@@ -416,7 +416,7 @@
             "losses": 55,
             "draws": 4,
             "remaining_games": 24,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 5
           },
           {
@@ -427,7 +427,7 @@
             "losses": 58,
             "draws": 2,
             "remaining_games": 31,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 10.5
           },
           {
@@ -438,7 +438,7 @@
             "losses": 63,
             "draws": 2,
             "remaining_games": 28,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": 14
           }
         ],
@@ -536,23 +536,23 @@
       "current_draws": 2,
       "remaining_games": 27,
       "win_pct": 0.5478,
-      "eliminated": true,
-      "min_wins": null,
-      "magic_number": null,
-      "clinched": true,
-      "clinch_number": 0,
-      "clinch_wins": 63,
+      "eliminated": false,
+      "min_wins": 63,
+      "magic_number": 0,
+      "clinched": false,
+      "clinch_number": 20,
+      "clinch_wins": 83,
       "analysis": {
-        "status": "eliminated",
-        "status_label": "탈락",
-        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "status": "near_clinch",
+        "status_label": "확정 경쟁",
+        "headline": "앞으로 20승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
         "summary": "KIA는 현재 4위, 63승 52패 2무로 잔여 27경기를 남겨두고 있습니다.",
-        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "reason": "현재는 아직 확정 전이지만, 20승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
         "cutline_note": "현재 포스트시즌 컷라인인 5위 두산보다 2.5경기 앞서 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 KT로 7경기가 남아 있습니다.",
         "notes": [
           "KIA는 현재 4위, 63승 52패 2무로 잔여 27경기를 남겨두고 있습니다.",
-          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "현재는 아직 확정 전이지만, 20승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
           "현재 포스트시즌 컷라인인 5위 두산보다 2.5경기 앞서 있습니다.",
           "가장 많이 남은 상대는 KT로 7경기가 남아 있습니다."
         ],
@@ -565,7 +565,7 @@
             "losses": 51,
             "draws": 1,
             "remaining_games": 25,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -2.5
           },
           {
@@ -576,7 +576,7 @@
             "losses": 55,
             "draws": 4,
             "remaining_games": 24,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 2.5
           },
           {
@@ -587,7 +587,7 @@
             "losses": 58,
             "draws": 2,
             "remaining_games": 31,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 8
           },
           {
@@ -598,7 +598,7 @@
             "losses": 63,
             "draws": 2,
             "remaining_games": 28,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": 11.5
           }
         ],
@@ -696,23 +696,23 @@
       "current_draws": 4,
       "remaining_games": 24,
       "win_pct": 0.5259,
-      "eliminated": true,
-      "min_wins": null,
-      "magic_number": null,
-      "clinched": true,
-      "clinch_number": 0,
-      "clinch_wins": 61,
+      "eliminated": false,
+      "min_wins": 61,
+      "magic_number": 0,
+      "clinched": false,
+      "clinch_number": 21,
+      "clinch_wins": 82,
       "analysis": {
-        "status": "eliminated",
-        "status_label": "탈락",
-        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "status": "near_clinch",
+        "status_label": "확정 경쟁",
+        "headline": "앞으로 21승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
         "summary": "두산은 현재 5위, 61승 55패 4무로 잔여 24경기를 남겨두고 있습니다.",
-        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "reason": "현재는 아직 확정 전이지만, 21승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
         "cutline_note": "현재 컷라인 아래 NC보다 5.5경기 앞서 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 NC로 5경기가 남아 있습니다.",
         "notes": [
           "두산은 현재 5위, 61승 55패 4무로 잔여 24경기를 남겨두고 있습니다.",
-          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "현재는 아직 확정 전이지만, 21승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
           "현재 컷라인 아래 NC보다 5.5경기 앞서 있습니다.",
           "가장 많이 남은 상대는 NC로 5경기가 남아 있습니다."
         ],
@@ -725,7 +725,7 @@
             "losses": 52,
             "draws": 2,
             "remaining_games": 27,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -2.5
           },
           {
@@ -736,7 +736,7 @@
             "losses": 58,
             "draws": 2,
             "remaining_games": 31,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": 5.5
           },
           {
@@ -747,7 +747,7 @@
             "losses": 63,
             "draws": 2,
             "remaining_games": 28,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": 9
           }
         ],
@@ -845,23 +845,23 @@
       "current_draws": 2,
       "remaining_games": 31,
       "win_pct": 0.4775,
-      "eliminated": true,
-      "min_wins": null,
-      "magic_number": null,
-      "clinched": true,
-      "clinch_number": 0,
-      "clinch_wins": 53,
+      "eliminated": false,
+      "min_wins": 61,
+      "magic_number": 8,
+      "clinched": false,
+      "clinch_number": 30,
+      "clinch_wins": 83,
       "analysis": {
-        "status": "eliminated",
-        "status_label": "탈락",
-        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "status": "near_clinch",
+        "status_label": "확정 경쟁",
+        "headline": "앞으로 30승을 더하면 다른 경기 결과와 무관하게 포스트시즌 진출이 확정됩니다.",
         "summary": "NC는 현재 6위, 53승 58패 2무로 잔여 31경기를 남겨두고 있습니다.",
-        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "reason": "현재는 아직 확정 전이지만, 30승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
         "cutline_note": "현재 컷라인 두산에 5.5경기 뒤져 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 두산로 5경기가 남아 있습니다.",
         "notes": [
           "NC는 현재 6위, 53승 58패 2무로 잔여 31경기를 남겨두고 있습니다.",
-          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "현재는 아직 확정 전이지만, 30승을 더한 이후에는 다른 팀 경기 결과와 무관하게 5위 밖으로 밀려나지 않습니다.",
           "현재 컷라인 두산에 5.5경기 뒤져 있습니다.",
           "가장 많이 남은 상대는 두산로 5경기가 남아 있습니다."
         ],
@@ -874,7 +874,7 @@
             "losses": 52,
             "draws": 2,
             "remaining_games": 27,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -8
           },
           {
@@ -885,7 +885,7 @@
             "losses": 55,
             "draws": 4,
             "remaining_games": 24,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -5.5
           },
           {
@@ -896,7 +896,7 @@
             "losses": 63,
             "draws": 2,
             "remaining_games": 28,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": 3.5
           }
         ],
@@ -994,23 +994,23 @@
       "current_draws": 2,
       "remaining_games": 28,
       "win_pct": 0.4474,
-      "eliminated": true,
-      "min_wins": null,
-      "magic_number": null,
-      "clinched": true,
-      "clinch_number": 0,
-      "clinch_wins": 51,
+      "eliminated": false,
+      "min_wins": 61,
+      "magic_number": 10,
+      "clinched": false,
+      "clinch_number": null,
+      "clinch_wins": null,
       "analysis": {
-        "status": "eliminated",
-        "status_label": "탈락",
-        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "status": "under_pressure",
+        "status_label": "생존 경쟁",
+        "headline": "포스트시즌 가능성을 유지하려면 최소 10승이 더 필요합니다.",
         "summary": "롯데는 현재 7위, 51승 63패 2무로 잔여 28경기를 남겨두고 있습니다.",
-        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "reason": "모델이 찾은 생존 시나리오에서는 최소 10승의 추가 승리가 필요합니다. 그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다.",
         "cutline_note": "현재 컷라인 두산에 9경기 뒤져 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 한화로 6경기가 남아 있습니다.",
         "notes": [
           "롯데는 현재 7위, 51승 63패 2무로 잔여 28경기를 남겨두고 있습니다.",
-          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "모델이 찾은 생존 시나리오에서는 최소 10승의 추가 승리가 필요합니다. 그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다.",
           "현재 컷라인 두산에 9경기 뒤져 있습니다.",
           "가장 많이 남은 상대는 한화로 6경기가 남아 있습니다."
         ],
@@ -1023,7 +1023,7 @@
             "losses": 52,
             "draws": 2,
             "remaining_games": 27,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -11.5
           },
           {
@@ -1034,7 +1034,7 @@
             "losses": 55,
             "draws": 4,
             "remaining_games": 24,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -9
           },
           {
@@ -1045,7 +1045,7 @@
             "losses": 58,
             "draws": 2,
             "remaining_games": 31,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -3.5
           },
           {
@@ -1056,7 +1056,7 @@
             "losses": 66,
             "draws": 5,
             "remaining_games": 23,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": 2
           }
         ],
@@ -1154,23 +1154,23 @@
       "current_draws": 5,
       "remaining_games": 23,
       "win_pct": 0.431,
-      "eliminated": true,
-      "min_wins": null,
-      "magic_number": null,
-      "clinched": true,
-      "clinch_number": 0,
-      "clinch_wins": 50,
+      "eliminated": false,
+      "min_wins": 61,
+      "magic_number": 11,
+      "clinched": false,
+      "clinch_number": null,
+      "clinch_wins": null,
       "analysis": {
-        "status": "eliminated",
-        "status_label": "탈락",
-        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "status": "under_pressure",
+        "status_label": "생존 경쟁",
+        "headline": "포스트시즌 가능성을 유지하려면 최소 11승이 더 필요합니다.",
         "summary": "SSG는 현재 8위, 50승 66패 5무로 잔여 23경기를 남겨두고 있습니다.",
-        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "reason": "모델이 찾은 생존 시나리오에서는 최소 11승의 추가 승리가 필요합니다. 그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다.",
         "cutline_note": "현재 컷라인 두산에 11경기 뒤져 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 NC로 5경기가 남아 있습니다.",
         "notes": [
           "SSG는 현재 8위, 50승 66패 5무로 잔여 23경기를 남겨두고 있습니다.",
-          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "모델이 찾은 생존 시나리오에서는 최소 11승의 추가 승리가 필요합니다. 그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다.",
           "현재 컷라인 두산에 11경기 뒤져 있습니다.",
           "가장 많이 남은 상대는 NC로 5경기가 남아 있습니다."
         ],
@@ -1183,7 +1183,7 @@
             "losses": 52,
             "draws": 2,
             "remaining_games": 27,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -13.5
           },
           {
@@ -1194,7 +1194,7 @@
             "losses": 55,
             "draws": 4,
             "remaining_games": 24,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -11
           },
           {
@@ -1205,7 +1205,7 @@
             "losses": 58,
             "draws": 2,
             "remaining_games": 31,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -5.5
           },
           {
@@ -1216,7 +1216,7 @@
             "losses": 63,
             "draws": 2,
             "remaining_games": 28,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": -2
           },
           {
@@ -1227,7 +1227,7 @@
             "losses": 65,
             "draws": 3,
             "remaining_games": 27,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": 0
           }
         ],
@@ -1325,23 +1325,23 @@
       "current_draws": 3,
       "remaining_games": 27,
       "win_pct": 0.4298,
-      "eliminated": true,
-      "min_wins": null,
-      "magic_number": null,
-      "clinched": true,
-      "clinch_number": 0,
-      "clinch_wins": 49,
+      "eliminated": false,
+      "min_wins": 61,
+      "magic_number": 12,
+      "clinched": false,
+      "clinch_number": null,
+      "clinch_wins": null,
       "analysis": {
-        "status": "eliminated",
-        "status_label": "탈락",
-        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "status": "under_pressure",
+        "status_label": "생존 경쟁",
+        "headline": "포스트시즌 가능성을 유지하려면 최소 12승이 더 필요합니다.",
         "summary": "한화는 현재 9위, 49승 65패 3무로 잔여 27경기를 남겨두고 있습니다.",
-        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "reason": "모델이 찾은 생존 시나리오에서는 최소 12승의 추가 승리가 필요합니다. 그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다.",
         "cutline_note": "현재 컷라인 두산에 11경기 뒤져 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 롯데로 6경기가 남아 있습니다.",
         "notes": [
           "한화는 현재 9위, 49승 65패 3무로 잔여 27경기를 남겨두고 있습니다.",
-          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "모델이 찾은 생존 시나리오에서는 최소 12승의 추가 승리가 필요합니다. 그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다.",
           "현재 컷라인 두산에 11경기 뒤져 있습니다.",
           "가장 많이 남은 상대는 롯데로 6경기가 남아 있습니다."
         ],
@@ -1354,7 +1354,7 @@
             "losses": 52,
             "draws": 2,
             "remaining_games": 27,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -13.5
           },
           {
@@ -1365,7 +1365,7 @@
             "losses": 55,
             "draws": 4,
             "remaining_games": 24,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -11
           },
           {
@@ -1376,7 +1376,7 @@
             "losses": 58,
             "draws": 2,
             "remaining_games": 31,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -5.5
           },
           {
@@ -1387,7 +1387,7 @@
             "losses": 63,
             "draws": 2,
             "remaining_games": 28,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": -2
           },
           {
@@ -1398,7 +1398,7 @@
             "losses": 66,
             "draws": 5,
             "remaining_games": 23,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": 0
           },
           {
@@ -1409,7 +1409,7 @@
             "losses": 78,
             "draws": 3,
             "remaining_games": 20,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": 9.5
           }
         ],
@@ -1507,23 +1507,23 @@
       "current_draws": 3,
       "remaining_games": 20,
       "win_pct": 0.3554,
-      "eliminated": true,
-      "min_wins": null,
-      "magic_number": null,
-      "clinched": true,
-      "clinch_number": 0,
-      "clinch_wins": 43,
+      "eliminated": false,
+      "min_wins": 61,
+      "magic_number": 18,
+      "clinched": false,
+      "clinch_number": null,
+      "clinch_wins": null,
       "analysis": {
-        "status": "eliminated",
-        "status_label": "탈락",
-        "headline": "남은 모든 경우를 고려해도 포스트시즌 진입이 불가능합니다.",
+        "status": "under_pressure",
+        "status_label": "생존 경쟁",
+        "headline": "포스트시즌 가능성을 유지하려면 최소 18승이 더 필요합니다.",
         "summary": "키움은 현재 10위, 43승 78패 3무로 잔여 20경기를 남겨두고 있습니다.",
-        "reason": "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+        "reason": "모델이 찾은 생존 시나리오에서는 최소 18승의 추가 승리가 필요합니다. 그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다.",
         "cutline_note": "현재 컷라인 두산에 20.5경기 뒤져 있습니다.",
         "schedule_note": "가장 많이 남은 상대는 한화로 4경기가 남아 있습니다.",
         "notes": [
           "키움은 현재 10위, 43승 78패 3무로 잔여 20경기를 남겨두고 있습니다.",
-          "모델이 남은 경기 결과를 모두 고려해도 이 팀이 5위 이내로 끝나는 시나리오를 찾지 못했습니다.",
+          "모델이 찾은 생존 시나리오에서는 최소 18승의 추가 승리가 필요합니다. 그보다 적게 이기면 포스트시즌 가능성이 사라질 수 있습니다.",
           "현재 컷라인 두산에 20.5경기 뒤져 있습니다.",
           "가장 많이 남은 상대는 한화로 4경기가 남아 있습니다."
         ],
@@ -1536,7 +1536,7 @@
             "losses": 52,
             "draws": 2,
             "remaining_games": 27,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -23
           },
           {
@@ -1547,7 +1547,7 @@
             "losses": 55,
             "draws": 4,
             "remaining_games": 24,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -20.5
           },
           {
@@ -1558,7 +1558,7 @@
             "losses": 58,
             "draws": 2,
             "remaining_games": 31,
-            "status_label": "탈락",
+            "status_label": "확정 경쟁",
             "gap_from_selected": -15
           },
           {
@@ -1569,7 +1569,7 @@
             "losses": 63,
             "draws": 2,
             "remaining_games": 28,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": -11.5
           },
           {
@@ -1580,7 +1580,7 @@
             "losses": 65,
             "draws": 3,
             "remaining_games": 27,
-            "status_label": "탈락",
+            "status_label": "생존 경쟁",
             "gap_from_selected": -9.5
           }
         ],
